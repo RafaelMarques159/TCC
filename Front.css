@@ -1,0 +1,39 @@
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.nav-item {
+    text-align: center;
+}
+.nav-item i {
+    font-size: 20px;
+}
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: navy;
+    color: white;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    /* Define uma altura fixa para o carrossel */
+    .carousel-fixed-height {
+      height: 500px; /* Altura fixa */
+      width: 80%; /* Largura do carrossel (ajuste conforme necessário) */
+      margin: 0 auto; /* Centraliza o carrossel */
+    }
+
+    /* Garante que as imagens preencham o espaço sem distorcer */
+    .carousel-fixed-height .carousel-item img {
+      height: 500px;
+      width: 100px;
+      object-fit: cover; /* Mantém a proporção da imagem */
+    }
