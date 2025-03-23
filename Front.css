@@ -1,19 +1,72 @@
+
+/* Estilo do corpo */
+body {
+    background-color: #333333; /* Fundo principal: Preto carvão */
+    color: #ffffff; /* Texto: Branco */
+    font-family: Arial, sans-serif; /* Fonte padrão */
+    margin: 0;
+    padding: 0;
+
+    background: linear-gradient(170deg,#333333, #f7b32b); /* Gradiente de Preto carvão a Amarelo segurança */
+    color: #ffffff; /* Cor do texto: Branco */
+    font-family: Arial, sans-serif; /* Fonte padrão */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo dos botões */
+button {
+    background-color: #f7b32b; /* Fundo dos botões: Amarelo segurança */
+    color: #333333; /* Texto dos botões: Preto carvão */
+    border: none;
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+button:hover {
+    background-color: #e6a828; /* Efeito hover no botão */
+}
+
+/* Estilo para elementos secundários */
+.secondary-element {
+    background-color: #a8a8a8; /* Elementos secundários: Cinza concreto */
+    color: #333333; /* Texto dos elementos secundários: Preto carvão */
+    padding: 10px;
+    border-radius: 3px; /* Bordas arredondadas */
+}
+
+/* Estilo para links */
+a {
+    color: #f7b32b; /* Links: Amarelo segurança */
+    text-decoration: none; /* Sem sublinha */
+}
+
+a:hover {
+    text-decoration: underline; /* Efeito ao passar o mouse sobre links */
+}
+
 .nav-icons {
     display: flex;
     align-items: center;
     gap: 20px;
+    
+    
 }
 .nav-item {
     text-align: center;
+    
 }
 .nav-item i {
     font-size: 20px;
+    color: #ffffff;
 }
 .cart-badge {
     position: absolute;
     top: -5px;
     right: -5px;
-    background: navy;
+    background: #f7b32b;
     color: white;
     font-size: 12px;
     width: 18px;
