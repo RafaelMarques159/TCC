@@ -25,6 +25,12 @@
     justify-content: center;
 }
 
+/* menu drop */
+.dropdown-center:hover .dropdown-menu {
+      display: block;
+      margin-top: 0; /* Remove delay gap */
+    }
+
     /* Define uma altura fixa para o carrossel */
     .carousel-fixed-height {
       height: 500px; /* Altura fixa */
