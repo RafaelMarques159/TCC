@@ -26,11 +26,39 @@
 }
 
 /* menu drop */
-.dropdown-center:hover .dropdown-menu {
-      display: block;
-      margin-top: 0; /* Remove delay gap */
-    }
+.dropdown-center {
+  position: relative;
+  display: inline-block;
+}
 
+.dropdown-center .btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  position: relative;
+  border-radius: 0;
+  border-bottom: 2px solid transparent; /* já reserva espaço */
+  transition: border-color 0.2s ease;
+}
+
+.dropdown-center .btn.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-center .btn:hover {
+  border-bottom-color: red; /* só muda a cor da borda, sem alterar tamanho */
+}
+
+.dropdown-center:hover .dropdown-menu {
+  display: block;
+  margin-top:1px;
+}
+
+.dropdown-menu {
+  margin-top: 0;
+}
     /* Define uma altura fixa para o carrossel */
     .carousel-fixed-height {
       height: 500px; /* Altura fixa */
