@@ -61,15 +61,15 @@
 }
     /* Define uma altura fixa para o carrossel */
     .carousel-fixed-height {
-      height: 500px; /* Altura fixa */
+      max-height: 500px; /* Altura fixa */
       width: 80%; /* Largura do carrossel (ajuste conforme necessário) */
       margin: 0 auto; /* Centraliza o carrossel */
     }
 
     /* Garante que as imagens preencham o espaço sem distorcer */
     .carousel-fixed-height .carousel-item img {
-      height: 500px;
-      width: 100px;
+      max-height: 500px;
+      max-width: 1000px;
       object-fit: cover; /* Mantém a proporção da imagem */
     }
    
