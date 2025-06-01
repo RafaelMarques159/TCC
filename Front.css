@@ -47,8 +47,12 @@
   display: none;
 }
 
+.dropdown-center .btn {
+  border-bottom: 3px solid transparent; /* espaço reservado */
+}
+
 .dropdown-center .btn:hover {
-  border-bottom-color: red; /* só muda a cor da borda, sem alterar tamanho */
+  border-bottom-color: red; /* muda só a cor no hover */
 }
 
 .dropdown-center:hover .dropdown-menu {
@@ -59,20 +63,26 @@
 .dropdown-menu {
   margin-top: 0;
 }
-    /* Define uma altura fixa para o carrossel */
-    .carousel-fixed-height {
-      max-height: 500px; /* Altura fixa */
-      width: 80%; /* Largura do carrossel (ajuste conforme necessário) */
-      margin: 0 auto; /* Centraliza o carrossel */
-    }
+/* Container do carrossel */
+.carousel-fixed-height {
+  max-height: 500px;
+  width: 95vw; /* 90% da largura da viewport */
+  margin: 5px auto;
+  overflow: hidden; /* Evita vazamento de imagem */
+}
 
-    /* Garante que as imagens preencham o espaço sem distorcer */
-    .carousel-fixed-height .carousel-item img {
-      max-height: 500px;
-      max-width: 1000px;
-      object-fit: cover; /* Mantém a proporção da imagem */
-    }
-   
+/* Garante que os itens do carrossel preencham o espaço */
+.carousel-fixed-height .carousel-item {
+  height: 500px;
+}
+
+/* Estiliza a imagem para preencher o item */
+.carousel-fixed-height .carousel-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
     /* carroselcards*/
     .cards-wrapper {
       display: flex;
