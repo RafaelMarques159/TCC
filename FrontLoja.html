@@ -14,54 +14,68 @@
 
 <body>
   <header class="py-4 mb-3 border-bottom">
-    <div class="container ">
-      <div class="d-flex flex-wrap align-items-center justify-content-center">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-            <use xlink:href="#bootstrap" />
-          </svg>
+    <div class="container">
+  <div class="row align-items-center justify-content-between py-3">
+    
+    <!-- Logo -->
+    <div class="col-6 col-md-2 text-center text-md-start mb-2 mb-md-0">
+      <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+          <use xlink:href="#bootstrap" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Barra de Pesquisa -->
+    <div class="col-12 col-md-6 mb-3 mb-md-0">
+      <form role="search">
+        <input type="search" class="form-control" placeholder="Pesquisar..." aria-label="Search">
+      </form>
+    </div>
+
+    <!-- Ícones de Navegação -->
+    <div class="col-12 col-md-4 d-flex justify-content-around nav-icons mt-2 mt-md-0">
+      
+      <!-- Minha Conta -->
+      <div class="dropdown nav-item position-relative">
+        <a href="#" class="text-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+          <i class="fa-solid fa-user"></i><br><small>Minha Conta</small>
         </a>
-
-        <form class="col-12 col-lg-auto mb-3 mb-lg-1 mx-auto w-50" role="search">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-        </form>
-
-        <div class="dropdown nav-item">
-          <a href="#" class="text-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
-            <i class="fa-solid fa-user"></i><br>Minha Conta
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Perfil</a></li>
-            <li><a class="dropdown-item" href="#">Configurações<a></li>
-            <li><a class="dropdown-item" href="#">Sair</a></li>
-          </ul>
-        </div>
-
-        <!-- Serviços e Atendimento -->
-        <div class="dropdown nav-item mx-3 mb-3">
-          <a href="#" class="text-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
-            <i class="fas fa-headset"></i><br>Serviço e<br>Atendimento
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Suporte</a></li>
-            <li><a class="dropdown-item" href="#">FAQ</a></li>
-            <li><a class="dropdown-item" href="#">Fale Conosco</a></li>
-          </ul>
-        </div>
-
-        <!-- Carrinho -->
-        <div class="dropdown nav-item">
-          <a href="#" class="text-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-badge">0</span><br>Meu Carrinho
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Ver Carrinho</a></li>
-            <li><a class="dropdown-item" href="#">Finalizar Compra</a></li>
-          </ul>
-        </div>
-
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Perfil</a></li>
+          <li><a class="dropdown-item" href="#">Configurações</a></li>
+          <li><a class="dropdown-item" href="#">Sair</a></li>
+        </ul>
       </div>
+
+      <!-- Serviço e Atendimento -->
+      <div class="dropdown nav-item position-relative">
+        <a href="#" class="text-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+          <i class="fas fa-headset"></i><br><small>Atendimento</small>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Suporte</a></li>
+          <li><a class="dropdown-item" href="#">FAQ</a></li>
+          <li><a class="dropdown-item" href="#">Fale Conosco</a></li>
+        </ul>
+      </div>
+
+      <!-- Carrinho -->
+      <div class="dropdown nav-item position-relative">
+        <a href="#" class="text-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge">0</span><br><small>Meu Carrinho</small>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Ver Carrinho</a></li>
+          <li><a class="dropdown-item" href="#">Finalizar Compra</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
     </div>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -190,34 +204,38 @@
     </div>
   </div>
   <!--cards inicio-->
-  <div class="container my-5">
-    <div class="row g-1">
-      <div class="card3 me-5">
+<div class="container my-5">
+  <div class="row g-4 justify-content-center">
+    <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+      <div class="card3">
         <div class="card-image3"></div>
         <p class="card-title3">Card title</p>
         <p class="card-body3">
           Nullam ac tristique nulla, at convallis quam. Integer consectetur mi nec magna tristique, non lobortis.
         </p>
-
       </div>
-      <div class="card3 me-5 ms-5">
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+      <div class="card3">
         <div class="card-image3"></div>
         <p class="card-title3">Card title</p>
         <p class="card-body3">
           Nullam ac tristique nulla, at convallis quam. Integer consectetur mi nec magna tristique, non lobortis.
         </p>
-
       </div>
-      <div class="card3 ms-5">
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+      <div class="card3">
         <div class="card-image3"></div>
         <p class="card-title3">Card title</p>
         <p class="card-body3">
           Nullam ac tristique nulla, at convallis quam. Integer consectetur mi nec magna tristique, non lobortis.
         </p>
-
       </div>
     </div>
   </div>
+</div>
+
 
   <div id="carouselExample" class="carousel slide" data-bs-interval="false"> <!-- Parando a rotação automática -->
     <div class="carousel-inner">
@@ -311,11 +329,10 @@
     </button>
   </div>
 
-  <!-- cards -->
-  <div class="container my-5 ">
-    <div class="row g-5">
+  <div class="container my-5">
+    <div class="row g-5 justify-content-center">
       <!-- Card 1 -->
-      <div class="col-md-3">
+      <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
         <div class="card">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -329,7 +346,7 @@
         </div>
       </div>
       <!-- Card 2 -->
-      <div class="col-md-3">
+      <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
         <div class="card">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -343,7 +360,7 @@
         </div>
       </div>
       <!-- Card 3 -->
-      <div class="col-md-3">
+      <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
         <div class="card">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -357,7 +374,7 @@
         </div>
       </div>
       <!-- Card 4 -->
-      <div class="col-md-3">
+      <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
         <div class="card">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -378,53 +395,44 @@
     <footer class="py-5">
       <div class="row">
         <div class="col-5 col-md-2 mb-3">
-          <h5>Section</h5>
+            <h5>Minha conta</h5>
           <ul class="nav1 flex-column">
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Meus pedidos</a></li>
+            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Minha Conta</a></li>
           </ul>
         </div>
 
         <div class="col-6 col-md-2 mb-3">
-          <h5>Section</h5>
+          <h5>Departamentos</h5>
           <ul class="nav1 flex-column">
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-            <li class="nav-ite1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Materiais de Construção</a></li>
+            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Material Elétrico</a></li>
+            <li class="nav-ite1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Iluminação</a></li>
+            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Tintas e Impermeabilizantes</a></li>
           </ul>
         </div>
 
         <div class="col-6 col-md-2 mb-3">
-          <h5>Section</h5>
+          <h5>Suporte</h5>
           <ul class="nav1 flex-column">
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Fale conosco</a></li>
+            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Troca e Devolução</a></li>
+            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Políticas de Entrega</a></li>
+            <li class="nav-item1 mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Sobre</a></li>
           </ul>
         </div>
 
-        <div class="col-md-5 offset-md-1 mb-3">
-          <form>
-            <h5>Subscribe to our newsletter</h5>
-            <p>Monthly digest of what's new and exciting from us.</p>
-            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-              <label for="newsletter1" class="visually-hidden">Email address</label>
-              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-              <button class="btn btn-primary" type="button">Subscribe</button>
-            </div>
-          </form>
-        </div>
+         <div class="col-md-5 offset-md-1 mb-3">
+        <h5>Atendimento</h5>
+        <p><strong>Telefone:</strong> (21) 4003-4456</p>
+        <p><strong>Horário do SAC:</strong><br>De segunda à sábado de 8h às 18h</p>
+        <p><strong>Email SAC:</strong><br><a href="mailto:contato@chatuba.com.br">contato@.com.br</a></p>
+        <p><strong>Televendas:</strong><br><a href="mailto:chatuba.televendas@chatuba.com.br"></a></p>
+      </div>
       </div>
 
       <div class="d-flex flex-column flex-sm-row justify-content-center py-2 my-5 border-top">
-        <p class="mt-2">&copy; 2024 Company, Inc. All rights reserved.</p>
+        <p class="mt-2">&copy; 2025 Company, Inc. All rights reserved.</p>
         <!-- From Uiverse.io by vinodjangid07 -->
         <div class="card1">
           <a href="#" class="socialContainer containerOne">
