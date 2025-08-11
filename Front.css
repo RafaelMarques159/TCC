@@ -44,7 +44,8 @@
   font-size: 1rem;
   position: relative;
   border-radius: 0;
-  border-bottom: 2px solid transparent; /* já reserva espaço */
+  border-bottom: 2px solid transparent;
+  /* já reserva espaço */
   transition: border-color 0.2s ease;
 }
 
@@ -53,27 +54,32 @@
 }
 
 .dropdown-center .btn {
-  border-bottom: 3px solid transparent; /* espaço reservado */
+  border-bottom: 3px solid transparent;
+  /* espaço reservado */
 }
 
 .dropdown-center .btn:hover {
-  border-bottom-color: red; /* muda só a cor no hover */
+  border-bottom-color: red;
+  /* muda só a cor no hover */
 }
 
 .dropdown-center:hover .dropdown-menu {
   display: block;
-  margin-top:1px;
+  margin-top: 1px;
 }
 
 .dropdown-menu {
   margin-top: 0;
 }
+
 /* Container do carrossel */
 .carousel-fixed-height {
   max-height: 500px;
-  width: 95vw; /* 90% da largura da viewport */
+  width: 95vw;
+  /* 90% da largura da viewport */
   margin: 5px auto;
-  overflow: hidden; /* Evita vazamento de imagem */
+  overflow: hidden;
+  /* Evita vazamento de imagem */
 }
 
 /* Garante que os itens do carrossel preencham o espaço */
@@ -88,50 +94,53 @@
   object-fit: cover;
 }
 
-    /* carroselcards*/
-    .cards-wrapper {
-      display: flex;
-      justify-content: center;
-    }
-    .card img {
-      max-width: 100%;
-      max-height: 100%;
-    }
-    .card2 {
-      margin: 0 0.5em;
-      box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
-      border: none;
-      border-radius: 0;
-      height: 400px;
-      width: 250px;
-      margin-bottom: 50px;
-    }
-    
-    .carousel-control-prev,
-    .carousel-control-next {
-      background-color: #bebcbc;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      top: 45%;
-      transform: translateY(-50%);
-    }
-    @media (min-width: 768px) {
-      .card img {
-        height: 11em;
-      }
-    }
- 
-    /* cards incio*/
-   /* From Uiverse.io by Sashank02 */ 
-   .card3 {
+/* carroselcards*/
+.cards-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.card img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.card2 {
+  margin: 0 0.5em;
+  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+  border: none;
+  border-radius: 0;
+  height: 400px;
+  width: 250px;
+  margin-bottom: 50px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: #bebcbc;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  top: 45%;
+  transform: translateY(-50%);
+}
+
+@media (min-width: 768px) {
+  .card img {
+    height: 11em;
+  }
+}
+
+/* cards incio*/
+/* From Uiverse.io by Sashank02 */
+.card3 {
   padding: 20px;
   width: 330px;
   min-height: 370px;
   border-radius: 20px;
   background: #212121;
   box-shadow: 5px 5px 8px #1b1b1b,
-             -5px -5px 8px #272727;
+    -5px -5px 8px #272727;
   transition: 0.4s;
 }
 
@@ -152,7 +161,7 @@
   border-radius: 15px;
   background: #313131;
   box-shadow: inset 5px 5px 3px #2f2f2f,
-            inset -5px -5px 3px #333333;
+    inset -5px -5px 3px #333333;
 }
 
 .card-body3 {
@@ -171,71 +180,71 @@
 .by-name {
   font-weight: 700;
 }
-    
-    /*cards que mexem */ 
-.card {
-    position: relative;
-    width: 300px;
-    height: 200px;
-    background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100% );
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-  }
-  
-  .card svg {
-    width: 48px;
-    fill: #333;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-  }
-  
-  .card:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card__content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #fff;
-    opacity: 0;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-  }
-  
-  .card:hover .card__content {
-    transform: translate(-50%, -50%) rotate(0deg);
-    opacity: 1;
-  }
-  
-  .card__title {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
-    font-weight: 700;
-  }
-  
-  .card__description {
-    margin: 10px 0 0;
-    font-size: 14px;
-    color: #777;
-    line-height: 1.4;
-  }
-  
-  .card:hover svg {
-    scale: 0;
-    transform: rotate(-45deg);
-  }
-  
 
-  /* From Uiverse.io by vinodjangid07 */ 
+/*cards que mexem */
+.card {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card svg {
+  width: 48px;
+  fill: #333;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card:hover .card__content {
+  transform: translate(-50%, -50%) rotate(0deg);
+  opacity: 1;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+  font-weight: 700;
+}
+
+.card__description {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #777;
+  line-height: 1.4;
+}
+
+.card:hover svg {
+  scale: 0;
+  transform: rotate(-45deg);
+}
+
+
+/* From Uiverse.io by vinodjangid07 */
 
 
 /* for all social containers*/
@@ -243,6 +252,7 @@
   display: flex;
   margin-top: 0;
 }
+
 .socialContainer {
   width: 52px;
   height: 52px;
@@ -253,21 +263,25 @@
   overflow: hidden;
   transition-duration: .3s;
 }
+
 /* instagram*/
 .containerOne:hover {
   background-color: #d62976;
   transition-duration: .3s;
 }
+
 /* twitter*/
 .containerTwo:hover {
   background-color: #00acee;
   transition-duration: .3s;
 }
+
 /* linkdin*/
 .containerThree:hover {
   background-color: #0072b1;
   transition-duration: .3s;
 }
+
 /* Whatsapp*/
 .containerFour:hover {
   background-color: #128C7E;
@@ -302,4 +316,3 @@
     opacity: 1;
   }
 }
-
