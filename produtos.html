@@ -156,81 +156,152 @@
         </nav>
     </header>
 
-    <div class="container-fluid">
-        <!-- Primeira linha centralizada -->
-        <div class="d-flex gap-3 justify-content-center divs-cards">
-            <div class="card" style="width: 12rem;">
-                <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card’s content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="container my-4">
+        <!-- Bloco centralizado com filtros + cards -->
+        <div class="d-flex justify-content-center gap-4 flex-wrap">
+
+            <!-- Coluna filtros -->
+            <div class="col-md-3 col-lg-2 p-0">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="mb-3">Filtros</h5>
+
+                        <!-- Categoria -->
+                        <div class="mb-2">
+                            <button
+                                class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
+                                data-bs-toggle="collapse" data-bs-target="#categoria">
+                                Categoria
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <div class="collapse show" id="categoria">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="pisos">
+                                    <label class="form-check-label" for="pisos">Pisos</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="revestimentos">
+                                    <label class="form-check-label" for="revestimentos">Revestimentos</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="argamassa">
+                                    <label class="form-check-label" for="argamassa">Argamassa e rejunte</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="acabamentos">
+                                    <label class="form-check-label" for="acabamentos">Acabamentos e acessórios</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="rodape">
+                                    <label class="form-check-label" for="rodape">Rodapé e acessórios</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="soleiras">
+                                    <label class="form-check-label" for="soleiras">Soleiras Peitoris e Pedra box</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subcategoria -->
+                        <div class="mb-2">
+                            <button
+                                class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
+                                data-bs-toggle="collapse" data-bs-target="#subcategoria">
+                                Subcategoria
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <div class="collapse" id="subcategoria">
+                                <p class="text-muted ms-3">Opções...</p>
+                            </div>
+                        </div>
+
+                        <!-- Marca -->
+                        <div class="mb-2">
+                            <button
+                                class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
+                                data-bs-toggle="collapse" data-bs-target="#marca">
+                                Marca
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <div class="collapse" id="marca">
+                                <p class="text-muted ms-3">Opções...</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
-            <div class="card" style="width: 12rem;">
-                <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card’s content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
+            <!-- Cards -->
+            <div style="width: 40rem;">
+                <div class="row g-3">
+                    <!-- Primeira linha -->
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="Produto 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Produto 1</h5>
+                                <p class="card-text">Descrição curta.</p>
+                                <a href="#" class="btn btn-primary">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="Produto 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Produto 2</h5>
+                                <p class="card-text">Descrição curta.</p>
+                                <a href="#" class="btn btn-primary">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="Produto 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Produto 3</h5>
+                                <p class="card-text">Descrição curta.</p>
+                                <a href="#" class="btn btn-primary">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="card" style="width: 12rem;">
-                <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card’s content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Segunda linha centralizada -->
-        <div class="d-flex gap-3 justify-content-center mt-5 divs-cards ">
-            <div class="card" style="width: 12rem;">
-                <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card’s content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-
-            <div class="card" style="width: 12rem;">
-                <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card’s content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-
-            <div class="card" style="width: 12rem;">
-                <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card’s content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <!-- Segunda linha -->
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="Produto 4">
+                            <div class="card-body">
+                                <h5 class="card-title">Produto 4</h5>
+                                <p class="card-text">Descrição curta.</p>
+                                <a href="#" class="btn btn-primary">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="Produto 5">
+                            <div class="card-body">
+                                <h5 class="card-title">Produto 5</h5>
+                                <p class="card-text">Descrição curta.</p>
+                                <a href="#" class="btn btn-primary">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="Produto 6">
+                            <div class="card-body">
+                                <h5 class="card-title">Produto 6</h5>
+                                <p class="card-text">Descrição curta.</p>
+                                <a href="#" class="btn btn-primary">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
 
     <!--inicio do rodape-->
     <div class="container">
