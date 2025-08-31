@@ -315,7 +315,12 @@
             </div>
 
           
+      <!-- Cards -->
+            <div style="width: 40rem;">
+                <div class="row g-3">
+                    <!-- Primeira linha -->
 <?php
+include("config.php");
 $sql = "SELECT * FROM produtos";
 $res = $conn->query($sql);
 
@@ -338,7 +343,8 @@ if ($res->num_rows > 0) {
     echo "<p>Nenhum produto cadastrado!</p>";
 }
 ?>
-
+        </div>
+                </div>
 
 
 
