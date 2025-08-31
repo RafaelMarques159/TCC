@@ -183,7 +183,7 @@
                         <div class="swiper-wrapper">
                             <a href="category.html" class="nav-link swiper-slide text-center">
                                 <img src="images/category-thumb-1.jpg" class="rounded-circle" alt="Category Thumbnail">
-                                <h4 class="fs-6 mt-3 fw-normal category-title">Fruits & Veges</h4>
+                                <h4 class="fs-6 mt-3 fw-normal category-title">FRutas & Veges</h4>
                             </a>
                             <a href="category.html" class="nav-link swiper-slide text-center">
                                 <img src="images/category-thumb-2.jpg" class="rounded-circle" alt="Category Thumbnail">
