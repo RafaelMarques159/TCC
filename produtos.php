@@ -318,78 +318,30 @@
             <div style="width: 40rem;">
                 <div class="row g-3">
                     <!-- Primeira linha -->
-                    <div class="col-4">
-                        <div class="card">
-                            <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="Produto 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Produto 1</h5>
-                                <p class="card-text">Descrição curta.</p>
-                                <p class="card-text">R$</p>
-                                <a href="#" class="btn btn-primary">Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="Produto 2">
-                            <div class="card-body">
-                                <h5 class="card-title">Produto 2</h5>
-                                <p class="card-text">Descrição curta.</p>
-                                <p class="card-text">R$</p>
-                                <a href="#" class="btn btn-primary">Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="Produto 3">
-                            <div class="card-body">
-                                <h5 class="card-title">Produto 3</h5>
-                                <p class="card-text">Descrição curta.</p>
-                                <p class="card-text">R$</p>
-                                <a href="#" class="btn btn-primary">Comprar</a>
-                            </div>
-                        </div>
-                    </div>
+<?php
+$sql = "SELECT * FROM produtos";
+$res = $conn->query($sql);
 
-                    <!-- Segunda linha -->
-                    <div class="col-4">
-                        <div class="card">
-                            <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="Produto 4">
-                            <div class="card-body">
-                                <h5 class="card-title">Produto 4</h5>
-                                <p class="card-text">Descrição curta.</p>
-                                <p class="card-text">R$</p>
-                                <a href="#" class="btn btn-primary">Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="Produto 5">
-                            <div class="card-body">
-                                <h5 class="card-title">Produto 5</h5>
-                                <p class="card-text">Descrição curta.</p>
-                                <p class="card-text">R$</p>
-                                <a href="#" class="btn btn-primary">Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <img src="/imagens/Luis Barbosa.jpg" class="card-img-top" alt="Produto 6">
-                            <div class="card-body">
-                                <h5 class="card-title">Produto 6</h5>
-                                <p class="card-text">Descrição curta.</p>
-                                <p class="card-text">R$</p>
-                                <a href="#" class="btn btn-primary">Comprar</a>
-                            </div>
-                        </div>
-                    </div>
+if ($res->num_rows > 0) {
+    while ($row = $res->fetch_object()) {
+        echo "
+        <div class='col-4'>
+            <div class='card'>
+                <img src='{$row->imagem}' class='card-img-top' alt='{$row->nome_produto}'>
+                <div class='card-body'>
+                    <h5 class='card-title'>{$row->nome_produto}</h5>
+                    <p class='card-text'>{$row->descricao}</p>
+                    <p class='card-text'>R$ {$row->preco}</p>
+                    <a href='#' class='btn btn-primary'>Comprar</a>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>";
+    }
+} else {
+    echo "<p>Nenhum produto cadastrado!</p>";
+}
+?>
+
 
     <!--inicio do rodape-->
     <div class="container">
