@@ -314,10 +314,7 @@
                 </div>
             </div>
 
-            <!-- Cards -->
-            <div style="width: 40rem;">
-                <div class="row g-3">
-                    <!-- Primeira linha -->
+          
 <?php
 $sql = "SELECT * FROM produtos";
 $res = $conn->query($sql);
