@@ -326,13 +326,24 @@ $res = $conn->query($sql);
 
 if ($res->num_rows > 0) {
     while ($row = $res->fetch_object()) {
+        // Definir limite de caracteres
+        $limite = 10; // pode ajustar o valor
+        $descricao = $row->descricao;
+
+        // Cortar descrição se for maior que o limite
+        if (strlen($descricao) > $limite) {
+            $descricaoCortada = substr($descricao, 0, $limite) . "... <a href='#' class='ver-mais' data-desc='".htmlspecialchars($descricao, ENT_QUOTES)."'>Ver mais</a>";
+        } else {
+            $descricaoCortada = $descricao;
+        }
+
         echo "
         <div class='col-4'>
             <div class='card'>
                 <img src='{$row->imagem}' class='card-img-top' alt='{$row->nome_produto}'>
                 <div class='card-body'>
                     <h5 class='card-title'>{$row->nome_produto}</h5>
-                    <p class='card-text'>{$row->descricao}</p>
+                    <p class='card-text'>{$descricaoCortada}</p>
                     <p class='card-text'>R$ {$row->preco}</p>
                     <a href='#' class='btn btn-primary'>Comprar</a>
                 </div>
@@ -343,6 +354,7 @@ if ($res->num_rows > 0) {
     echo "<p>Nenhum produto cadastrado!</p>";
 }
 ?>
+
         </div>
                 </div>
 
