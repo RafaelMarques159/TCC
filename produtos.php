@@ -238,208 +238,126 @@
         </div>
     </section>
 
-    <div class="container my-4">
-        <!-- Bloco centralizado com filtros + cards -->
-        <div class="d-flex justify-content-center gap-4 flex-wrap">
+<div class="container my-4">
+  <!-- Bloco centralizado com filtros + cards -->
+  <div class="d-flex justify-content-center gap-4 flex-wrap">
 
-            <!-- Coluna filtros -->
-            <div class="col-md-3 col-lg-2 p-0">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="mb-3">Filtros</h5>
+    <!-- Coluna filtros -->
+    <div class="col-md-3 col-lg-2 p-0">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="mb-3">Filtros</h5>
 
-                        <!-- Categoria -->
-                        <div class="mb-2">
-                            <button
-                                class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
-                                data-bs-toggle="collapse" data-bs-target="#categoria">
-                                Categoria
-                                <i class="bi bi-chevron-down"></i>
-                            </button>
-                            <div class="collapse show" id="categoria">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="pisos">
-                                    <label class="form-check-label" for="pisos">Pisos</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="revestimentos">
-                                    <label class="form-check-label" for="revestimentos">Revestimentos</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="argamassa">
-                                    <label class="form-check-label" for="argamassa">Argamassa e rejunte</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="acabamentos">
-                                    <label class="form-check-label" for="acabamentos">Acabamentos e acessórios</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="rodape">
-                                    <label class="form-check-label" for="rodape">Rodapé e acessórios</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="soleiras">
-                                    <label class="form-check-label" for="soleiras">Soleiras Peitoris e Pedra box</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Subcategoria -->
-                        <div class="mb-2">
-                            <button
-                                class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
-                                data-bs-toggle="collapse" data-bs-target="#subcategoria">
-                                Subcategoria
-                                <i class="bi bi-chevron-down"></i>
-                            </button>
-                            <div class="collapse" id="subcategoria">
-                                <p class="text-muted ms-3">Opções...</p>
-                            </div>
-                        </div>
-
-                        <!-- Marca -->
-                        <div class="mb-2">
-                            <button
-                                class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
-                                data-bs-toggle="collapse" data-bs-target="#marca">
-                                Marca
-                                <i class="bi bi-chevron-down"></i>
-                            </button>
-                            <div class="collapse" id="marca">
-                                <p class="text-muted ms-3">Opções...</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+          <!-- Categoria -->
+          <div class="mb-2">
+            <button
+              class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse" data-bs-target="#categoria">
+              Categoria
+              <i class="bi bi-chevron-down"></i>
+            </button>
+            <div class="collapse show" id="categoria">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="pisos">
+                <label class="form-check-label" for="pisos">Pisos</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="revestimentos">
+                <label class="form-check-label" for="revestimentos">Revestimentos</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="argamassa">
+                <label class="form-check-label" for="argamassa">Argamassa e rejunte</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="acabamentos">
+                <label class="form-check-label" for="acabamentos">Acabamentos e acessórios</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rodape">
+                <label class="form-check-label" for="rodape">Rodapé e acessórios</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="soleiras">
+                <label class="form-check-label" for="soleiras">Soleiras Peitoris e Pedra box</label>
+              </div>
             </div>
+          </div>
 
-          
-      <!-- Cards -->
-            <div style="width: 40rem;">
-                <div class="row g-3">
-                    <!-- Primeira linha -->
-<?php
-include("config.php");
-$sql = "SELECT * FROM produtos";
-$res = $conn->query($sql);
-
-if ($res->num_rows > 0) {
-    while ($row = $res->fetch_object()) {
-        // Definir limite de caracteres
-        $limite = 10; // pode ajustar o valor
-        $descricao = $row->descricao;
-
-        // Cortar descrição se for maior que o limite
-        if (strlen($descricao) > $limite) {
-            $descricaoCortada = substr($descricao, 0, $limite) . "... <a href='#' class='ver-mais' data-desc='".htmlspecialchars($descricao, ENT_QUOTES)."'>Ver mais</a>";
-        } else {
-            $descricaoCortada = $descricao;
-        }
-
-        echo "
-        <div class='col-4'>
-            <div class='card'>
-                <img src='{$row->imagem}' class='card-img-top' alt='{$row->nome_produto}'>
-                <div class='card-body'>
-                    <h5 class='card-title'>{$row->nome_produto}</h5>
-                    <p class='card-text'>{$descricaoCortada}</p>
-                    <p class='card-text'>R$ {$row->preco}</p>
-                    <a href='#' class='btn btn-primary'>Comprar</a>
-                </div>
+          <!-- Subcategoria -->
+          <div class="mb-2">
+            <button
+              class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse" data-bs-target="#subcategoria">
+              Subcategoria
+              <i class="bi bi-chevron-down"></i>
+            </button>
+            <div class="collapse" id="subcategoria">
+              <p class="text-muted ms-3">Opções...</p>
             </div>
-        </div>";
-    }
-} else {
-    echo "<p>Nenhum produto cadastrado!</p>";
-}
-?>
+          </div>
 
-        </div>
-                </div>
+          <!-- Marca -->
+          <div class="mb-2">
+            <button
+              class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse" data-bs-target="#marca">
+              Marca
+              <i class="bi bi-chevron-down"></i>
+            </button>
+            <div class="collapse" id="marca">
+              <p class="text-muted ms-3">Opções...</p>
+            </div>
+          </div>
 
-
-
-
-<!--inicio do rodape-->
-<!-- Footer -->
-<footer class="text-center text-lg-start text-dark" style="background-color: #ECEFF1">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-between p-4 text-white" style="background-color: #21D192">
-    <!-- Left -->
-    <div class="me-5">
-      <span>Conecte-se conosco nas redes sociais:</span>
-    </div>
-    <!-- Left -->
-
-    <!-- Right -->
-    <div>
-      <a href="#" class="text-white me-4"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" class="text-white me-4"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="text-white me-4"><i class="fab fa-google"></i></a>
-      <a href="#" class="text-white me-4"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="text-white me-4"><i class="fab fa-linkedin"></i></a>
-      <a href="#" class="text-white me-4"><i class="fab fa-github"></i></a>
-    </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
-
-  <!-- Section: Links  -->
-  <section class="">
-    <div class="container text-center text-md-start mt-5">
-      <!-- Grid row -->
-      <div class="row mt-3">
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-          <!-- Content -->
-          <h6 class="text-uppercase fw-bold">BELLA Construções</h6>
-          <hr class="mb-4 mt-0 d-inline-block mx-auto"
-            style="width: 60px; background-color: #7c4dff; height: 2px" />
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </div>
-
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-          <h6 class="text-uppercase fw-bold">Departamentos</h6>
-          <hr class="mb-4 mt-0 d-inline-block mx-auto"
-            style="width: 60px; background-color: #7c4dff; height: 2px" />
-          <p><a href="#!" class="text-dark">Materiais de Construção</a></p>
-          <p><a href="#!" class="text-dark">Material Elétrico</a></p>
-          <p><a href="#!" class="text-dark">Iluminação</a></p>
-          <p><a href="#!" class="text-dark">Tintas e Impermeabilizantes</a></p>
-        </div>
-
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-          <h6 class="text-uppercase fw-bold">Suporte</h6>
-          <hr class="mb-4 mt-0 d-inline-block mx-auto"
-            style="width: 60px; background-color: #7c4dff; height: 2px" />
-          <p><a href="#!" class="text-dark">Fale conosco</a></p>
-          <p><a href="#!" class="text-dark">Troca e Devolução</a></p>
-          <p><a href="#!" class="text-dark">Políticas de Entrega</a></p>
-          <p><a href="#!" class="text-dark">Sobre</a></p>
-        </div>
-
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-          <h6 class="text-uppercase fw-bold">Contato</h6>
-          <hr class="mb-4 mt-0 d-inline-block mx-auto"
-            style="width: 60px; background-color: #7c4dff; height: 2px" />
-          <p><i class="fas fa-home mr-3"></i> Bangu</p>
-          <p><i class="fas fa-envelope mr-3"></i> Contato@gmail.com</p>
-          <p><i class="fas fa-phone mr-3"></i> (21) 4003-4456</p>
-          <p><i class="fas fa-print mr-3"></i> +01 234 567 89</p>
         </div>
       </div>
-      <!-- Grid row -->
     </div>
-  </section>
-  <!-- Section: Links  -->
 
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-    © 2025 Company, Inc. All rights reserved.
-  </div>
-</footer>
-<!-- Footer -->
+    <!-- Cards -->
+    <div style="width: 40rem;">
+      <div class="row g-3">
+        <!-- Primeira linha -->
+        <?php
+        include("config.php");
+        $sql = "SELECT * FROM produtos";
+        $res = $conn->query($sql);
+
+        if ($res->num_rows > 0) {
+          while ($row = $res->fetch_object()) {
+            // Definir limite de caracteres
+            $limite = 10; // pode ajustar o valor
+            $descricao = $row->descricao;
+
+            // Cortar descrição se for maior que o limite
+            if (strlen($descricao) > $limite) {
+              $descricaoCortada = substr($descricao, 0, $limite) . "... <a href='#' class='ver-mais' data-desc='" . htmlspecialchars($descricao, ENT_QUOTES) . "'>Ver mais</a>";
+            } else {
+              $descricaoCortada = $descricao;
+            }
+
+            echo "
+            <div class='col-4'>
+              <div class='card'>
+                <img src='{$row->imagem}' class='card-img-top' alt='{$row->nome_produto}'>
+                <div class='card-body'>
+                  <h5 class='card-title'>{$row->nome_produto}</h5>
+                  <p class='card-text'>{$descricaoCortada}</p>
+                  <p class='card-text'>R$ {$row->preco}</p>
+                  <a href='#' class='btn btn-primary'>Comprar</a>
+                </div>
+              </div>
+            </div>";
+          }
+        } else {
+          echo "<p>Nenhum produto cadastrado!</p>";
+        }
+        ?>
+      </div> <!-- fecha .row g-3 -->
+    </div> <!-- fecha div style="width: 40rem;" -->
+
+  </div> <!-- fecha .d-flex -->
+</div> <!-- fecha .container -->
 
 
 
@@ -448,6 +366,88 @@ if ($res->num_rows > 0) {
 
 
 
+
+
+
+
+
+
+
+     <!--inicio do rodape-->
+  <!-- Footer -->
+  <footer class="text-center text-lg-start text-dark" style="background-color: #ECEFF1">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-between p-4 text-white" style="background-color: #21D192">
+      <!-- Left -->
+      <div class="me-5">
+        <span>Conecte-se conosco nas redes sociais:</span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="#" class="text-white me-4"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white me-4"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-white me-4"><i class="fab fa-google"></i></a>
+        <a href="#" class="text-white me-4"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white me-4"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="text-white me-4"><i class="fab fa-github"></i></a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold">BELLA Construções</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          </div>
+
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold">Departamentos</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+            <p><a href="#!" class="text-dark">Materiais de Construção</a></p>
+            <p><a href="#!" class="text-dark">Material Elétrico</a></p>
+            <p><a href="#!" class="text-dark">Iluminação</a></p>
+            <p><a href="#!" class="text-dark">Tintas e Impermeabilizantes</a></p>
+          </div>
+
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold">Suporte</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+            <p><a href="#!" class="text-dark">Fale conosco</a></p>
+            <p><a href="#!" class="text-dark">Troca e Devolução</a></p>
+            <p><a href="#!" class="text-dark">Políticas de Entrega</a></p>
+            <p><a href="#!" class="text-dark">Sobre</a></p>
+          </div>
+
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <h6 class="text-uppercase fw-bold">Contato</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+            <p><i class="fas fa-home mr-3"></i> Bangu</p>
+            <p><i class="fas fa-envelope mr-3"></i> Contato@gmail.com</p>
+            <p><i class="fas fa-phone mr-3"></i> (21) 4003-4456</p>
+            <p><i class="fas fa-print mr-3"></i> +01 234 567 89</p>
+          </div>
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      © 2025 Company, Inc. All rights reserved.
+    </div>
+  </footer>
+  <!-- Footer -->
 
 
 
