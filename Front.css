@@ -194,8 +194,8 @@ html,body{
 /*cards que mexem */
 .card {
   position: relative;
-  width: 300px;
-  height: 200px;
+  width: 350px;
+  height: 250px;
   background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100%);
   border-radius: 10px;
   display: flex;
@@ -205,8 +205,9 @@ html,body{
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
-.card svg {
-  width: 48px;
+.card img {
+  height: 100%;
+  width: 100%;
   fill: #333;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
 }
@@ -248,7 +249,7 @@ html,body{
   line-height: 1.4;
 }
 
-.card:hover svg {
+.card:hover img {
   scale: 0;
   transform: rotate(-45deg);
 }
