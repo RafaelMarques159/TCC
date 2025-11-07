@@ -1,11 +1,12 @@
-html,body{
-  height:100%;
+html,
+body {
+  height: 100%;
   font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background:var(--bg);
-  color:#222;
-  -webkit-font-smoothing:antialiased;
-  margin:0;
-  padding:0;
+  background: var(--bg);
+  color: #222;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-icons {
@@ -145,8 +146,8 @@ html,body{
 /* From Uiverse.io by Sashank02 */
 .card3 {
   padding: 20px;
-  width: 330px;
-  min-height: 370px;
+  width: 300px;
+  min-height: 450px;
   border-radius: 20px;
   background: #212121;
   box-shadow: 5px 5px 8px #1b1b1b,
@@ -165,19 +166,19 @@ html,body{
   margin: 15px 0 0 10px;
 }
 
-.card-image3 {
-  min-height: 170px;
-  background-color: #313131;
+
+.card3 img.card-img-top {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
   border-radius: 15px;
-  background: #313131;
-  box-shadow: inset 5px 5px 3px #2f2f2f,
-    inset -5px -5px 3px #333333;
 }
+
 
 .card-body3 {
   margin: 13px 0 0 10px;
-  color: rgb(184, 184, 184);
-  font-size: 15px;
+  color: rgb(255, 255, 255);
+  font-size: 17px;
 }
 
 .footer3 {
@@ -238,14 +239,14 @@ html,body{
 .card__title {
   margin: 0;
   font-size: 24px;
-  color: #333;
+  color: #000000;
   font-weight: 700;
 }
 
 .card__description {
   margin: 10px 0 0;
   font-size: 14px;
-  color: #777;
+  color: #000000;
   line-height: 1.4;
 }
 
@@ -253,5 +254,3 @@ html,body{
   scale: 0;
   transform: rotate(-45deg);
 }
-
-
