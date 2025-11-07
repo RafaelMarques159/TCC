@@ -17,6 +17,27 @@
             <label>Quantidade</label>
             <input type="quantidade" name="quantidade" class="form-control">
         </div>
+
+        <div class="mb-3">
+        <label>Categoria</label>
+        <select name="categoria" class="form-control" required>
+            <option value="">Selecione...</option>
+            <?php
+            $categorias = [
+                1 => "Acabamento",
+                2 => "Coberturas",
+                3 => "Elétricos",
+                4 => "Hidráulicos",
+                5 => "Estruturais",
+                6=> "Ferramentas",
+            ];
+
+            foreach ($categorias as $id => $nome) {
+                echo "<option value='$id'>$nome</option>";
+            }
+            ?>
+        </select>
+    </div>
         <div class= "mb-3">
             <label>Imagem</label>
             <input type="file" name="imagem" class="form-control" accept="image/*">
