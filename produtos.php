@@ -316,7 +316,7 @@
 
 
             <!-- Cards -->
-            <div style="width: 40rem;">
+            <div style="width: 60rem;">
                 <div class="row g-3">
                     <!-- Primeira linha -->
                     <?php
@@ -327,7 +327,7 @@
                     if ($res->num_rows > 0) {
                         while ($row = $res->fetch_object()) {
 
-                            $limite = 10;
+                            $limite = 123;
                             $descricaoCompleta = htmlspecialchars($row->descricao, ENT_QUOTES);
                             $descricaoCurta = substr($row->descricao, 0, $limite);
 
@@ -349,7 +349,7 @@
                 <div class='card-body'>
                     <h5 class='card-title'>{$row->nome_produto}</h5>
                     <p class='card-text'>{$descricaoCortada}</p>
-                    <p class='card-text'>R$ {$row->preco}</p>
+                    <p class='card-text'>R$ " . number_format($row->preco, 2, ',', '.') . "</p>
                     <a href='#' class='btn btn-primary'>Comprar</a>
                 </div>
             </div>
