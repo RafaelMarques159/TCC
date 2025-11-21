@@ -35,8 +35,6 @@
     case 'editar':
     $nome_produto = $_POST["nome_produto"];
     $preco = $_POST['preco'];
-    $preco = str_replace(['R$', ' ', '.'], '', $preco);
-    $preco = str_replace(',', '.', $preco);
     $descricao = $_POST["descricao"];
     $quantidade = $_POST["quantidade"];
     $categoria_id = $_POST["id_categoria"];
