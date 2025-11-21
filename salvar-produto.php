@@ -1,25 +1,11 @@
 <?php
-    include_once "config.php";
-
-    $acao = $_REQUEST["acao"] ?? '';
-
-    $categorias = [
-        1 => "Acabamento",
-        2 => "Coberturas",
-        3 => "Elétricos",
-        4 => "Hidráulicos",
-        5 => "Estruturais",
-        6=> "Ferramentas",
-        
-];
-
     switch($_REQUEST["acao"]){
     case'cadastrar':
         $nome_produto=$_POST["nome_produto"];
         $preco=$_POST["preco"];
         $descricao=$_POST["descricao"];
         $quantidade=$_POST["quantidade"];
-        $categoria=$_POST["categoria"];
+        $categoria_id = $_POST["id_categoria"];
         $imagem=$_FILES["imagem"];
 
     if( isset($_FILES["imagem"]) && !empty($_FILES["imagem"]))
@@ -30,9 +16,11 @@
         $imagem="";
     }
 
-        $sql ="INSERT INTO produtos(nome_produto, preco, descricao, quantidade,imagem,categoria) VALUES('{$nome_produto}', '{$preco}', '{$descricao}', '{$quantidade}','{$imagem}','{$categoria}')";
+
+        $sql ="INSERT INTO produtos(nome_produto, preco, descricao, quantidade,imagem,categoria_id) VALUES('{$nome_produto}', '{$preco}', '{$descricao}', '{$quantidade}','{$imagem}','{$categoria_id}')";
 
         $res=$conn->query($sql);
+        
         if($res==true){
             print"<script>alert('Cadastrado com sucesso!');</script>";
             print"<script>location.href='?page=prod_listar';</script>";
@@ -43,16 +31,19 @@
         }
         break;
 
+
     case 'editar':
-    // pegar valores do formulário
     $nome_produto = $_POST["nome_produto"];
-    $preco = $_POST["preco"];
+    $preco = $_POST['preco'];
+    $preco = str_replace(['R$', ' ', '.'], '', $preco);
+    $preco = str_replace(',', '.', $preco);
     $descricao = $_POST["descricao"];
     $quantidade = $_POST["quantidade"];
-    $categoria = $_POST["categoria"]; // pega o valor do select de categoria
+    $categoria_id = $_POST["id_categoria"];
     $id_produto = $_POST["id_produto"];
 
-    // pega a imagem atual do DB para manter caso não envie nova
+
+     // pega a imagem atual do DB para manter caso não envie nova
     $sql_img = "SELECT imagem FROM produtos WHERE id_produto = " . intval($id_produto);
     $res_img = $conn->query($sql_img);
     if ($res_img && $res_img->num_rows > 0) {
@@ -74,17 +65,15 @@
             // die("Falha ao enviar a imagem.");
         }
     }
-    
-    // monta o UPDATE incluindo a coluna categoria e imagem
-    $sql = "UPDATE produtos SET
-                nome_produto = '{$conn->real_escape_string($nome_produto)}',
-                preco = '{$conn->real_escape_string($preco)}',
-                descricao = '{$conn->real_escape_string($descricao)}',
-                quantidade = '{$conn->real_escape_string($quantidade)}',
-                imagem = '{$conn->real_escape_string($imagem)}',
-                categoria = '{$conn->real_escape_string($categoria)}'
-            WHERE id_produto = " . intval($id_produto);
 
+    $sql = "UPDATE produtos SET    
+    nome_produto='{$nome_produto}', 
+    preco='{$preco}', 
+    descricao='{$descricao}', 
+    quantidade='{$quantidade}',
+    imagem='{$imagem}',
+    categoria_id='{$categoria_id}'
+    WHERE id_produto=".$_REQUEST["id_produto"];
     $res = $conn->query($sql);
 
     if ($res === TRUE) {
@@ -112,5 +101,4 @@
         }
 
         break;    
-    }    
-    
+    }

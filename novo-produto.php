@@ -5,10 +5,12 @@
          <label>Nome </label>   
          <input type="text" name= "nome_produto" class="form-control">
         </div>
-        <div class= "mb-3">
+        <div class="mb-3">
             <label>Preço</label>
-            <input type="preco" name="preco" class="form-control">
-        </div>
+            <div class="input-group">
+                <span class="input-group-text">R$</span>
+                <input type="text" name="preco" class="form-control" required>
+            </div>
                 <div class= "mb-3">
             <label>Descrição</label>
             <input type="descricao" name="descricao" class="form-control">
@@ -18,32 +20,26 @@
             <input type="quantidade" name="quantidade" class="form-control">
         </div>
 
-        <div class="mb-3">
-        <label>Categoria</label>
-        <select name="categoria" class="form-control" required>
-            <option value="">Selecione...</option>
-            <?php
-            $categorias = [
-                1 => "Acabamento",
-                2 => "Coberturas",
-                3 => "Elétricos",
-                4 => "Hidráulicos",
-                5 => "Estruturais",
-                6=> "Ferramentas",
-            ];
-
-            foreach ($categorias as $id => $nome) {
-                echo "<option value='$id'>$nome</option>";
-            }
-            ?>
-        </select>
+    <div class="mb-3">
+    <label>Categoria</label>
+    <select name="id_categoria" class="form-control" required>
+        <option value="">Selecione uma categoria</option>
+        <?php
+        include("config.php");
+        $cat = $conn->query("SELECT * FROM categorias ORDER BY nome_categoria");
+        while ($c = $cat->fetch_assoc()) {
+            echo "<option value='{$c['id_categoria']}'>{$c['nome_categoria']}</option>";
+        }
+        ?>
+    </select>
     </div>
         <div class= "mb-3">
             <label>Imagem</label>
             <input type="file" name="imagem" class="form-control" accept="image/*">
         </div>
-         <div class= "mb-3">
-            <button type="submit" class="btn btn-primary">Enviar</button> 
+        <div class="mb-3 d-flex justify-content-center gap-3">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <a href="?page=prod_listar" class="btn btn-secondary">Produtos Registrados</a>
         </div>
             </form>
         </div>

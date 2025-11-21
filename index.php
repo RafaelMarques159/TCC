@@ -22,18 +22,37 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" href="?page=novo">Novo Usuário</a>
         </li>
+
+        <!-- 
         <li class="nav-item">
           <a class="nav-link" href="?page=listar">Listar Usuários</a>
         </li>
+        -->
+
         <li class="nav-item">
           <a class="nav-link" href="?page=prod_novo">Adicionar Produto</a>
         </li>
-         <li class="nav-item">
+
+        <!--
+        <li class="nav-item">
           <a class="nav-link" href="?page=prod_listar">Listar Produto</a>
         </li>
+        -->
+
+        <li class="nav-item">
+          <a class="nav-link" href="?page=cat_nova">Adicionar Categorias</a>
+        </li>
+
+        <!--
+        <li class="nav-item">
+          <a class="nav-link" href="?page=cat_listar">Listar Categorias</a>
+        </li>
+        -->
+        
       </ul> 
     </div>
   </div>
@@ -73,8 +92,21 @@
         case "prod_editar":
           include("editar-produto.php");
         break;  
-
-            print"<h1> Boas Vindas! </h1>";
+        // Cases Categorias
+        case "cat_nova":
+          include("nova-categoria.php");
+        break;
+        case "cat_listar":
+          include("listar-categoria.php");
+        break;
+        case "cat_salvar":
+          include("salvar-categoria.php");
+        break;
+        case "cat_editar":
+          include("editar-categoria.php");
+        break;  
+        default:
+          include("home.php");
 }
 ?>
     </div>

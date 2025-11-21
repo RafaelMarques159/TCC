@@ -17,8 +17,9 @@
             <label>Data de Nacimento</label>
             <input type="date" name="data_nasc" class="form-control">
         </div>
-        <div class= "mb-3">
-            <button type="submit" class="btn btn-primary">Enviar</button> 
+        <div class="mb-3 d-flex justify-content-center gap-3">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <a href="?page=listar" class="btn btn-secondary">Usuários Registrados</a>
         </div>
         
     </form>
