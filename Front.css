@@ -143,6 +143,13 @@ body {
     height: 11em;
   }
 }
+.card2 img {
+  width: 100%;        /* ocupa toda a largura do card */
+  height: 180px;      /* altura fixa da imagem */
+  object-fit: cover;  /* corta o excesso sem deformar */
+  object-position: center; /* mantém o corte centralizado */
+}
+
 
 /* cards incio*/
 /* From Uiverse.io by Sashank02 */
