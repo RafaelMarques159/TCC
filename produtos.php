@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link rel="stylesheet" href="produtos.css">
     <title>Document</title>
+    
 </head>
 
 <body>
@@ -316,7 +317,7 @@
 
 
             <!-- Cards -->
-            <div style="width: 60rem;">
+            <div style="width: 48rem;">
                 <div class="row g-3">
                     <!-- Primeira linha -->
                     <?php
