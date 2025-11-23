@@ -1,3 +1,7 @@
+<?php
+include_once("config.php");
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -245,45 +249,43 @@
 
             <!-- Coluna filtros -->
             <div class="col-md-3 col-lg-2 p-0">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="mb-3">Filtros</h5>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="mb-3">Filtros</h5>
 
-                        <!-- Categoria -->
-                        <div class="mb-2">
-                            <button
-                                class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
-                                data-bs-toggle="collapse" data-bs-target="#categoria">
-                                Categoria
-                                <i class="bi bi-chevron-down"></i>
-                            </button>
-                            <div class="collapse show" id="categoria">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="pisos">
-                                    <label class="form-check-label" for="pisos">Acabamento</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="revestimentos">
-                                    <label class="form-check-label" for="revestimentos">Coberturas</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="argamassa">
-                                    <label class="form-check-label" for="argamassa">Elétricos</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="acabamentos">
-                                    <label class="form-check-label" for="acabamentos">Hidráulicos</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="rodape">
-                                    <label class="form-check-label" for="rodape">Estruturais</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="soleiras">
-                                    <label class="form-check-label" for="soleiras">Ferramentas</label>
-                                </div>
-                            </div>
+            <form method="GET" action="produtos.php">
+                <!-- Categoria -->
+                <div class="mb-2">
+                    <button
+                        class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
+                        data-bs-toggle="collapse" data-bs-target="#categoria">
+                        Categoria
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+
+                    <div class="collapse show" id="categoria">
+                         <?php
+
+                            $sqlCat = "SELECT * FROM categorias ORDER BY nome_categoria";
+                            $resCat = $conn->query($sqlCat);
+
+                            if ($resCat && $resCat->num_rows > 0) {
+                            while ($cat = $resCat->fetch_object()) {
+                            echo "
+                                <div class='form-check'>
+                                <input class='form-check-input' type='checkbox' id='cat{$cat->id_categoria}' value='{$cat->id_categoria}'>
+                                <label class='form-check-label' for='cat{$cat->id_categoria}'>
+                                {$cat->nome_categoria}
+                                </label>
+                                </div>";
+                            }
+                                } else {
+                                    echo "<p class='text-muted'>Nenhuma categoria encontrada.</p>";
+                                    }
+                                 ?>
                         </div>
+                        </div>
+
 
                         <!-- Subcategoria -->
                         <div class="mb-2">
@@ -321,7 +323,7 @@
                 <div class="row g-3">
                     <!-- Primeira linha -->
                     <?php
-                    include("config.php");
+                    
                     $sql = "SELECT * FROM produtos";
                     $res = $conn->query($sql);
 
