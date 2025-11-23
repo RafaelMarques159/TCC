@@ -1,18 +1,19 @@
 <?php
     switch($_REQUEST["acao"]){
     case'cadastrar':
-        case 'cadastrar':
-    $nome_categoria = $_POST["nome_categoria"];
+
+        $nome_categoria = $_POST["nome_categoria"];
 
     // upload
     if (!empty($_FILES["img_categoria"]["name"])) {
         $nomeArquivo = time() . "-" . basename($_FILES["img_categoria"]["name"]);
-        $caminho = "imagescategoria/" . $nomeArquivo; // caminho salvo no DB
-        $caminhoFisico = __DIR__ . "/imagescategoria/" . $nomeArquivo; // caminho real
-
+    
+         $caminho = "imagescategoria/" . $nomeArquivo;
+    
+        $caminhoFisico = __DIR__ . "/imagescategoria/" . $nomeArquivo;
         move_uploaded_file($_FILES["img_categoria"]["tmp_name"], $caminhoFisico);
     } else {
-        $caminho = "";
+        $caminho = "";  
     }
 
     $sql = "INSERT INTO categorias(nome_categoria, img_categoria)
