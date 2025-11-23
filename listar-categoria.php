@@ -16,13 +16,16 @@ if ($qtd > 0) {
     print "<tr>";
     print "<th>#</th>";
     print "<th>Nome da Categoria</th>";
+    print "<th>Imagem</th>";
     print "<th>Ações</th>";
     print "</tr>";
 
     while ($row = $res->fetch_object()) {
+        
         print "<tr>";
         print "<td>{$row->id_categoria}</td>";
         print "<td>{$row->nome_categoria}</td>";
+        print "<td><img src='{$row->img_categoria}' width='100' height='100'></td>";
         print "<td>
                 <button onclick=\"location.href='?page=cat_editar&id_categoria={$row->id_categoria}';\" class='btn btn-success'>Editar</button>
                 <button onclick=\"if(confirm('Tem certeza que deseja excluir?')){location.href='?page=cat_salvar&acao=excluir&id_categoria={$row->id_categoria}';}\" class='btn btn-danger'>Excluir</button>
