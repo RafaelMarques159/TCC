@@ -254,6 +254,7 @@ include_once("config.php");
             <h5 class="mb-3">Filtros</h5>
 
             <form method="GET" action="produtos.php">
+
                 <!-- Categoria -->
                 <div class="mb-2">
                     <button
@@ -263,6 +264,7 @@ include_once("config.php");
                         <i class="bi bi-chevron-down"></i>
                     </button>
 
+
                     <div class="collapse show" id="categoria">
                          <?php
 
@@ -271,9 +273,13 @@ include_once("config.php");
 
                             if ($resCat && $resCat->num_rows > 0) {
                             while ($cat = $resCat->fetch_object()) {
+                                 $checked = "";
+                                if (!empty($_GET['categorias']) && in_array($cat->id_categoria, $_GET['categorias'])) {
+                                    $checked = "checked";
+                                }
                             echo "
                                 <div class='form-check'>
-                                <input class='form-check-input' type='checkbox' id='cat{$cat->id_categoria}' value='{$cat->id_categoria}'>
+                                <input class='form-check-input' name='categorias[]' type='checkbox' id='cat{$cat->id_categoria}' value='{$cat->id_categoria}' {$checked}>
                                 <label class='form-check-label' for='cat{$cat->id_categoria}'>
                                 {$cat->nome_categoria}
                                 </label>
@@ -300,74 +306,82 @@ include_once("config.php");
                             </div>
                         </div>
 
-                        <!-- Marca -->
-                        <div class="mb-2">
-                            <button
-                                class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
-                                data-bs-toggle="collapse" data-bs-target="#marca">
-                                Marca
-                                <i class="bi bi-chevron-down"></i>
-                            </button>
-                            <div class="collapse" id="marca">
-                                <p class="text-muted ms-3">Opções...</p>
-                            </div>
-                        </div>
-
+                <!-- Marca -->
+                <div class="mb-2">
+                    <button
+                        class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
+                        data-bs-toggle="collapse" data-bs-target="#marca">
+                        Marca
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="collapse" id="marca">
+                        <p class="text-muted ms-3">Opções...</p>
                     </div>
                 </div>
-            </div>
+
+                <!-- Botão buscar -->
+                <button type="submit" class="btn btn-primary w-100 mt-3">Buscar</button>
+
+            </form>
+        </div>
+    </div>
+</div>
 
 
             <!-- Cards -->
             <div style="width: 48rem;">
                 <div class="row g-3">
                     <!-- Primeira linha -->
-                    <?php
-                    
-                    $sql = "SELECT * FROM produtos";
-                    $res = $conn->query($sql);
+                     <?php
+            // 🔵 MONTA A QUERY
+            $sql = "SELECT * FROM produtos";
 
-                    if ($res->num_rows > 0) {
-                        while ($row = $res->fetch_object()) {
+            if (!empty($_GET['categorias'])) {
+                // converte valores para inteiros e monta IN()
+                $cats = implode(",", array_map('intval', $_GET['categorias']));
+                $sql .= " WHERE categoria_id IN ($cats)";
+            }
 
-                            $limite = 123;
-                            $descricaoCompleta = htmlspecialchars($row->descricao, ENT_QUOTES);
-                            $descricaoCurta = substr($row->descricao, 0, $limite);
+            // 🔵 Executa a query
+            $res = $conn->query($sql);
 
-                            if (strlen($row->descricao) > $limite) {
+            if ($res->num_rows > 0) {
+                while ($row = $res->fetch_object()) {
 
-                                $descricaoCortada = "
-                <span class='texto-curto'>{$descricaoCurta}...</span>
-                <span class='texto-completo d-none'>{$descricaoCompleta}</span>
-                <a href='#' class='toggle-text'>Ver mais</a>
-            ";
-                            } else {
-                                $descricaoCortada = $descricaoCompleta;
-                            }
+                    $limite = 123;
+                    $descricaoCompleta = htmlspecialchars($row->descricao, ENT_QUOTES);
+                    $descricaoCurta = substr($row->descricao, 0, $limite);
 
-                            echo "
-        <div class='col-4'>
-            <div class='card'>
-                <img src='{$row->imagem}' class='card-img-top' alt='{$row->nome_produto}'>
-                <div class='card-body'>
-                    <h5 class='card-title'>{$row->nome_produto}</h5>
-                    <p class='card-text'>{$descricaoCortada}</p>
-                    <p class='card-text'>R$ " . number_format($row->preco, 2, ',', '.') . "</p>
-                    <a href='#' class='btn btn-primary'>Comprar</a>
-                </div>
-            </div>
-        </div>";
-                        }
+                    if (strlen($row->descricao) > $limite) {
+
+                        $descricaoCortada = "
+                            <span class='texto-curto'>{$descricaoCurta}...</span>
+                            <span class='texto-completo d-none'>{$descricaoCompleta}</span>
+                            <a href='#' class='toggle-text'>Ver mais</a>";
                     } else {
-                        echo "<p>Nenhum produto cadastrado!</p>";
+                        $descricaoCortada = $descricaoCompleta;
                     }
-                    ?>
 
-                </div>
-            </div>
+                    echo "
+                    <div class='col-4'>
+                        <div class='card'>
+                            <img src='{$row->imagem}' class='card-img-top' alt='{$row->nome_produto}'>
+                            <div class='card-body'>
+                                <h5 class='card-title'>{$row->nome_produto}</h5>
+                                <p class='card-text'>{$descricaoCortada}</p>
+                                <p class='card-text'>R$ " . number_format($row->preco, 2, ',', '.') . "</p>
+                                <a href='#' class='btn btn-primary'>Comprar</a>
+                            </div>
+                        </div>
+                    </div>";
+                }
+            } else {
+                echo "<p>Nenhum produto encontrado!</p>";
+            }
+        ?>
 
-        </div>
     </div>
+</div>
 
 
     <!--inicio do rodape-->
