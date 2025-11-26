@@ -14,7 +14,7 @@ include_once("config.php");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link rel="stylesheet" href="produtos.css">
     <title>Document</title>
-    
+
 </head>
 
 <body>
@@ -163,52 +163,52 @@ include_once("config.php");
     </header>
 
     <section class="py-5 overflow-hidden">
-    <div class="container-lg">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-md-12">
 
-                <div class="section-header d-flex flex-wrap justify-content-between mb-5">
-                    <h2 class="section-title">Categorias</h2>
+                    <div class="section-header d-flex flex-wrap justify-content-between mb-5">
+                        <h2 class="section-title">Categorias</h2>
 
-                    <div class="d-flex align-items-center">
-                        <a href="#" class="btn btn-primary me-2">Ver Tudo</a>
-                        <div class="swiper-buttons">
-                            <button class="swiper-prev category-carousel-prev btn btn-yellow">❮</button>
-                            <button class="swiper-next category-carousel-next btn btn-yellow">❯</button>
+                        <div class="d-flex align-items-center">
+                            <a href="#" class="btn btn-primary me-2">Ver Tudo</a>
+                            <div class="swiper-buttons">
+                                <button class="swiper-prev category-carousel-prev btn btn-yellow">❮</button>
+                                <button class="swiper-next category-carousel-next btn btn-yellow">❯</button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
 
-                <?php
-                include_once "config.php";
+                    <?php
+                    include_once "config.php";
 
-                $sql = "SELECT * FROM categorias";
-                $res = $conn->query($sql);
-                ?>
+                    $sql = "SELECT * FROM categorias";
+                    $res = $conn->query($sql);
+                    ?>
 
-                <div class="category-carousel swiper">
-                    <div class="swiper-wrapper">
+                    <div class="category-carousel swiper">
+                        <div class="swiper-wrapper">
 
-                        <?php
-                        if ($res && $res->num_rows > 0) {
-                            while ($row = $res->fetch_object()) {
+                            <?php
+                            if ($res && $res->num_rows > 0) {
+                                while ($row = $res->fetch_object()) {
 
-                                // Proteção evitando HTML quebrado
-                                $img = htmlspecialchars($row->img_categoria, ENT_QUOTES, 'UTF-8');
-                                $nome = htmlspecialchars($row->nome_categoria, ENT_QUOTES, 'UTF-8');
+                                    // Proteção evitando HTML quebrado
+                                    $img = htmlspecialchars($row->img_categoria, ENT_QUOTES, 'UTF-8');
+                                    $nome = htmlspecialchars($row->nome_categoria, ENT_QUOTES, 'UTF-8');
 
-                                echo "
+                                    echo "
                                 <a href='category.php?id={$row->id_categoria}' class='nav-link swiper-slide text-center'>
                                     
                                     <img src='{$img}' 
                                          class='rounded-circle'
-                                         style='width:120px;height:120px;object-fit:cover;'
+                                         style='width:140px;height:140px;object-fit:cover;'
                                          alt='{$nome}'>
 
                                     <h4 class='fs-6 mt-3 fw-normal category-title'>
@@ -217,17 +217,17 @@ include_once("config.php");
 
                                 </a>
                                 ";
+                                }
                             }
-                        }
-                        ?>
+                            ?>
 
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <div class="container my-4">
         <!-- Bloco centralizado com filtros + cards -->
@@ -235,120 +235,120 @@ include_once("config.php");
 
             <!-- Coluna filtros -->
             <div class="col-md-3 col-lg-2 p-0">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="mb-3">Filtros</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="mb-3">Filtros</h5>
 
-            <form method="GET" action="produtos.php">
+                        <form method="GET" action="produtos.php">
 
-                <!-- Categoria -->
-                <div class="mb-2">
-                    <button
-                        class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
-                        data-bs-toggle="collapse" data-bs-target="#categoria">
-                        Categoria
-                        <i class="bi bi-chevron-down"></i>
-                    </button>
+                            <!-- Categoria -->
+                            <div class="mb-2">
+                                <button
+                                    class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
+                                    data-bs-toggle="collapse" data-bs-target="#categoria">
+                                    Categoria
+                                    <i class="bi bi-chevron-down"></i>
+                                </button>
 
 
-                    <div class="collapse show" id="categoria">
-                         <?php
+                                <div class="collapse show" id="categoria">
+                                    <?php
 
-                            $sqlCat = "SELECT * FROM categorias ORDER BY nome_categoria";
-                            $resCat = $conn->query($sqlCat);
+                                    $sqlCat = "SELECT * FROM categorias ORDER BY nome_categoria";
+                                    $resCat = $conn->query($sqlCat);
 
-                            if ($resCat && $resCat->num_rows > 0) {
-                            while ($cat = $resCat->fetch_object()) {
-                                 $checked = "";
-                                if (!empty($_GET['categorias']) && in_array($cat->id_categoria, $_GET['categorias'])) {
-                                    $checked = "checked";
-                                }
-                            echo "
+                                    if ($resCat && $resCat->num_rows > 0) {
+                                        while ($cat = $resCat->fetch_object()) {
+                                            $checked = "";
+                                            if (!empty($_GET['categorias']) && in_array($cat->id_categoria, $_GET['categorias'])) {
+                                                $checked = "checked";
+                                            }
+                                            echo "
                                 <div class='form-check'>
                                 <input class='form-check-input' name='categorias[]' type='checkbox' id='cat{$cat->id_categoria}' value='{$cat->id_categoria}' {$checked}>
                                 <label class='form-check-label' for='cat{$cat->id_categoria}'>
                                 {$cat->nome_categoria}
                                 </label>
                                 </div>";
-                            }
-                                } else {
-                                    echo "<p class='text-muted'>Nenhuma categoria encontrada.</p>";
+                                        }
+                                    } else {
+                                        echo "<p class='text-muted'>Nenhuma categoria encontrada.</p>";
                                     }
-                                 ?>
-                        </div>
-                        </div>
-
-
-                        <!-- Subcategoria -->
-                        <div class="mb-2">
-                            <button
-                                class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
-                                data-bs-toggle="collapse" data-bs-target="#subcategoria">
-                                Subcategoria
-                                <i class="bi bi-chevron-down"></i>
-                            </button>
-                            <div class="collapse" id="subcategoria">
-                                <p class="text-muted ms-3">Opções...</p>
+                                    ?>
+                                </div>
                             </div>
-                        </div>
 
-                <!-- Marca -->
-                <div class="mb-2">
-                    <button
-                        class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
-                        data-bs-toggle="collapse" data-bs-target="#marca">
-                        Marca
-                        <i class="bi bi-chevron-down"></i>
-                    </button>
-                    <div class="collapse" id="marca">
-                        <p class="text-muted ms-3">Opções...</p>
+
+                            <!-- Subcategoria -->
+                            <div class="mb-2">
+                                <button
+                                    class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
+                                    data-bs-toggle="collapse" data-bs-target="#subcategoria">
+                                    Subcategoria
+                                    <i class="bi bi-chevron-down"></i>
+                                </button>
+                                <div class="collapse" id="subcategoria">
+                                    <p class="text-muted ms-3">Opções...</p>
+                                </div>
+                            </div>
+
+                            <!-- Marca -->
+                            <div class="mb-2">
+                                <button
+                                    class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
+                                    data-bs-toggle="collapse" data-bs-target="#marca">
+                                    Marca
+                                    <i class="bi bi-chevron-down"></i>
+                                </button>
+                                <div class="collapse" id="marca">
+                                    <p class="text-muted ms-3">Opções...</p>
+                                </div>
+                            </div>
+
+                            <!-- Botão buscar -->
+                            <button type="submit" class="btn btn-primary w-100 mt-3">Buscar</button>
+
+                        </form>
                     </div>
                 </div>
-
-                <!-- Botão buscar -->
-                <button type="submit" class="btn btn-primary w-100 mt-3">Buscar</button>
-
-            </form>
-        </div>
-    </div>
-</div>
+            </div>
 
 
             <!-- Cards -->
             <div style="width: 48rem;">
                 <div class="row g-3">
                     <!-- Primeira linha -->
-                     <?php
-            // 🔵 MONTA A QUERY
-            $sql = "SELECT * FROM produtos";
+                    <?php
+                    // 🔵 MONTA A QUERY
+                    $sql = "SELECT * FROM produtos";
 
-            if (!empty($_GET['categorias'])) {
-                // converte valores para inteiros e monta IN()
-                $cats = implode(",", array_map('intval', $_GET['categorias']));
-                $sql .= " WHERE categoria_id IN ($cats)";
-            }
+                    if (!empty($_GET['categorias'])) {
+                        // converte valores para inteiros e monta IN()
+                        $cats = implode(",", array_map('intval', $_GET['categorias']));
+                        $sql .= " WHERE categoria_id IN ($cats)";
+                    }
 
-            // 🔵 Executa a query
-            $res = $conn->query($sql);
+                    // 🔵 Executa a query
+                    $res = $conn->query($sql);
 
-            if ($res->num_rows > 0) {
-                while ($row = $res->fetch_object()) {
+                    if ($res->num_rows > 0) {
+                        while ($row = $res->fetch_object()) {
 
-                    $limite = 123;
-                    $descricaoCompleta = htmlspecialchars($row->descricao, ENT_QUOTES);
-                    $descricaoCurta = substr($row->descricao, 0, $limite);
+                            $limite = 123;
+                            $descricaoCompleta = htmlspecialchars($row->descricao, ENT_QUOTES);
+                            $descricaoCurta = substr($row->descricao, 0, $limite);
 
-                    if (strlen($row->descricao) > $limite) {
+                            if (strlen($row->descricao) > $limite) {
 
-                        $descricaoCortada = "
+                                $descricaoCortada = "
                             <span class='texto-curto'>{$descricaoCurta}...</span>
                             <span class='texto-completo d-none'>{$descricaoCompleta}</span>
                             <a href='#' class='toggle-text'>Ver mais</a>";
-                    } else {
-                        $descricaoCortada = $descricaoCompleta;
-                    }
+                            } else {
+                                $descricaoCortada = $descricaoCompleta;
+                            }
 
-                    echo "
+                            echo "
                     <div class='col-4'>
                         <div class='card'>
                             <img src='{$row->imagem}' class='card-img-top' alt='{$row->nome_produto}'>
@@ -360,14 +360,16 @@ include_once("config.php");
                             </div>
                         </div>
                     </div>";
-                }
-            } else {
-                echo "<p>Nenhum produto encontrado!</p>";
-            }
-        ?>
+                        }
+                    } else {
+                        echo "<p>Nenhum produto encontrado!</p>";
+                    }
+                    ?>
 
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
 
     <!--inicio do rodape-->
