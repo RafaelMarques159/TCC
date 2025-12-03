@@ -1,5 +1,42 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once("config.php");
+
+ if (isset($_GET['add_carrinho'])) {
+
+    $idProduto = intval($_GET['add_carrinho']);
+
+    // se o carrinho não existe, cria
+    if (!isset($_SESSION['carrinho'])) {
+        $_SESSION['carrinho'] = [];
+    }
+
+    // se o produto já existe no carrinho, aumenta quantidade
+    if (isset($_SESSION['carrinho'][$idProduto])) {
+        $_SESSION['carrinho'][$idProduto]['qtd']++;
+    } 
+    else {
+        // buscar dados do produto
+        $sqlProd = "SELECT * FROM produtos WHERE id_produto = $idProduto";
+        $resProd = $conn->query($sqlProd);
+        $produto = $resProd->fetch_object();
+
+        // adicionar ao carrinho
+        $_SESSION['carrinho'][$idProduto] = [
+            "nome" => $produto->nome_produto,
+            "preco" => $produto->preco,
+            "qtd" => 1
+        ];
+    }
+
+    header("Location: produtos.php");
+    exit;
+ }
 ?>
 
 <!DOCTYPE html>
@@ -356,7 +393,7 @@ include_once("config.php");
                                 <h5 class='card-title'>{$row->nome_produto}</h5>
                                 <p class='card-text'>{$descricaoCortada}</p>
                                 <p class='card-text'>R$ " . number_format($row->preco, 2, ',', '.') . "</p>
-                                <a href='#' class='btn btn-primary'>Comprar</a>
+                                <button class='btn btn-success' onclick='addCarrinho({$row->id_produto})'>Adicionar ao Carrinho</button>
                             </div>
                         </div>
                     </div>";
@@ -471,6 +508,192 @@ include_once("config.php");
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="js/descricao.js"></script>
     <script src="js/script.js"></script>
+    <script>
+function atualizarCarrinho(dados) {
+    document.getElementById("carrinho-itens").innerHTML = dados.html;
+    document.getElementById("carrinho-total").innerText = dados.total;
+}
+
+
+</script>
+    
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const btnCarrinho = document.querySelector(".fa-shopping-cart");
+    const carrinho = document.getElementById("carrinho-lateral");
+    const fecharBtn = document.getElementById("fecharCarrinho");
+
+    if (btnCarrinho) {
+        btnCarrinho.addEventListener("click", function () {
+            carrinho.classList.add("aberto");
+        });
+    }
+
+    if (fecharBtn) {
+        fecharBtn.addEventListener("click", function () {
+            carrinho.classList.remove("aberto");
+        });
+    }
+
+});
+</script>
+<script>
+function addCarrinho(id) {
+    fetch("add_carrinho.php?id=" + id)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+
+                // Atualiza contador do carrinho
+                document.getElementById("contador-carrinho").innerText = data.total_itens;
+
+                // Atualiza total
+                document.getElementById("carrinho-total").innerText = data.total_formatado;
+            }
+        });
+}
+</script>
+<!-- Carrinho Lateral -->
+<div id="carrinho-lateral" class="carrinho-fechado">
+    <div class="carrinho-header">
+        <h5>Carrinho</h5>
+        <button class="btn btn-sm btn-danger" id="fecharCarrinho">X</button>
+    </div>
+
+    <div id="carrinho-itens" class="p-2">
+<?php
+$total = 0;
+if (isset($_SESSION['carrinho']) && count($_SESSION['carrinho']) > 0) {
+    $total = 0;
+    foreach ($_SESSION['carrinho'] as $id => $item) {
+
+    // garante segurança e evita erros
+    $nome = htmlspecialchars($item['nome'] ?? 'Produto', ENT_QUOTES, 'UTF-8');
+    $preco_val = (float)($item['preco'] ?? 0);
+    $qtd = (int)($item['qtd'] ?? 1);
+    $subtotal_val = $preco_val * $qtd;
+    $total += $subtotal_val;
+    $preco = number_format($preco_val, 2, ',', '.');
+    $subtotal = number_format($subtotal_val, 2, ',', '.');
+
+    // pega caminho salvo no banco
+    $imagem_raw = $item['imagem'] ?? '';
+
+    // REMOVE './' DO COMEÇO → EX: "./img/imagem.jpg" vira "img/imagem.jpg"
+    $img = ltrim($imagem_raw, "./");
+
+    // se ficar vazio, usa placeholder
+    if (empty($img)) {
+        $img = "img/placeholder.png";
+    }
+
+    echo "
+    <div class='item-carrinho mb-3 d-flex align-items-center'>
+
+        <img src='" . $img . "' 
+             alt='" . $nome . "' 
+             style='width:50px;height:50px;object-fit:cover;border-radius:5px;margin-right:10px;'>
+
+        <div>
+            <strong>" . $nome . "</strong><br>
+            Preço: R$ " . $preco . "<br>
+            Quantidade: " . $qtd . "<br>
+            <small>Subtotal: R$ " . $subtotal . "</small>
+        </div>
+
+        <button onclick=\"removerItem($id)\" class='btn btn-sm btn-danger ms-2'>Remover</button>
+
+
+    </div>
+    ";
+}
+
+    echo "<hr><strong>Total: R$ " . number_format($total, 2, ',', '.') . "</strong>";
+       
+} else {
+    echo "<p>Seu carrinho está vazio...</p>";
+}
+?>
+    </div> <!-- fecha carrinho-itens -->
+
+<div class="carrinho-footer">
+    <strong>Total:</strong> 
+    R$ <span id="carrinho-total">
+        <?php echo isset($total) ? number_format($total, 2, ',', '.') : '0,00'; ?>
+    </span>
+
+    <button onclick="limparCarrinho()" class="btn btn-warning w-100 mt-2">Limpar Carrinho</button>
+
+</div> <!-- fecha carrinho-footer -->
+
+</div> <!-- AQUI sim fecha carrinho-lateral -->
+   <script>
+function addCarrinho(id) {
+    fetch("produtos.php?add_carrinho=" + id)
+    .then(r => r.text())
+    .then(() => {
+        alert("Produto adicionado ao carrinho!");
+    });
+}
+</script>
+<script>
+function addCarrinho(id) {
+    fetch("ajax_carrinho.php?action=add&id=" + id)
+    .then(r => r.json())
+    .then(data => atualizarCarrinho(data.carrinho));
+}
+
+function removerItem(id) {
+    fetch("ajax_carrinho.php?action=remove&id=" + id)
+    .then(r => r.json())
+    .then(data => atualizarCarrinho(data.carrinho));
+}
+
+function limparCarrinho() {
+    fetch("ajax_carrinho.php?action=clear")
+    .then(r => r.json())
+    .then(data => atualizarCarrinho(data.carrinho));
+}
+
+function atualizarCarrinho(carrinho) {
+
+    let div = document.getElementById("carrinho-itens");
+    let total = 0;
+
+    div.innerHTML = "";
+
+    for (let id in carrinho) {
+
+        let item = carrinho[id];
+        let subtotal = item.preco * item.qtd;
+        total += subtotal;
+
+        div.innerHTML += `
+            <div class='item-carrinho mb-3 d-flex align-items-center'>
+                <img src='${item.imagem.replace("./","")}'
+                     style='width:50px;height:50px;object-fit:cover;border-radius:5px;margin-right:10px;'>
+
+                <div>
+                    <strong>${item.nome}</strong><br>
+                    Preço: R$ ${item.preco.toFixed(2).replace(".", ",")}<br>
+                    Quantidade: ${item.qtd}<br>
+                    <small>Subtotal: R$ ${subtotal.toFixed(2).replace(".", ",")}</small>
+                </div>
+
+                <button class='btn btn-sm btn-danger ms-2'
+                        onclick='removerItem(${id})'>
+                    Remover
+                </button>
+            </div>
+        `;
+    }
+
+    document.getElementById("carrinho-total").innerText =
+        total.toFixed(2).replace(".", ",");
+
+}
+</script>  
 </body>
 
 </html>
