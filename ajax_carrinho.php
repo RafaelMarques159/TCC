@@ -44,4 +44,14 @@ echo json_encode([
     "sucesso" => true,
     "carrinho" => $_SESSION['carrinho'] ?? []
 ]);
-exit;
+
+if ($_GET['action'] == 'count') {
+    $total = 0;
+    if (isset($_SESSION['carrinho'])) {
+        foreach ($_SESSION['carrinho'] as $item) {
+            $total += $item['qtd'];
+        }
+    }
+    echo json_encode(['total_itens' => $total]);
+    exit;
+}

@@ -106,7 +106,7 @@ include_once("config.php");
                     <div class="dropdown nav-item position-relative">
                         <a href="#" class="text-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-badge">0</span><br><small>Meu Carrinho</small>
+                            <span class="cart-badge" id="contador-carrinho">0</span><br><small>Meu Carrinho</small>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Ver Carrinho</a></li>
@@ -641,19 +641,36 @@ function addCarrinho(id) {
 function addCarrinho(id) {
     fetch("ajax_carrinho.php?action=add&id=" + id)
     .then(r => r.json())
-    .then(data => atualizarCarrinho(data.carrinho));
+    .then(data => {
+        atualizarCarrinho(data.carrinho);
+        atualizarContadorCarrinho(); // <—
+    });
 }
 
 function removerItem(id) {
     fetch("ajax_carrinho.php?action=remove&id=" + id)
     .then(r => r.json())
-    .then(data => atualizarCarrinho(data.carrinho));
+    .then(data => {
+        atualizarCarrinho(data.carrinho);
+        atualizarContadorCarrinho(); // <—
+    });
 }
 
 function limparCarrinho() {
     fetch("ajax_carrinho.php?action=clear")
     .then(r => r.json())
-    .then(data => atualizarCarrinho(data.carrinho));
+    .then(data => {
+        atualizarCarrinho(data.carrinho);
+        atualizarContadorCarrinho(); // <—
+    });
+}
+
+function atualizarContadorCarrinho() {
+    fetch("ajax_carrinho.php?action=count")
+    .then(r => r.json())
+    .then(data => {
+        document.getElementById("contador-carrinho").textContent = data.total_itens;
+    });
 }
 
 function atualizarCarrinho(carrinho) {
