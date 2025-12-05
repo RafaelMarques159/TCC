@@ -624,6 +624,7 @@ if (isset($_SESSION['carrinho']) && count($_SESSION['carrinho']) > 0) {
     </span>
 
     <button onclick="limparCarrinho()" class="btn btn-warning w-100 mt-2">Limpar Carrinho</button>
+    <a href="finalizar_compra.php" class="btn btn-success w-100 mt-2"> Finalizar Compra </a>
 
 </div> <!-- fecha carrinho-footer -->
 

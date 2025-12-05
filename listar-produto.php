@@ -1,5 +1,18 @@
 
 <h1>Listar Produto</h1>
+
+<style>
+td.descricao {
+    max-width: 350px;   /* largura da célula */
+    height: 120px;      /* altura fixa da descrição */
+    overflow-y: auto;   /* ativa rolagem vertical */
+    overflow-x: hidden; /* evita barra horizontal feia */
+    display: block;     /* necessário para funcionar bem */
+    padding-right: 10px; /* espaço pra não colar na borda */
+    white-space: normal !important;
+}
+</style>
+
     <?php
     $sql = "SELECT p.*, c.nome_categoria 
         FROM produtos p
@@ -21,6 +34,7 @@
             print"<th>Preço</th>";
             print"<th>Descrição</th>";
             print"<th>Em Estoque</th>";
+            print"<th>Comprados</th>";
             print"<th>Categoria</th>";
             print"<th>Imagem</th>";
             print"<th>Acoes</th>";
@@ -31,8 +45,9 @@
             print"<td>".$row->id_produto;"</td>";
             print"<td>".$row->nome_produto;"</td>";
             print "<td>R$ " . number_format($row->preco, 2, ',', '.') . "</td>";
-            print"<td>".$row->descricao;"</td>";
+            print"<td class='descricao'>".$row->descricao;"</td>";
             print"<td>".$row->quantidade;"</td>";
+            print"<td>".$row->comprados."</td>";
             print "<td>".$row->nome_categoria."</td>";
             print "<td><img src='".$row->imagem."' width='100' height='100'></td>";
 
