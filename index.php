@@ -52,7 +52,9 @@
           <a class="nav-link" href="?page=cat_listar">Listar Categorias</a>
         </li>
         -->
-        
+        <li class="nav-item">
+          <a class="nav-link" href="?page=compra_listar">Produtos Comprados</a>
+        </li>
       </ul> 
     </div>
   </div>
@@ -104,7 +106,12 @@
         break;
         case "cat_editar":
           include("editar-categoria.php");
-        break;  
+        break;
+      // Case Comprados
+        case "compra_listar":
+          include("listar_comprados.php");
+        break;   
+
         default:
           include("home.php");
 }

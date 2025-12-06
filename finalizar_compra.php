@@ -102,24 +102,63 @@ foreach ($_SESSION['carrinho'] as $k => $v) {
                     </tbody>
                 </table>
             </div>
+             <!-- --- INÍCIO: formulário do comprador --- -->
+<form action="processar_compra.php" method="POST">
 
-            <div class="d-flex justify-content-between align-items-center mt-4">
-                <div>
-                    <a href="produtos.php" class="btn btn-outline-secondary">Voltar</a>
-                    <a href="limpar_carrinho.php" class="btn btn-warning">Limpar Carrinho</a>
-                </div>
-                <div>
-                    <strong class="me-3">Total: R$ <?php echo number_format($total,2,',','.'); ?></strong>
-                    <form action="processar_compra.php" method="POST" class="d-inline">
-                        <!-- Você pode enviar os dados necessários para processar a compra -->
-                        <input type="hidden" name="total" value="<?php echo number_format($total,2,'.',''); ?>">
-                        <button type="submit" class="btn btn-success">Finalizar Compra</button>
-                    </form>
-                </div>
-            </div>
+<h5>Dados do comprador</h5>
 
-        </div>
+<!-- Usuário existente -->
+<div class="mb-2">
+    <label for="usuario_existente" class="form-label">Usuário existente</label>
+    <select class="form-select" id="usuario_existente" name="usuario_id">
+        <option value="">-- Selecionar --</option>
+        <?php
+        $resUsuarios = $conn->query("SELECT id, nome FROM usuarios ORDER BY nome");
+        if ($resUsuarios && $resUsuarios->num_rows > 0){
+            while($u = $resUsuarios->fetch_assoc()){
+                echo "<option value='".intval($u['id'])."'>".htmlspecialchars($u['nome'],ENT_QUOTES,'UTF-8')."</option>";
+            }
+        }
+        ?>
+    </select>
+</div>
+
+<div class="mb-3">
+    <small class="text-muted">Ou cadastre novo comprador abaixo:</small>
+</div>
+
+<div class="row g-2">
+    <div class="col-md-6">
+        <label class="form-label">Nome</label>
+        <input type="text" name="novo_nome" class="form-control">
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">E-mail</label>
+        <input type="email" name="novo_email" class="form-control">
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Senha</label>
+        <input type="password" name="novo_senha" class="form-control">
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Data de Nascimento</label>
+        <input type="date" name="novo_data_nasc" class="form-control">
     </div>
 </div>
-</body>
+
+<hr class="my-4">
+
+<div class="d-flex justify-content-between">
+    <div>
+        <a href="produtos.php" class="btn btn-outline-secondary">Voltar</a>
+        <a href="limpar_carrinho.php" class="btn btn-warning">Limpar Carrinho</a>
+    </div>
+
+    <div>
+        <input type="hidden" name="total" value="<?php echo number_format($total,2,'.',''); ?>">
+        <button type="submit" class="btn btn-success btn-lg">Finalizar Compra</button>
+    </div>
+</div>
+
+</form>          
 </html>
