@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 include_once("config.php");
 
- if (isset($_GET['add_carrinho'])) {
+if (isset($_GET['add_carrinho'])) {
 
     $idProduto = intval($_GET['add_carrinho']);
 
@@ -19,8 +19,7 @@ include_once("config.php");
     // se o produto já existe no carrinho, aumenta quantidade
     if (isset($_SESSION['carrinho'][$idProduto])) {
         $_SESSION['carrinho'][$idProduto]['qtd']++;
-    } 
-    else {
+    } else {
         // buscar dados do produto
         $sqlProd = "SELECT * FROM produtos WHERE id_produto = $idProduto";
         $resProd = $conn->query($sqlProd);
@@ -36,7 +35,7 @@ include_once("config.php");
 
     header("Location: produtos.php");
     exit;
- }
+}
 ?>
 
 <!DOCTYPE html>
@@ -127,72 +126,83 @@ include_once("config.php");
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav justify-content-center gap-xxl-5 w-100 mb-1 mb-lg-0">
-                        <li class="nav-item mx-5">
+
+                        <!-- Materiais Básicos -->
+                        <li class="nav-item mx-4">
                             <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Home
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Materiais Básicos
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Action two</a></li>
-                                    <li><a class="dropdown-item" href="#">Action three</a></li>
+                                    <li><a class="dropdown-item" href="#">Cimento</a></li>
+                                    <li><a class="dropdown-item" href="#">Areia & Pedra</a></li>
+                                    <li><a class="dropdown-item" href="#">Cal & Argamassa</a></li>
+                                    <li><a class="dropdown-item" href="#">Blocos & Tijolos</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item mx-5">
+
+                        <!-- Hidráulica -->
+                        <li class="nav-item mx-4">
                             <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Home
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Hidráulica
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Action two</a></li>
-                                    <li><a class="dropdown-item" href="#">Action three</a></li>
+                                    <li><a class="dropdown-item" href="#">Tubos PVC</a></li>
+                                    <li><a class="dropdown-item" href="#">Torneiras</a></li>
+                                    <li><a class="dropdown-item" href="#">Caixas d'Água</a></li>
+                                    <li><a class="dropdown-item" href="#">Conexões</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item mx-5">
+
+                        <!-- Elétrica -->
+                        <li class="nav-item mx-4">
                             <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Home
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Elétrica
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Action two</a></li>
-                                    <li><a class="dropdown-item" href="#">Action three</a></li>
+                                    <li><a class="dropdown-item" href="#">Fios & Cabos</a></li>
+                                    <li><a class="dropdown-item" href="#">Interruptores</a></li>
+                                    <li><a class="dropdown-item" href="#">Lâmpadas</a></li>
+                                    <li><a class="dropdown-item" href="#">Quadro de Distribuição</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item mx-5">
+
+                        <!-- Ferramentas -->
+                        <li class="nav-item mx-4">
                             <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Home
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Ferramentas
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Action two</a></li>
-                                    <li><a class="dropdown-item" href="#">Action three</a></li>
+                                    <li><a class="dropdown-item" href="#">Elétricas</a></li>
+                                    <li><a class="dropdown-item" href="#">Manuais</a></li>
+                                    <li><a class="dropdown-item" href="#">EPI & Segurança</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item mx-5">
+
+                        <!-- Acabamento -->
+                        <li class="nav-item mx-4">
                             <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Home
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Acabamento
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Action two</a></li>
-                                    <li><a class="dropdown-item" href="#">Action three</a></li>
+                                    <li><a class="dropdown-item" href="#">Pisos</a></li>
+                                    <li><a class="dropdown-item" href="#">Revestimentos</a></li>
+                                    <li><a class="dropdown-item" href="#">Tintas</a></li>
+                                    <li><a class="dropdown-item" href="#">Portas & Janelas</a></li>
                                 </ul>
                             </div>
                         </li>
+
                     </ul>
+
 
                 </div>
             </div>
@@ -509,86 +519,84 @@ include_once("config.php");
     <script src="js/descricao.js"></script>
     <script src="js/script.js"></script>
     <script>
-function atualizarCarrinho(dados) {
-    document.getElementById("carrinho-itens").innerHTML = dados.html;
-    document.getElementById("carrinho-total").innerText = dados.total;
-}
+        function atualizarCarrinho(dados) {
+            document.getElementById("carrinho-itens").innerHTML = dados.html;
+            document.getElementById("carrinho-total").innerText = dados.total;
+        }
+    </script>
 
-
-</script>
-    
     <script>
-document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
 
-    const btnCarrinho = document.querySelector(".fa-shopping-cart");
-    const carrinho = document.getElementById("carrinho-lateral");
-    const fecharBtn = document.getElementById("fecharCarrinho");
+            const btnCarrinho = document.querySelector(".fa-shopping-cart");
+            const carrinho = document.getElementById("carrinho-lateral");
+            const fecharBtn = document.getElementById("fecharCarrinho");
 
-    if (btnCarrinho) {
-        btnCarrinho.addEventListener("click", function () {
-            carrinho.classList.add("aberto");
-        });
-    }
-
-    if (fecharBtn) {
-        fecharBtn.addEventListener("click", function () {
-            carrinho.classList.remove("aberto");
-        });
-    }
-
-});
-</script>
-<script>
-function addCarrinho(id) {
-    fetch("add_carrinho.php?id=" + id)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-
-                // Atualiza contador do carrinho
-                document.getElementById("contador-carrinho").innerText = data.total_itens;
-
-                // Atualiza total
-                document.getElementById("carrinho-total").innerText = data.total_formatado;
+            if (btnCarrinho) {
+                btnCarrinho.addEventListener("click", function() {
+                    carrinho.classList.add("aberto");
+                });
             }
+
+            if (fecharBtn) {
+                fecharBtn.addEventListener("click", function() {
+                    carrinho.classList.remove("aberto");
+                });
+            }
+
         });
-}
-</script>
-<!-- Carrinho Lateral -->
-<div id="carrinho-lateral" class="carrinho-fechado">
-    <div class="carrinho-header">
-        <h5>Carrinho</h5>
-        <button class="btn btn-sm btn-danger" id="fecharCarrinho">X</button>
-    </div>
+    </script>
+    <script>
+        function addCarrinho(id) {
+            fetch("add_carrinho.php?id=" + id)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
 
-    <div id="carrinho-itens" class="p-2">
-<?php
-$total = 0;
-if (isset($_SESSION['carrinho']) && count($_SESSION['carrinho']) > 0) {
-    $total = 0;
-    foreach ($_SESSION['carrinho'] as $id => $item) {
+                        // Atualiza contador do carrinho
+                        document.getElementById("contador-carrinho").innerText = data.total_itens;
 
-    // garante segurança e evita erros
-    $nome = htmlspecialchars($item['nome'] ?? 'Produto', ENT_QUOTES, 'UTF-8');
-    $preco_val = (float)($item['preco'] ?? 0);
-    $qtd = (int)($item['qtd'] ?? 1);
-    $subtotal_val = $preco_val * $qtd;
-    $total += $subtotal_val;
-    $preco = number_format($preco_val, 2, ',', '.');
-    $subtotal = number_format($subtotal_val, 2, ',', '.');
+                        // Atualiza total
+                        document.getElementById("carrinho-total").innerText = data.total_formatado;
+                    }
+                });
+        }
+    </script>
+    <!-- Carrinho Lateral -->
+    <div id="carrinho-lateral" class="carrinho-fechado">
+        <div class="carrinho-header">
+            <h5>Carrinho</h5>
+            <button class="btn btn-sm btn-danger" id="fecharCarrinho">X</button>
+        </div>
 
-    // pega caminho salvo no banco
-    $imagem_raw = $item['imagem'] ?? '';
+        <div id="carrinho-itens" class="p-2">
+            <?php
+            $total = 0;
+            if (isset($_SESSION['carrinho']) && count($_SESSION['carrinho']) > 0) {
+                $total = 0;
+                foreach ($_SESSION['carrinho'] as $id => $item) {
 
-    // REMOVE './' DO COMEÇO → EX: "./img/imagem.jpg" vira "img/imagem.jpg"
-    $img = ltrim($imagem_raw, "./");
+                    // garante segurança e evita erros
+                    $nome = htmlspecialchars($item['nome'] ?? 'Produto', ENT_QUOTES, 'UTF-8');
+                    $preco_val = (float)($item['preco'] ?? 0);
+                    $qtd = (int)($item['qtd'] ?? 1);
+                    $subtotal_val = $preco_val * $qtd;
+                    $total += $subtotal_val;
+                    $preco = number_format($preco_val, 2, ',', '.');
+                    $subtotal = number_format($subtotal_val, 2, ',', '.');
 
-    // se ficar vazio, usa placeholder
-    if (empty($img)) {
-        $img = "img/placeholder.png";
-    }
+                    // pega caminho salvo no banco
+                    $imagem_raw = $item['imagem'] ?? '';
 
-    echo "
+                    // REMOVE './' DO COMEÇO → EX: "./img/imagem.jpg" vira "img/imagem.jpg"
+                    $img = ltrim($imagem_raw, "./");
+
+                    // se ficar vazio, usa placeholder
+                    if (empty($img)) {
+                        $img = "img/placeholder.png";
+                    }
+
+                    echo "
     <div class='item-carrinho mb-3 d-flex align-items-center'>
 
         <img src='" . $img . "' 
@@ -607,87 +615,86 @@ if (isset($_SESSION['carrinho']) && count($_SESSION['carrinho']) > 0) {
 
     </div>
     ";
-}
+                }
 
-    echo "<hr><strong>Total: R$ " . number_format($total, 2, ',', '.') . "</strong>";
-       
-} else {
-    echo "<p>Seu carrinho está vazio...</p>";
-}
-?>
-    </div> <!-- fecha carrinho-itens -->
+                echo "<hr><strong>Total: R$ " . number_format($total, 2, ',', '.') . "</strong>";
+            } else {
+                echo "<p>Seu carrinho está vazio...</p>";
+            }
+            ?>
+        </div> <!-- fecha carrinho-itens -->
 
-<div class="carrinho-footer">
-    <strong>Total:</strong> 
-    R$ <span id="carrinho-total">
-        <?php echo isset($total) ? number_format($total, 2, ',', '.') : '0,00'; ?>
-    </span>
+        <div class="carrinho-footer">
+            <strong>Total:</strong>
+            R$ <span id="carrinho-total">
+                <?php echo isset($total) ? number_format($total, 2, ',', '.') : '0,00'; ?>
+            </span>
 
-    <button onclick="limparCarrinho()" class="btn btn-warning w-100 mt-2">Limpar Carrinho</button>
-    <a href="finalizar_compra.php" class="btn btn-success w-100 mt-2"> Finalizar Compra </a>
+            <button onclick="limparCarrinho()" class="btn btn-warning w-100 mt-2">Limpar Carrinho</button>
+            <a href="finalizar_compra.php" class="btn btn-success w-100 mt-2"> Finalizar Compra </a>
 
-</div> <!-- fecha carrinho-footer -->
+        </div> <!-- fecha carrinho-footer -->
 
-</div> <!-- AQUI sim fecha carrinho-lateral -->
-   <script>
-function addCarrinho(id) {
-    fetch("produtos.php?add_carrinho=" + id)
-    .then(r => r.text())
-    .then(() => {
-        alert("Produto adicionado ao carrinho!");
-    });
-}
-</script>
-<script>
-function addCarrinho(id) {
-    fetch("ajax_carrinho.php?action=add&id=" + id)
-    .then(r => r.json())
-    .then(data => {
-        atualizarCarrinho(data.carrinho);
-        atualizarContadorCarrinho(); // <—
-    });
-}
+    </div> <!-- AQUI sim fecha carrinho-lateral -->
+    <script>
+        function addCarrinho(id) {
+            fetch("produtos.php?add_carrinho=" + id)
+                .then(r => r.text())
+                .then(() => {
+                    alert("Produto adicionado ao carrinho!");
+                });
+        }
+    </script>
+    <script>
+        function addCarrinho(id) {
+            fetch("ajax_carrinho.php?action=add&id=" + id)
+                .then(r => r.json())
+                .then(data => {
+                    atualizarCarrinho(data.carrinho);
+                    atualizarContadorCarrinho(); // <—
+                });
+        }
 
-function removerItem(id) {
-    fetch("ajax_carrinho.php?action=remove&id=" + id)
-    .then(r => r.json())
-    .then(data => {
-        atualizarCarrinho(data.carrinho);
-        atualizarContadorCarrinho(); // <—
-    });
-}
+        function removerItem(id) {
+            fetch("ajax_carrinho.php?action=remove&id=" + id)
+                .then(r => r.json())
+                .then(data => {
+                    atualizarCarrinho(data.carrinho);
+                    atualizarContadorCarrinho(); // <—
+                });
+        }
 
-function limparCarrinho() {
-    fetch("ajax_carrinho.php?action=clear")
-    .then(r => r.json())
-    .then(data => {
-        atualizarCarrinho(data.carrinho);
-        atualizarContadorCarrinho(); // <—
-    });
-}
+        function limparCarrinho() {
+            fetch("ajax_carrinho.php?action=clear")
+                .then(r => r.json())
+                .then(data => {
+                    atualizarCarrinho(data.carrinho);
+                    atualizarContadorCarrinho(); // <—
+                });
+        }
 
-function atualizarContadorCarrinho() {
-    fetch("ajax_carrinho.php?action=count")
-    .then(r => r.json())
-    .then(data => {
-        document.getElementById("contador-carrinho").textContent = data.total_itens;
-    });
-}
+        function atualizarContadorCarrinho() {
+            fetch("ajax_carrinho.php?action=count")
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById("contador-carrinho").textContent = data.total_itens;
+                });
+        }
 
-function atualizarCarrinho(carrinho) {
+        function atualizarCarrinho(carrinho) {
 
-    let div = document.getElementById("carrinho-itens");
-    let total = 0;
+            let div = document.getElementById("carrinho-itens");
+            let total = 0;
 
-    div.innerHTML = "";
+            div.innerHTML = "";
 
-    for (let id in carrinho) {
+            for (let id in carrinho) {
 
-        let item = carrinho[id];
-        let subtotal = item.preco * item.qtd;
-        total += subtotal;
+                let item = carrinho[id];
+                let subtotal = item.preco * item.qtd;
+                total += subtotal;
 
-        div.innerHTML += `
+                div.innerHTML += `
             <div class='item-carrinho mb-3 d-flex align-items-center'>
                 <img src='${item.imagem.replace("./","")}'
                      style='width:50px;height:50px;object-fit:cover;border-radius:5px;margin-right:10px;'>
@@ -705,13 +712,13 @@ function atualizarCarrinho(carrinho) {
                 </button>
             </div>
         `;
-    }
+            }
 
-    document.getElementById("carrinho-total").innerText =
-        total.toFixed(2).replace(".", ",");
+            document.getElementById("carrinho-total").innerText =
+                total.toFixed(2).replace(".", ",");
 
-}
-</script>  
+        }
+    </script>
 </body>
 
 </html>
