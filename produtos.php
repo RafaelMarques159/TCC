@@ -60,7 +60,7 @@ if (isset($_GET['add_carrinho'])) {
 
                 <!-- Logo -->
                 <div class="col-6 col-md-2 text-center text-md-start mb-2 mb-md-0">
-                    <a href="" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+                    <a href="http://localhost/TCC/FrontLoja.php" class="d-flex align-items-center link-body-emphasis text-decoration-none">
                         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
                             <use xlink:href="#bootstrap" />
                         </svg>
