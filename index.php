@@ -111,7 +111,7 @@
         case "compra_listar":
           include("listar_comprados.php");
         break;   
-
+          
         default:
           include("home.php");
 }
