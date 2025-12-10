@@ -9,6 +9,10 @@ body {
   padding: 0;
 }
 
+/* ------------------------------------------------- */
+/*  ÍCONES DO TOPO (RESTAURADO – IGUAL AO ORIGINAL)  */
+/* ------------------------------------------------- */
+
 .nav-icons {
   display: flex;
   align-items: center;
@@ -21,7 +25,7 @@ body {
   text-align: center;
 }
 
-.nav-item i {
+.nav-icons .nav-item i {
   font-size: 20px;
 }
 
@@ -40,48 +44,78 @@ body {
   justify-content: center;
 }
 
+/* NADA mexido aqui — 100% igual ao seu original */
 
-/* menu drop */
+
+
+
+
+/* ------------------------------------------------- */
+/*  MENU BOX – MELHORADO (COM TODAS AS MELHORIAS)    */
+/* ------------------------------------------------- */
+
+/* Estrutura base do dropdown */
 .dropdown-center {
   position: relative;
   display: inline-block;
 }
 
+/* Botão do menu */
 .dropdown-center .btn {
   background: transparent;
   border: none;
-  color: inherit;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  position: relative;
-  border-radius: 0;
-  border-bottom: 2px solid transparent;
-  /* já reserva espaço */
-  transition: border-color 0.2s ease;
+  padding: 0.6rem 1.1rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #333;
+  border-bottom: 3px solid transparent;
+  /* reserva espaço */
+  transition: 0.25s ease;
 }
 
+/* Remove seta do bootstrap */
 .dropdown-center .btn.dropdown-toggle::after {
   display: none;
 }
 
-.dropdown-center .btn {
-  border-bottom: 3px solid transparent;
-  /* espaço reservado */
-}
-
+/* Hover do botão (linha vermelha + leve background) */
 .dropdown-center .btn:hover {
   border-bottom-color: red;
-  /* muda só a cor no hover */
+  color: red;
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
-.dropdown-center:hover .dropdown-menu {
-  display: block;
-  margin-top: 1px;
-}
-
+/* Dropdown estilizado */
 .dropdown-menu {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
   margin-top: 0;
+  border-radius: 10px;
+  padding: 0.6rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: opacity 0.2s ease;
 }
+
+/* Abrir no hover */
+.dropdown-center:hover .dropdown-menu,
+.nav-item:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Itens internos */
+.dropdown-menu .dropdown-item {
+  padding: 10px 20px;
+  transition: 0.2s;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background: #f1f1f1;
+  color: red;
+}
+
 
 /* Container do carrossel */
 .carousel-fixed-height {

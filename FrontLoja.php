@@ -8,7 +8,7 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/Front.css">
+  <link rel="stylesheet" href="/TCC/Front.css">
   <title>Bella Contrucoes</title>
 
 </head>
@@ -86,72 +86,83 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav justify-content-center gap-xxl-5 w-100 mb-1 mb-lg-0">
-            <li class="nav-item mx-5">
+
+            <!-- Materiais Básicos -->
+            <li class="nav-item mx-4">
               <div class="dropdown-center">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Home
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  Materiais Básicos
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Action two</a></li>
-                  <li><a class="dropdown-item" href="#">Action three</a></li>
+                  <li><a class="dropdown-item" href="http://localhost/TCC/produtos.php">Cimento</a></li>
+                  <li><a class="dropdown-item" href="http://localhost/TCC/produtos.php">Areia & Pedra</a></li>
+                  <li><a class="dropdown-item" href="http://localhost/TCC/produtos.php">Cal & Argamassa</a></li>
+                  <li><a class="dropdown-item" href="http://localhost/TCC/produtos.php">Blocos & Tijolos</a></li>
                 </ul>
               </div>
             </li>
-            <li class="nav-item mx-5">
+
+            <!-- Hidráulica -->
+            <li class="nav-item mx-4">
               <div class="dropdown-center">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Home
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  Hidráulica
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Action two</a></li>
-                  <li><a class="dropdown-item" href="#">Action three</a></li>
+                  <li><a class="dropdown-item" href="#">Tubos PVC</a></li>
+                  <li><a class="dropdown-item" href="#">Torneiras</a></li>
+                  <li><a class="dropdown-item" href="#">Caixas d'Água</a></li>
+                  <li><a class="dropdown-item" href="#">Conexões</a></li>
                 </ul>
               </div>
             </li>
-            <li class="nav-item mx-5">
+
+            <!-- Elétrica -->
+            <li class="nav-item mx-4">
               <div class="dropdown-center">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Home
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  Elétrica
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Action two</a></li>
-                  <li><a class="dropdown-item" href="#">Action three</a></li>
+                  <li><a class="dropdown-item" href="#">Fios & Cabos</a></li>
+                  <li><a class="dropdown-item" href="#">Interruptores</a></li>
+                  <li><a class="dropdown-item" href="#">Lâmpadas</a></li>
+                  <li><a class="dropdown-item" href="#">Quadro de Distribuição</a></li>
                 </ul>
               </div>
             </li>
-            <li class="nav-item mx-5">
+
+            <!-- Ferramentas -->
+            <li class="nav-item mx-4">
               <div class="dropdown-center">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Home
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  Ferramentas
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Action two</a></li>
-                  <li><a class="dropdown-item" href="#">Action three</a></li>
+                  <li><a class="dropdown-item" href="#">Elétricas</a></li>
+                  <li><a class="dropdown-item" href="#">Manuais</a></li>
+                  <li><a class="dropdown-item" href="#">EPI & Segurança</a></li>
                 </ul>
               </div>
             </li>
-            <li class="nav-item mx-5">
+
+            <!-- Acabamento -->
+            <li class="nav-item mx-4">
               <div class="dropdown-center">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Home
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  Acabamento
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Action two</a></li>
-                  <li><a class="dropdown-item" href="#">Action three</a></li>
+                  <li><a class="dropdown-item" href="#">Pisos</a></li>
+                  <li><a class="dropdown-item" href="#">Revestimentos</a></li>
+                  <li><a class="dropdown-item" href="#">Tintas</a></li>
+                  <li><a class="dropdown-item" href="#">Portas & Janelas</a></li>
                 </ul>
               </div>
             </li>
+
           </ul>
+
 
         </div>
       </div>
@@ -171,21 +182,21 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="/imagensfront/bannersuvinil.png" class="d-block w-100" alt="banner suvinil">
+          <img src="/TCC/imagensfront/bannersuvinil.png" class="d-block w-100" alt="banner suvinil">
           <div class="carousel-caption d-none d-md-block">
             <h5>First slide label</h5>
             <p>Some representative placeholder content for the first slide.</p>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="/imagensfront/banner.jpg" class="d-block w-100" alt="banner de construcao">
+          <img src="/TCC/imagensfront/banner.jpg" class="d-block w-100" alt="banner de construcao">
           <div class="carousel-caption d-none d-md-block">
             <h5>Second slide label</h5>
             <p>Some representative placeholder content for the second slide.</p>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="/imagensfront/bannereletrica.png" class="d-block w-100" alt="banner eletrica">
+          <img src="/TCC/imagensfront/bannereletrica.png" class="d-block w-100" alt="banner eletrica">
           <div class="carousel-caption d-none d-md-block">
             <h5>Third slide label</h5>
             <p>Some representative placeholder content for the third slide.</p>
@@ -210,7 +221,7 @@
 
       <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
         <div class="card3">
-          <img src="/imagensfront/caminhao 2.jpg" class="card-img-top" alt="Entrega rápida">
+          <img src="/TCC/imagensfront/caminhao 2.jpg" class="card-img-top" alt="Entrega Rápida">
           <p class="card-title3">Entrega rápida</p>
           <p class="card-body3">Receba seu material no mesmo dia (consulte região).</p>
         </div>
@@ -218,16 +229,16 @@
 
       <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
         <div class="card3">
-          <img src="/imagensfront/selo.jpg" class="card-img-top" alt="Qualidade garantida">
-          <p class="card-title3">Qualidade garantida</p>
+          <img src="/TCC/imagensfront/selo.jpg" class="card-img-top" alt="Qualidade garantida">
+          <p class="card-title3">Qualidade Garantida</p>
           <p class="card-body3">Marcas aprovadas por profissionais da construção.</p>
         </div>
       </div>
 
       <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
         <div class="card3">
-          <img src="/imagensfront/comprasegura.png" class="card-img-top" alt="Compra Saiba">
-          <p class="card-title3">Compra segura</p>
+          <img src="/TCC/imagensfront/comprasegura.png" class="card-img-top" alt="Compra Segura">
+          <p class="card-title3">Compra Segura</p>
           <p class="card-body3">Pagamento protegido, sua compra sem dor de cabeça.</p>
           semana.</p>
         </div>
@@ -247,7 +258,7 @@
 
           <!-- CARD 1 -->
           <div class="card2">
-            <img src="/imagensfront/piso vinilico.png" alt="piso vinilico">
+            <img src="/TCC/imagensfront/piso vinilico.png" alt="piso vinilico">
 
             <div class="card-body">
               <h5 class="card-title">Piso Vinílico 0,7mm 98104-8 Fosco M²</h5>
@@ -270,7 +281,7 @@
 
           <!-- CARD 2 -->
           <div class="card2 d-none d-md-block">
-            <img src="/imagensfront/bica.png" alt="bica Inox">
+            <img src="/TCC/imagensfront/bica.png" alt="bica Inox">
 
             <div class="card-body">
               <h5 class="card-title">Torneira para Cozinha de Parede Em Aço Inox 304</h5>
@@ -293,7 +304,7 @@
 
           <!-- CARD 3 -->
           <div class="card2 d-none d-md-block">
-            <img src="/imagensfront/telha.png" alt="Produto">
+            <img src="/TCC/imagensfront/telha.png" alt="Produto">
 
             <div class="card-body">
               <h5 class="card-title">Telha De PVC Colonial 3,94x0,86 Cerâmica</h5>
@@ -316,7 +327,7 @@
 
           <!-- CARD 4 -->
           <div class="card2 d-none d-md-block">
-            <img src="/imagensfront/carrinhodemao.png" alt="carrinho de mao">
+            <img src="/TCC/imagensfront/carrinhodemao.png" alt="carrinho de mao">
 
             <div class="card-body">
               <h5 class="card-title">Carrinho de Mão Tramontina Extra Forte - 80L/120kg</h5>
@@ -345,7 +356,7 @@
         <div class="cards-wrapper">
 
           <div class="card2">
-            <img src="/imagensfront/bomba.png" alt="Bomba d'Água">
+            <img src="/TCC/imagensfront/bomba.png" alt="Bomba d'Água">
 
             <div class="card-body">
               <h5 class="card-title">Vazão de 2400L/h - Motor 1/2CV 127/220V</h5>
@@ -367,7 +378,7 @@
           </div>
 
           <div class="card2 d-none d-md-block">
-            <img src="/imagensfront/chuveiro.png" alt="Chuveiro">
+            <img src="/TCC/imagensfront/chuveiro.png" alt="Chuveiro">
 
             <div class="card-body">
               <h5 class="card-title">Chuveiro elétrico maxi loren 220 3200W Lorenzetti</h5>
@@ -389,7 +400,7 @@
           </div>
 
           <div class="card2 d-none d-md-block">
-            <img src="/imagensfront/quadroeletrico.png" alt="quadro eletrico">
+            <img src="/TCC/imagensfront/quadroeletrico.png" alt="quadro eletrico">
 
             <div class="card-body">
               <h5 class="card-title">Quadro Distribuição Embutir Para 3/4 Disjuntor</h5>
@@ -411,7 +422,7 @@
           </div>
 
           <div class="card2 d-none d-md-block">
-            <img src="/imagensfront/tijolo.png" alt="tijolo">
+            <img src="/TCC/imagensfront/tijolo.png" alt="tijolo">
 
             <div class="card-body">
               <h5 class="card-title">Tijolo Cerâmico de Vedação 14x19x39CM</h5>
@@ -454,7 +465,7 @@
       <!-- Card 1 -->
       <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
         <div class="card">
-          <img src="/imagensfront/Cimento forte.png" class="card-img" alt="Cimento forte">
+          <img src="/TCC/imagensfront/Cimento forte.png" class="card-img" alt="Cimento forte">
 
           <div class="card__content">
             <p class="card__title">Material de Construção</p>
@@ -466,7 +477,7 @@
       <!-- Card 2 -->
       <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
         <div class="card">
-          <img src="/imagensfront/tinta suvinil.webp" class="card-img" alt="tinta suvinil">
+          <img src="/TCC/imagensfront/tinta suvinil.webp" class="card-img" alt="tinta suvinil">
           <div class="card__content">
             <p class="card__title">Tintas</p>
             <p class="card__description">Pinte, proteja e transforme seus ambientes com mais qualidade e mais
@@ -477,7 +488,7 @@
       <!-- Card 3 -->
       <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
         <div class="card">
-          <img src="/imagensfront/pia.png" class="card-img" alt="Pia">
+          <img src="/TCC/imagensfront/pia.png" class="card-img" alt="Pia">
           <div class="card__content">
             <p class="card__title">louças</p>
             <p class="card__description">Escolha louças que facilitam seu dia a dia e elevam o padrão da sua obra.</p>
@@ -487,7 +498,7 @@
       <!-- Card 4 -->
       <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
         <div class="card">
-          <img src="/imagensfront/Ferramentas.png" class="card-img" alt="Ferramentas">
+          <img src="/TCC/imagensfront/Ferramentas.png" class="card-img" alt="Ferramentas">
           <div class="card__content">
             <p class="card__title">Ferramentas</p>
             <p class="card__description">Invista em ferramentas que valorizam seu serviço e aumentam sua produtividade.
