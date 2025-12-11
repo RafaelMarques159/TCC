@@ -578,10 +578,8 @@ if (isset($_GET['add_carrinho'])) {
             <?php
             $total = 0;
             if (isset($_SESSION['carrinho']) && count($_SESSION['carrinho']) > 0) {
-                $total = 0;
                 foreach ($_SESSION['carrinho'] as $id => $item) {
 
-                    // garante segurança e evita erros
                     $nome = htmlspecialchars($item['nome'] ?? 'Produto', ENT_QUOTES, 'UTF-8');
                     $preco_val = (float)($item['preco'] ?? 0);
                     $qtd = (int)($item['qtd'] ?? 1);
@@ -590,36 +588,36 @@ if (isset($_GET['add_carrinho'])) {
                     $preco = number_format($preco_val, 2, ',', '.');
                     $subtotal = number_format($subtotal_val, 2, ',', '.');
 
-                    // pega caminho salvo no banco
                     $imagem_raw = $item['imagem'] ?? '';
-
-                    // REMOVE './' DO COMEÇO → EX: "./img/imagem.jpg" vira "img/imagem.jpg"
                     $img = ltrim($imagem_raw, "./");
-
-                    // se ficar vazio, usa placeholder
                     if (empty($img)) {
                         $img = "img/placeholder.png";
                     }
 
                     echo "
-    <div class='item-carrinho mb-3 d-flex align-items-center'>
+        <div class='item-carrinho mb-3 d-flex align-items-center'>
+            <img src='$img'  
+                 alt='$nome' 
+                 style='width:50px;height:50px;object-fit:cover;border-radius:5px;margin-right:10px;'>
 
-        <img src='" . $img . "' 
-             alt='" . $nome . "' 
-             style='width:50px;height:50px;object-fit:cover;border-radius:5px;margin-right:10px;'>
+            <div>
+                <strong>$nome</strong><br>
+                Preço: R$ $preco<br>
 
-        <div>
-            <strong>" . $nome . "</strong><br>
-            Preço: R$ " . $preco . "<br>
-            Quantidade: " . $qtd . "<br>
-            <small>Subtotal: R$ " . $subtotal . "</small>
+                <div class='quantidade-controls'>
+                    <button class='btn btn-sm btn-secondary' onclick='alterarQuantidade($id, " . ($qtd - 1) . ")'>−</button>
+
+                    <span id='qtd-$id' class='mx-2'>$qtd</span>
+
+                    <button class='btn btn-sm btn-secondary' onclick='alterarQuantidade($id, " . ($qtd + 1) . ")'>+</button>
+                </div>
+
+                <small>Subtotal: R$ $subtotal</small>
+            </div>
+
+            <button onclick='removerItem($id)' class='btn btn-sm btn-danger ms-2'>Remover</button>
         </div>
-
-        <button onclick=\"removerItem($id)\" class='btn btn-sm btn-danger ms-2'>Remover</button>
-
-
-    </div>
-    ";
+        ";
                 }
 
                 echo "<hr><strong>Total: R$ " . number_format($total, 2, ',', '.') . "</strong>";
@@ -636,27 +634,17 @@ if (isset($_GET['add_carrinho'])) {
             </span>
 
             <button onclick="limparCarrinho()" class="btn btn-warning w-100 mt-2">Limpar Carrinho</button>
-            <a href="finalizar_compra.php" class="btn btn-success w-100 mt-2"> Finalizar Compra </a>
+            <a href="finalizar_compra.php" class="btn btn-success w-100 mt-2">Finalizar Compra</a>
+        </div>
+    </div>
 
-        </div> <!-- fecha carrinho-footer -->
-
-    </div> <!-- AQUI sim fecha carrinho-lateral -->
-    <script>
-        function addCarrinho(id) {
-            fetch("produtos.php?add_carrinho=" + id)
-                .then(r => r.text())
-                .then(() => {
-                    alert("Produto adicionado ao carrinho!");
-                });
-        }
-    </script>
     <script>
         function addCarrinho(id) {
             fetch("ajax_carrinho.php?action=add&id=" + id)
                 .then(r => r.json())
                 .then(data => {
                     atualizarCarrinho(data.carrinho);
-                    atualizarContadorCarrinho(); // <—
+                    atualizarContadorCarrinho();
                 });
         }
 
@@ -665,7 +653,7 @@ if (isset($_GET['add_carrinho'])) {
                 .then(r => r.json())
                 .then(data => {
                     atualizarCarrinho(data.carrinho);
-                    atualizarContadorCarrinho(); // <—
+                    atualizarContadorCarrinho();
                 });
         }
 
@@ -674,7 +662,20 @@ if (isset($_GET['add_carrinho'])) {
                 .then(r => r.json())
                 .then(data => {
                     atualizarCarrinho(data.carrinho);
-                    atualizarContadorCarrinho(); // <—
+                    atualizaContadorCarrinho();
+                });
+        }
+
+        // ⭐ FUNÇÃO NOVA — ALTERA A QUANTIDADE (NUNCA MENOS QUE 1)
+        function alterarQuantidade(id, novaQtd) {
+
+            if (novaQtd < 1) novaQtd = 1;
+
+            fetch(`ajax_carrinho.php?action=update&id=${id}&qtd=${novaQtd}`)
+                .then(r => r.json())
+                .then(data => {
+                    atualizarCarrinho(data.carrinho);
+                    atualizarContadorCarrinho();
                 });
         }
 
@@ -690,40 +691,51 @@ if (isset($_GET['add_carrinho'])) {
 
             let div = document.getElementById("carrinho-itens");
             let total = 0;
-
             div.innerHTML = "";
 
             for (let id in carrinho) {
-
                 let item = carrinho[id];
                 let subtotal = item.preco * item.qtd;
                 total += subtotal;
 
                 div.innerHTML += `
-            <div class='item-carrinho mb-3 d-flex align-items-center'>
-                <img src='${item.imagem.replace("./","")}'
-                     style='width:50px;height:50px;object-fit:cover;border-radius:5px;margin-right:10px;'>
+        <div class='item-carrinho mb-3 d-flex align-items-center'>
+            <img src='${item.imagem.replace("./","")}'
+                 style='width:50px;height:50px;object-fit:cover;border-radius:5px;margin-right:10px;'>
 
-                <div>
-                    <strong>${item.nome}</strong><br>
-                    Preço: R$ ${item.preco.toFixed(2).replace(".", ",")}<br>
-                    Quantidade: ${item.qtd}<br>
-                    <small>Subtotal: R$ ${subtotal.toFixed(2).replace(".", ",")}</small>
+            <div>
+                <strong>${item.nome}</strong><br>
+                Preço: R$ ${item.preco.toFixed(2).replace(".", ",")}<br>
+
+                <div class="quantidade-controls">
+                    <button class="btn btn-sm btn-secondary" onclick="alterarQuantidade(${id}, ${item.qtd - 1})">−</button>
+
+                    <span id="qtd-${id}" class="mx-2">${item.qtd}</span>
+
+                    <button class="btn btn-sm btn-secondary" onclick="alterarQuantidade(${id}, ${item.qtd + 1})">+</button>
                 </div>
 
-                <button class='btn btn-sm btn-danger ms-2'
-                        onclick='removerItem(${id})'>
-                    Remover
-                </button>
+                <small>Subtotal: R$ ${subtotal.toFixed(2).replace(".", ",")}</small>
             </div>
+
+            <button class='btn btn-sm btn-danger ms-2' onclick='removerItem(${id})'>Remover</button>
+        </div>
         `;
             }
 
             document.getElementById("carrinho-total").innerText =
                 total.toFixed(2).replace(".", ",");
-
         }
     </script>
+
+    <style>
+        .quantidade-controls {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+
 </body>
 
 </html>
