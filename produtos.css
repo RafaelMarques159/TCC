@@ -175,8 +175,6 @@
   min-height: 45px;
   margin-bottom: 20px;
 }
-
-.swiper-wrapper {
-    display: flex;
-    transform: translate3d(0px, 0, 0);
+.category-carousel .swiper-wrapper {
+    justify-content: center !important;
 }
