@@ -402,8 +402,7 @@ if (isset($_GET['add_carrinho'])) {
                             <div class='card-body'>
                                 <h5 class='card-title'>{$row->nome_produto}</h5>
                                 <p class='card-price'>R$ " . number_format($row->preco, 2, ',', '.') . "</p>
-                                <p class='card-text'>{$descricaoCortada}</p> 
-                                <button class='btn btn-success' onclick='addCarrinho(" . $row->id_produto . ")'>
+                                                         <button class='btn btn-success' onclick='addCarrinho(" . $row->id_produto . ")'>
                                 Adicionar ao Carrinho 
                                 <i class='fa fa-shopping-cart' 
                                 style='color:transparent;-webkit-text-stroke:1px white;text-stroke:1px white;'>
