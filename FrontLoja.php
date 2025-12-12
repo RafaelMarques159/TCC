@@ -20,7 +20,7 @@
 
         <!-- Logo -->
         <div style="max-width:140px;" class="col-6 col-md-2 text-center text-md-start mb-2 mb-md-0">
-            <img src="imagensfront/logo.png" class="img-fluid logo-site" alt="Logo da loja">
+          <img src="imagensfront/logo.png" class="img-fluid logo-site" alt="Logo da loja">
         </div>
 
 
@@ -159,16 +159,16 @@
             </li>
 
             <!-- Admin -->
-                        <li class="nav-item mx-4">
-                            <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                    Admin
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="index.php">Sistema</a></li>
-                                </ul>
-                            </div>
-                        </li>
+            <li class="nav-item mx-4">
+              <div class="dropdown-center">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  Admin
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="index.php">Sistema</a></li>
+                </ul>
+              </div>
+            </li>
 
           </ul>
 
@@ -465,54 +465,58 @@
     </button>
   </div>
 
-  <div class="container my-5">
-    <div class="row g-5 justify-content-center">
-      <!-- Card 1 -->
-      <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
-        <div class="card">
-          <img src="/TCC/imagensfront/Cimento forte.png" class="card-img" alt="Cimento forte">
+  <section class="py-5 overflow-hidden">
+    <div class="container-lg container-ajuste">
+      <div class="row">
+        <div class="col-md-12">
 
-          <div class="card__content">
-            <p class="card__title">Material de Construção</p>
-            <p class="card__description">Materiais de construção que garantem força, durabilidade e resultado
-              profissional em cada obra.</p>
+          <?php
+          include_once "config.php";
+
+          $sql = "SELECT * FROM categorias";
+          $res = $conn->query($sql);
+          ?>
+
+          <div class="category-carousel swiper">
+            <div class="swiper-wrapper">
+
+              <?php
+              if ($res && $res->num_rows > 0) {
+                while ($row = $res->fetch_object()) {
+
+                  // Proteção evitando HTML quebrado
+                  $img = htmlspecialchars($row->img_categoria, ENT_QUOTES, 'UTF-8');
+                  $nome = htmlspecialchars($row->nome_categoria, ENT_QUOTES, 'UTF-8');
+
+                  // Marca categoria ativa se estiver no filtro (GET)
+                  $ativo = (!empty($_GET['categorias']) && in_array($row->id_categoria, $_GET['categorias']))
+                    ? "categoria-ativa"
+                    : "";
+                  echo "
+                                <a href='produtos.php?categorias[]={$row->id_categoria}' class='nav-link swiper-slide text-center categoria-item {$ativo}'>
+                                    
+                                    <img src='{$img}' 
+                                         class='rounded-circle'
+                                         style='width:140px;height:140px;object-fit:cover;'
+                                         alt='{$nome}'>
+
+                                    <h4 class='fs-6 mt-3 fw-normal category-title'>
+                                        {$nome}
+                                    </h4>
+
+                                </a>
+                                ";
+                }
+              }
+              ?>
+
+            </div>
           </div>
-        </div>
-      </div>
-      <!-- Card 2 -->
-      <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
-        <div class="card">
-          <img src="/TCC/imagensfront/tinta suvinil.webp" class="card-img" alt="tinta suvinil">
-          <div class="card__content">
-            <p class="card__title">Tintas</p>
-            <p class="card__description">Pinte, proteja e transforme seus ambientes com mais qualidade e mais
-              rendimento.</p>
-          </div>
-        </div>
-      </div>
-      <!-- Card 3 -->
-      <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
-        <div class="card">
-          <img src="/TCC/imagensfront/pia.png" class="card-img" alt="Pia">
-          <div class="card__content">
-            <p class="card__title">Louças</p>
-            <p class="card__description">Escolha louças que facilitam seu dia a dia e elevam o padrão da sua obra.</p>
-          </div>
-        </div>
-      </div>
-      <!-- Card 4 -->
-      <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center">
-        <div class="card">
-          <img src="/TCC/imagensfront/Ferramentas.png" class="card-img" alt="Ferramentas">
-          <div class="card__content">
-            <p class="card__title">Ferramentas</p>
-            <p class="card__description">Invista em ferramentas que valorizam seu serviço e aumentam sua produtividade.
-            </p>
-          </div>
+
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!--inicio do rodape-->
   <!-- Footer -->
