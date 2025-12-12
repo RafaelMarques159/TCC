@@ -239,9 +239,17 @@ foreach ($_SESSION['carrinho'] as $k => $v) {
                                 $idp = intval($row['id_produto']);
                                 $nome = htmlspecialchars($row['nome_produto'], ENT_QUOTES, 'UTF-8');
                                 $preco = (float)$row['preco'];
+                                $precoFinal = $preco;
+
+                                if (!empty($row['desconto']) && $row['desconto'] > 0) {
+                                $valorDesc = $preco * ($row['desconto'] / 100);
+                                $precoFinal = $preco - $valorDesc;
+                                }
+
                                 $qtd = isset($itens_mapa[$idp]) ? $itens_mapa[$idp]['qtd'] : 1;
                                 $subtotal = $preco * $qtd;
-                                $total += $subtotal;
+                                $subtotal = $precoFinal * $qtd;
+
 
                                 // imagem: se você salva com "./img/file.jpg" removemos "./"
                                 $img_raw = $row['imagem'] ?? '';
@@ -253,7 +261,7 @@ foreach ($_SESSION['carrinho'] as $k => $v) {
                                         <img src="<?php echo htmlspecialchars($img, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo $nome; ?>" class="img-fluid rounded" style="width:70px;height:70px;object-fit:cover;">
                                     </td>
                                     <td><?php echo $nome; ?></td>
-                                    <td>R$ <?php echo number_format($preco, 2, ',', '.'); ?></td>
+                                    <td>R$ <?php echo number_format($precoFinal, 2, ',', '.'); ?></td>
                                     <td><?php echo $qtd; ?></td>
                                     <td>R$ <?php echo number_format($subtotal, 2, ',', '.'); ?></td>
                                 </tr>

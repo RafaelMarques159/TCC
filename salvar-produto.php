@@ -5,6 +5,7 @@
         $preco=$_POST["preco"];
         $descricao=$_POST["descricao"];
         $quantidade=$_POST["quantidade"];
+        $desconto = $_POST['desconto'];
         $categoria_id = $_POST["id_categoria"];
         $imagem=$_FILES["imagem"];
 
@@ -17,7 +18,7 @@
     }
 
 
-        $sql ="INSERT INTO produtos(nome_produto, preco, descricao, quantidade,imagem,categoria_id) VALUES('{$nome_produto}', '{$preco}', '{$descricao}', '{$quantidade}','{$imagem}','{$categoria_id}')";
+        $sql ="INSERT INTO produtos(nome_produto, preco, descricao, quantidade,imagem,categoria_id,desconto) VALUES('{$nome_produto}', '{$preco}', '{$descricao}', '{$quantidade}','{$imagem}','{$categoria_id}','{$desconto}')";
 
         $res=$conn->query($sql);
         
@@ -39,6 +40,8 @@
     $quantidade = $_POST["quantidade"];
     $categoria_id = $_POST["id_categoria"];
     $id_produto = $_POST["id_produto"];
+    $desconto = $_POST['desconto'];
+
 
 
      // pega a imagem atual do DB para manter caso não envie nova
@@ -70,6 +73,7 @@
     descricao='{$descricao}', 
     quantidade='{$quantidade}',
     imagem='{$imagem}',
+    desconto = '$desconto',
     categoria_id='{$categoria_id}'
     WHERE id_produto=".$_REQUEST["id_produto"];
     $res = $conn->query($sql);

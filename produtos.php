@@ -394,24 +394,54 @@ if (isset($_GET['add_carrinho'])) {
                             } else {
                                 $descricaoCortada = $descricaoCompleta;
                             }
-
+                            
                             echo "
-                    <div class='col-4'>
-                        <div class='card'>
-                            <img src='{$row->imagem}' class='card-img-top' alt='{$row->nome_produto}'>
-                            <div class='card-body'>
-                                <h5 class='card-title'>{$row->nome_produto}</h5>
-                                <p class='card-price'>R$ " . number_format($row->preco, 2, ',', '.') . "</p>
-                                 <button class='btn btn-success' onclick='addCarrinho(" . $row->id_produto . ")'>
-                                Adicionar ao Carrinho 
-                                <i class='fa fa-shopping-cart' 
-                                style='color:transparent;-webkit-text-stroke:1px white;text-stroke:1px white;'>
-                                </i>
-                            </button>
-                                
-                            </div>
-                        </div>
-                    </div>";
+    <div class='col-4'>
+        <div class='card'>
+            <img src='{$row->imagem}' class='card-img-top' alt='{$row->nome_produto}'>
+            <div class='card-body'>
+                <h5 class='card-title'>{$row->nome_produto}</h5>";
+                
+                // --- APENAS ACRESCENTADO ---
+                if (!empty($row->desconto) && $row->desconto > 0) {
+                    $precoOriginal = $row->preco;
+                    $valorDesconto = ($row->preco * ($row->desconto / 100));
+                    $precoFinal = $row->preco - $valorDesconto;
+
+                    echo "
+                        <p style='text-decoration: line-through; color:#777; margin-bottom: 2px; display:inline-block;'>
+                            R$ " . number_format($precoOriginal, 2, ',', '.') . "
+                        </p>
+
+                        <span style='background:red; color:white; padding:3px 6px;
+                            border-radius:4px; font-size:13px; font-weight:bold; display:inline-block; margin-left:6px;'>
+                            -{$row->desconto}%
+                        </span>
+
+                        <p class='card-price' style='color:#d00; font-weight:bold; margin-top:2px; margin-bottom:0;'>
+                            R$ " . number_format($precoFinal, 2, ',', '.') . "
+                        </p>
+                        <p style='margin:0; font-size:14px; color:#444;'>em até 2x de R$ " . number_format(($precoFinal / 2), 2, ',', '.') . "</p>
+                    ";
+                } else {
+                    // SE NÃO TIVER DESCONTO, mantém SEU preço original sem mudar nada
+                    echo "
+                        <p class='card-price'>R$ " . number_format($row->preco, 2, ',', '.') . "</p>
+                        <p style='margin:0; font-size:14px; color:#444;'>ou 2x de R$ " . number_format(($row->preco / 2), 2, ',', '.') . "</p>
+                    ";
+                }
+                // --- FIM DO ACRESCENTADO ---
+
+echo "
+                <button class='btn btn-success' onclick='addCarrinho(" . $row->id_produto . ")'>
+                    ADICIONAR 
+                    <i class='fa fa-shopping-cart' 
+                    style='color:transparent;-webkit-text-stroke:1px white;text-stroke:1px white;'>
+                    </i>
+                </button>
+            </div>
+        </div>
+    </div>";
                         }
                     } else {
                         echo "<p>Nenhum produto encontrado!</p>";

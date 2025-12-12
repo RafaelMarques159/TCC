@@ -32,7 +32,15 @@
         }
         ?>
     </select>
+    <div class="mb-3">
+        <label>Desconto:</label>
+        <select name="desconto" required>
+    <?php for($i = 8; $i <= 30; $i++): ?>
+        <option value="<?= $i ?>"><?= $i ?>%</option>
+    <?php endfor; ?>
+</select>
     </div>
+
         <div class= "mb-3">
             <label>Imagem</label>
             <input type="file" name="imagem" class="form-control" accept="image/*">

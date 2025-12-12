@@ -14,20 +14,34 @@ if (!isset($_SESSION['carrinho'])) {
 =================================*/
 if ($action === "add" && $id > 0) {
 
-    $sql = "SELECT id_produto, nome_produto, preco, imagem 
+    $sql = "SELECT id_produto, nome_produto, preco, imagem, desconto 
             FROM produtos 
             WHERE id_produto = $id";
 
     $res = $conn->query($sql);
     $produto = $res->fetch_assoc();
+    
+    $precoFinal = (float)$produto["preco"];
+
+$sqlDesc = "SELECT desconto FROM produtos WHERE id_produto = $id";
+$resDesc = $conn->query($sqlDesc);
+$desc = $resDesc->fetch_assoc();
+
+if (!empty($desc["desconto"]) && $desc["desconto"] > 0) {
+    $valorDesconto = $precoFinal * ($desc["desconto"] / 100);
+    $precoFinal = $precoFinal - $valorDesconto;
+}
 
     if ($produto) {
         if (!isset($_SESSION['carrinho'][$id])) {
+           
             $_SESSION['carrinho'][$id] = [
                 "nome"   => $produto["nome_produto"],
-                "preco"  => (float)$produto["preco"],
+                "preco"  => $precoFinal,
+                "desconto" => (float)$produto["desconto"],
                 "qtd"    => 1,
                 "imagem" => $produto["imagem"]
+                
             ];
         } else {
             $_SESSION['carrinho'][$id]["qtd"]++;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11/12/2025 às 01:07
+-- Tempo de geração: 12/12/2025 às 01:33
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -65,7 +65,12 @@ CREATE TABLE `itens_pedido` (
 
 INSERT INTO `itens_pedido` (`id_item`, `pedido_id`, `produto_id`, `quantidade`, `preco_unit`, `subtotal`) VALUES
 (1, 1, 40, 1, 300.30, 300.30),
-(2, 2, 34, 13, 199.90, 2598.70);
+(2, 2, 34, 13, 199.90, 2598.70),
+(3, 3, 40, 1, 127.94, 127.94),
+(4, 4, 39, 1, 106.14, 106.14),
+(5, 5, 42, 1, 73.71, 73.71),
+(6, 6, 40, 1, 159.92, 159.92),
+(7, 6, 39, 3, 124.87, 374.60);
 
 -- --------------------------------------------------------
 
@@ -86,7 +91,11 @@ CREATE TABLE `pedidos` (
 
 INSERT INTO `pedidos` (`id_pedido`, `usuario_id`, `total`, `criado_em`) VALUES
 (1, 1, 300.30, '2025-12-06 16:09:43'),
-(2, 10, 2598.70, '2025-12-06 17:04:06');
+(2, 10, 2598.70, '2025-12-06 17:04:06'),
+(3, 11, 127.94, '2025-12-12 00:14:53'),
+(4, 1, 106.14, '2025-12-12 00:20:38'),
+(5, 11, 73.71, '2025-12-12 00:22:50'),
+(6, 2, 534.52, '2025-12-12 00:23:15');
 
 -- --------------------------------------------------------
 
@@ -102,19 +111,20 @@ CREATE TABLE `produtos` (
   `quantidade` int(11) NOT NULL,
   `imagem` varchar(255) NOT NULL,
   `categoria_id` int(11) NOT NULL,
-  `comprados` int(11) DEFAULT 0
+  `comprados` int(11) DEFAULT 0,
+  `desconto` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `produtos`
 --
 
-INSERT INTO `produtos` (`id_produto`, `nome_produto`, `preco`, `descricao`, `quantidade`, `imagem`, `categoria_id`, `comprados`) VALUES
-(34, 'Telha De PVC Colonial 3,94x0,86 Cerâmica', 169.99, 'A Telha Nortelit Pvc Colonial 3.94x0.88 Ceramica é a escolha perfeita para quem busca qualidade e durabilidade. Com rendimento de 2.96 m², essa telha é ideal para coberturas de diversos tipos de construções. Fabricada pela renomada marca Nortelit, você pode ter a certeza de estar adquirindo um produto de alta qualidade. Feita em PVC, essa telha possui espessura de 2 mm, garantindo resistência e proteção contra intempéries. Com comprimento de 394 cm e largura de 86 cm, ela se adapta facilmente a diferentes projetos. Não perca a oportunidade de adquirir essa telha de excelente custo-benefício para a sua obra.', 300, './img/a05c51329b-xc7szemfr6.webp', 7, 13),
-(39, 'Quadro Distribuição Embutir Para 3/4 Disjuntor', 146.90, 'O Quadro de Distribuição de Embutir Tigre é ideal para instalações elétricas residenciais, comerciais ou industriais que exigem organização, segurança e praticidade.  Projetado para comportar 3 a 4 disjuntores, ele permite um acabamento limpo e discreto, sendo embutido diretamente na parede.    Fabricado com materiais de alta resistência e durabilidade, garante proteção eficiente contra choques elétricos e curto-circuitos, mantendo o padrão de qualidade reconhecido da Tigre.', 286, './img/quadroeletrico.png', 9, 14),
-(40, 'Tubo Pvc 60mm Soldável 6m Krona', 199.90, 'O Tubo Soldável é uma peça essencial para conduzir fluidos por longas distâncias, mantendo a integridade da instalação e preservando as propriedades do fluido. Desenvolvido para uso em instalações prediais de água fria, garante segurança e eficiência no transporte de água. Com uma vida útil de até 50 anos, conforme ensaios de resistência, é uma opção confiável e durável para sistemas hidráulicos, ideal para projetos que demandam qualidade e longevidade.', 399, './img/tubo_cano_pvc_soldavel_cola_de_60mm_2_barra_6_metros_1659_1_20200224170914.webp', 11, 33),
-(41, 'Tijolo Cerâmico de Vedação 14x19x39CM', 73.50, 'O Tijolo Cerâmico de Vedação Tijolo Cerâmico de Vedação 14x19x39CM é um item imprescindível dentro da construção civil, sendo utilizado na alvenaria de vedação e normalmente na estruturação convencional com lajes, ferro, aço, vigas, pilares e também na construção de paredes internas.  A função deste Tijolo Cerâmico de Vedação Tijolo Cerâmico de Vedação 14x19x39CM  é fechar as lacunas de construções comerciais e residenciais. Recebe o nome popular de tijolo baianinho ou bloco baianinho.  Os furos horizontais desse bloco cerâmico facilitam a passagem de tubulações e fios, uma de suas principais características é que ele não precisa ser tão resistente pois conta com o apoio de vigas, armações e pilares para dar suporte e sustentação à estrutura da obra.', 2, './img/tijolo.png', 12, 0),
-(42, 'Suvinil Toque Fosco Completo Tempero Sírio 0.8L', 81.90, 'A tinta Suvinil Toque Fosco Completo é perfeita para você ter um acabamento fosco impecável, superliso e uniforme nas paredes internas de casa. Na escala de benefícios, ela entrega máxima performance em pintura lisa e uniforme, além de boa resistência à limpeza e maior disfarce de imperfeições em comparação com a Suvinil Toque Seda e a Suvinil Toque Brilho.', 143, './img/1.webp', 13, 0);
+INSERT INTO `produtos` (`id_produto`, `nome_produto`, `preco`, `descricao`, `quantidade`, `imagem`, `categoria_id`, `comprados`, `desconto`) VALUES
+(34, 'Telha De PVC Colonial 3,94x0,86 Cerâmica', 169.99, 'A Telha Nortelit Pvc Colonial 3.94x0.88 Ceramica é a escolha perfeita para quem busca qualidade e durabilidade. Com rendimento de 2.96 m², essa telha é ideal para coberturas de diversos tipos de construções. Fabricada pela renomada marca Nortelit, você pode ter a certeza de estar adquirindo um produto de alta qualidade. Feita em PVC, essa telha possui espessura de 2 mm, garantindo resistência e proteção contra intempéries. Com comprimento de 394 cm e largura de 86 cm, ela se adapta facilmente a diferentes projetos. Não perca a oportunidade de adquirir essa telha de excelente custo-benefício para a sua obra.', 300, './img/a05c51329b-xc7szemfr6.webp', 7, 13, 8),
+(39, 'Quadro Distribuição Embutir Para 3/4 Disjuntor', 146.90, 'O Quadro de Distribuição de Embutir Tigre é ideal para instalações elétricas residenciais, comerciais ou industriais que exigem organização, segurança e praticidade.  Projetado para comportar 3 a 4 disjuntores, ele permite um acabamento limpo e discreto, sendo embutido diretamente na parede.    Fabricado com materiais de alta resistência e durabilidade, garante proteção eficiente contra choques elétricos e curto-circuitos, mantendo o padrão de qualidade reconhecido da Tigre.', 282, './img/quadroeletrico.png', 9, 18, 15),
+(40, 'Tubo Pvc 60mm Soldável 6m Krona', 199.90, 'O Tubo Soldável é uma peça essencial para conduzir fluidos por longas distâncias, mantendo a integridade da instalação e preservando as propriedades do fluido. Desenvolvido para uso em instalações prediais de água fria, garante segurança e eficiência no transporte de água. Com uma vida útil de até 50 anos, conforme ensaios de resistência, é uma opção confiável e durável para sistemas hidráulicos, ideal para projetos que demandam qualidade e longevidade.', 397, './img/tubo_cano_pvc_soldavel_cola_de_60mm_2_barra_6_metros_1659_1_20200224170914.webp', 11, 35, 20),
+(41, 'Tijolo Cerâmico de Vedação 14x19x39CM', 73.50, 'O Tijolo Cerâmico de Vedação Tijolo Cerâmico de Vedação 14x19x39CM é um item imprescindível dentro da construção civil, sendo utilizado na alvenaria de vedação e normalmente na estruturação convencional com lajes, ferro, aço, vigas, pilares e também na construção de paredes internas.  A função deste Tijolo Cerâmico de Vedação Tijolo Cerâmico de Vedação 14x19x39CM  é fechar as lacunas de construções comerciais e residenciais. Recebe o nome popular de tijolo baianinho ou bloco baianinho.  Os furos horizontais desse bloco cerâmico facilitam a passagem de tubulações e fios, uma de suas principais características é que ele não precisa ser tão resistente pois conta com o apoio de vigas, armações e pilares para dar suporte e sustentação à estrutura da obra.', 2, './img/tijolo.png', 12, 0, 8),
+(42, 'Suvinil Toque Fosco Completo Tempero Sírio 0.8L', 81.90, 'A tinta Suvinil Toque Fosco Completo é perfeita para você ter um acabamento fosco impecável, superliso e uniforme nas paredes internas de casa. Na escala de benefícios, ela entrega máxima performance em pintura lisa e uniforme, além de boa resistência à limpeza e maior disfarce de imperfeições em comparação com a Suvinil Toque Seda e a Suvinil Toque Brilho.', 142, './img/1.webp', 13, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -137,7 +147,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `data_nasc`) VALUES
 (1, 'Gabriel Luiz Oliveira da Silva', 'gabrielluiz3462@outlook.com', '451ab8cf36e5cda7cbd7e84e5a5545c8', '1999-10-06'),
 (2, 'Pedro da Silva Silva Silva', 'pedrodasilvasilvasilvasilva@gmail.com', '0f5aaaf14d9a2d371853e46119abba27', '1999-10-05'),
-(10, 'Não Sei da Silva Caravalho', 'naosei@gmail.com', '$2y$10$F1DvPeO0/O.z65us3IdiZuNqLKl4kC2gCc4aki3bNH0qvCzDXQsAu', '2001-11-10');
+(10, 'Não Sei da Silva Caravalho', 'naosei@gmail.com', '$2y$10$F1DvPeO0/O.z65us3IdiZuNqLKl4kC2gCc4aki3bNH0qvCzDXQsAu', '2001-11-10'),
+(11, 'João da Silva', 'joao@gmail.com', '$2y$10$cnZ0gGFErB3WM1C1W4tccOk4jThgMVzw/mnEfm9Hc09vy6ifLEiX.', '1998-11-10');
 
 --
 -- Índices para tabelas despejadas
@@ -191,13 +202,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de tabela `itens_pedido`
 --
 ALTER TABLE `itens_pedido`
-  MODIFY `id_item` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_item` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id_pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
@@ -209,7 +220,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restrições para tabelas despejadas

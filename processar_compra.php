@@ -41,7 +41,7 @@ if ($usuario_id <= 0) {
 // calcula total real (para garantir integridade)
 $total = 0.0;
 foreach ($_SESSION['carrinho'] as $id => $item) {
-    $preco = (float)$item['preco'];
+    $preco = (float)$item['preco']; // preço já vem com desconto aplicado
     $qtd = (int)$item['qtd'];
     $total += $preco * $qtd;
 }
@@ -68,7 +68,7 @@ try {
     foreach ($_SESSION['carrinho'] as $prodId => $it) {
         $prodId = (int)$prodId;
         $qtd = (int)$it['qtd'];
-        $preco = (float)$it['preco'];
+        $preco = (float)$it['preco']; // já vem com desconto aplicado
         $subtotal = $preco * $qtd;
 
         // inserir item
