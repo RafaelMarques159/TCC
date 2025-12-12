@@ -256,11 +256,20 @@ include_once "config.php";
 
     </div>
   </div>
-<section class="py-5 overflow-hidden">
+  <section class="py-5 overflow-hidden">
     <div class="container-lg container-ajuste">
       <div class="row">
         <div class="col-md-12">
+          <div class="section-header d-flex flex-wrap justify-content-between mb-5">
+            <h2 class="section-title"></h2>
 
+            <div class="d-flex align-items-center">
+              <div class="swiper-buttons">
+                <button class="swiper-prev category-carousel-prev btn btn-yellow">❮</button>
+                <button class="swiper-next category-carousel-next btn btn-yellow">❯</button>
+              </div>
+            </div>
+          </div>
           <?php
           include_once "config.php";
 
@@ -521,7 +530,7 @@ include_once "config.php";
     </button>
   </div>
 
-  
+
   <!--inicio do rodape-->
   <!-- Footer -->
   <footer class="text-center text-lg-start text-dark" style="background-color: #ECEFF1">
@@ -556,7 +565,7 @@ include_once "config.php";
             <!-- Content -->
             <h6 class="text-uppercase fw-bold">BELLA Construções</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <p></p>
           </div>
 
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">

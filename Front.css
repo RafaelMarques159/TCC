@@ -456,3 +456,19 @@ body {
   transform: scale(1.05);
 }
 
+/* Centraliza toda a seção */
+.category-carousel {
+  display: flex;
+  justify-content: center;
+}
+
+/* Centraliza os slides dentro do wrapper */
+.category-carousel .swiper-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* Garante que cada bolinha ocupa apenas o necessário */
+.category-carousel .swiper-slide {
+  width: auto !important;
+}

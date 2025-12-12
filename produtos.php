@@ -222,8 +222,18 @@ if (isset($_GET['add_carrinho'])) {
 
     <section class="py-5 overflow-hidden">
         <div class="container-lg container-ajuste">
-                   <div class="row">
+            <div class="row">
                 <div class="col-md-12">
+                    <div class="section-header d-flex flex-wrap justify-content-between mb-5">
+                        <h2 class="section-title">Produtos</h2>
+
+                        <div class="d-flex align-items-center">
+                            <div class="swiper-buttons">
+                                <button class="swiper-prev category-carousel-prev btn btn-yellow">❮</button>
+                                <button class="swiper-next category-carousel-next btn btn-yellow">❯</button>
+                            </div>
+                        </div>
+                    </div>
 
                     <?php
                     include_once "config.php";
@@ -539,7 +549,7 @@ if (isset($_GET['add_carrinho'])) {
                         <!-- Content -->
                         <h6 class="text-uppercase fw-bold">BELLA Construções</h6>
                         <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <p></p>
                     </div>
 
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
