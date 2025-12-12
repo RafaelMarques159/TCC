@@ -273,40 +273,55 @@ body {
 /* cards incio*/
 /* From Uiverse.io by Sashank02 */
 .card3 {
-  padding: 20px;
-  width: 300px;
-  min-height: 450px;
-  border-radius: 20px;
-  background: #212121;
-  box-shadow: 5px 5px 8px #1b1b1b,
-    -5px -5px 8px #272727;
-  transition: 0.4s;
+    padding: 20px;
+    width: 300px;
+    min-height: 450px;
+    border-radius: 20px;
+    
+    /* 1. FUNDO: Use RGBA para transparência (0.8 = 80% opaco / 20% transparente) */
+    /* Você pode usar 'transparent' ou 'rgba(255, 255, 255, 0)' para fundo totalmente transparente */
+    background: transparent; /* Fundo branco 20% opaco (levemente visível) */
+    
+    
+    /* Opcional: Adiciona uma borda sutil para definir o limite do card */
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+
+    /* Efeito de vidro (Glassmorphism) - Apenas se quiser um efeito mais moderno */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    transition: 0.4s;
 }
 
 .card3:hover {
-  translate: 0 -10px;
+    translate: 0 -10px;
+    /* Torna levemente menos transparente no hover */
+    background: rgba(255, 255, 255, 0.3); 
 }
 
+/* TÍTULO: Deve ser escuro para contrastar com o fundo transparente */
 .card-title3 {
-  font-size: 18px;
-  font-weight: 600;
-  color: #b2eccf;
-  margin: 15px 0 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333; /* Cor do texto escuro (Preto suave) */
+    margin: 15px 0 0 10px;
 }
 
 
+/* IMAGEM: Garante que o wrapper da imagem continue funcionando */
 .card3 img.card-img-top {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  border-radius: 15px;
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 15px;
 }
 
 
+/* CORPO DO TEXTO: Deve ser escuro para contrastar */
 .card-body3 {
-  margin: 13px 0 0 10px;
-  color: rgb(255, 255, 255);
-  font-size: 17px;
+    margin: 13px 0 0 10px;
+    color: #555; /* Cor do texto um pouco mais clara que o título */
+    font-size: 17px;
 }
 
 .footer3 {

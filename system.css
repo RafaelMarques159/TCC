@@ -1,0 +1,391 @@
+/* --- INÍCIO: REGRAS CSS PARA PAINEL DE ESTOQUE MODERNO --- */
+
+/* Variáveis para consistência de cores */
+:root {
+    --admin-primary: #1E3A8A; /* Azul escuro principal */
+    --admin-secondary: #000000; /* Quase preto para texto/fundo */
+    --admin-bg-light: #F3F4F6; /* Cinza claro para fundo */
+    --admin-success: #10B981; /* Verde moderno para adicionar */
+    --store-alert: #000000; /* Laranja da loja para destaque */
+    --danger-color: #DC2626; /* Vermelho escuro para alerta/estoque baixo */
+}
+
+/* 1. Estilo do Corpo */
+body {
+    background-color: var(--admin-bg-light) !important;
+    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 2. Estilo do Título/Bem-vindo (alert-secondary) */
+.alert.alert-secondary {
+    background-color: #ffffff; /* Fundo branco */
+    color: var(--admin-secondary);
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.alert.alert-secondary h2 {
+    color: var(--admin-primary);
+    font-weight: 700;
+}
+
+/* 3. Estilo dos Cards de Ação (Produtos, Categorias, Usuários) */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card h4 {
+    color: var(--admin-secondary);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* 4. Estilo dos Botões de Ação nos Cards */
+
+/* Botão Listar (Azul Escuro Principal) - .btn-primary */
+.card .btn-primary {
+    background-color: var(--admin-primary) !important;
+    border-color: var(--admin-primary) !important;
+    color: white !important;
+    font-weight: 600;
+}
+
+.card .btn-primary:hover {
+    background-color: #153272 !important; /* Azul um pouco mais escuro */
+    border-color: #153272 !important;
+}
+
+/* Botão Adicionar (Verde Moderno) - .btn-success */
+.card .btn-success {
+    background-color: var(--admin-success) !important;
+    border-color: var(--admin-success) !important;
+    color: white !important;
+    font-weight: 600;
+}
+
+.card .btn-success:hover {
+    background-color: #0c966f !important; /* Verde um pouco mais escuro */
+    border-color: #0c966f !important;
+}
+
+/* 5. Estilo do Resumo do Sistema (alert-info) */
+.alert.alert-info.mt-4 {
+    background-color: #DBEAFE; /* Azul claro para info */
+    color: var(--admin-primary);
+    border: 1px solid #93C5FD;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 15px;
+}
+
+.alert.alert-info.mt-4 strong {
+    font-weight: 700;
+    color: var(--admin-secondary);
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* 6. Estilo do Alerta de Estoque Baixo (card + bg-danger) */
+.card .card-header.bg-danger {
+    background-color: var(--danger-color) !important; /* Vermelho escuro */
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body p b {
+    color: var(--store-alert); /* Laranja da loja para destacar o nome do produto */
+}
+
+/* 7. Footer (Apenas para garantir que o rodapé não seja afetado por regras genéricas) */
+footer {
+    margin-top: 50px;
+    background-color: var(--admin-secondary);
+    color: white;
+}
+
+/* --- 7. ESTILOS ESPECÍFICOS PARA FORMULÁRIOS (ADICIONAR/EDITAR) --- */
+
+/* Estrutura do formulário dentro de um container (simula o card ou div principal) */
+.container form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color); /* Borda suave do modo clean */
+    box-shadow: none; /* Mantém o visual flat */
+}
+
+/* Título principal do formulário */
+.container h1 {
+    color: var(--admin-secondary); /* Preto Sólido */
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-color); /* Linha divisória fina */
+}
+
+/* Estilo para Rótulos (Labels) */
+label {
+    font-weight: 500;
+    color: var(--admin-secondary); /* Preto Sólido */
+    margin-bottom: 5px;
+    display: block; /* Garante que labels acima do campo sejam padronizados */
+}
+
+/* Campos de Input e Select (form-control) */
+.form-control,
+.input-group-text,
+select[name="desconto"] { /* Inclui todos os campos e selects */
+    border-radius: 6px;
+    border: 1px solid #D1D5DB; /* Borda um pouco mais visível, mas ainda suave */
+    box-shadow: none !important;
+    transition: border-color 0.2s;
+}
+
+/* Input group para o Preço (R$) */
+.input-group-text {
+    background-color: #F3F4F6; /* Fundo cinza suave */
+    border-right: none;
+    color: var(--admin-secondary);
+    font-weight: 600;
+}
+
+/* Foco dos Campos: Destaca com a cor primária (Azul) */
+.form-control:focus,
+select.form-control:focus,
+input[type="file"].form-control:focus,
+select[name="desconto"]:focus {
+    border-color: var(--admin-primary); /* Borda Azul */
+    box-shadow: 0 0 0 1px var(--admin-primary) !important; /* Brilho suave */
+}
+
+/* Select simples (Desconto) - que não usa a classe .form-control */
+select[name="desconto"] {
+    padding: 8px 12px;
+    height: calc(1.5em + 0.75rem + 2px); /* Altura igual ao form-control do Bootstrap 5 */
+}
+
+
+/* --- Estilos dos Botões no Formulário (Reaproveita estilos do Painel) --- */
+
+/* Botão Enviar (Principal) - .btn-primary */
+.container form .btn-primary {
+    /* Mantém as cores do :root para o painel */
+    background-color: var(--admin-primary) !important;
+    border-color: var(--admin-primary) !important;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 6px;
+    box-shadow: none;
+}
+.container form .btn-primary:hover {
+    background-color: #1c39c8 !important; 
+    border-color: #1c39c8 !important;
+}
+
+/* Botão Secundário (Produtos Registrados/Voltar) - .btn-secondary */
+.container form .btn-secondary {
+    background-color: #6B7280 !important; /* Cinza Escuro Suave */
+    border-color: #6B7280 !important;
+    color: white !important;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 6px;
+    box-shadow: none;
+}
+.container form .btn-secondary:hover {
+    background-color: #4B5563 !important; /* Cinza mais escuro */
+    border-color: #4B5563 !important;
+}
+
+/* --- 8. ESTILOS PARA TABELAS DE LISTAGEM (table-hover, table-striped, etc.) --- */
+
+/* Wrapper principal da tabela para dar um visual mais clean */
+.container .table-responsive {
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid var(--border-color); /* Borda suave */
+    box-shadow: none;
+}
+
+/* Estilo Base da Tabela */
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-striped-bg: #F3F4F6; /* Cor de fundo da linha par (striped) */
+    --bs-table-hover-bg: #EAECEF; /* Cor de fundo ao passar o mouse (hover) */
+    border-collapse: collapse;
+}
+
+/* Estilo do Cabeçalho da Tabela (thead/th) */
+.table thead th {
+    background-color: var(--admin-primary); /* Fundo AZUL PRIMÁRIO */
+    color: white; /* Texto Branco */
+    font-weight: 700;
+    text-transform: uppercase;
+    border-color: var(--admin-primary);
+    vertical-align: middle;
+    padding: 12px 15px;
+}
+
+/* Borda dos Itens: Suave e minimalista */
+.table-bordered > :not(caption) > * > * {
+    border-width: 0 1px 1px 0;
+    border-color: var(--border-color);
+}
+.table-bordered > :not(caption) > :first-child > * {
+    border-top-width: 0;
+}
+
+/* Cor do texto interno e Padding das Células */
+.table td, .table th {
+    color: var(--admin-secondary); /* Preto Sólido */
+    vertical-align: middle;
+    padding: 12px 15px;
+}
+
+/* Estilo dos Botões de Ação na Tabela */
+
+/* Botão Editar (.btn-success) */
+.table .btn-success {
+    background-color: var(--admin-success) !important;
+    border-color: var(--admin-success) !important;
+    font-weight: 500;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+.table .btn-success:hover {
+    background-color: #128a38 !important; 
+    border-color: #128a38 !important;
+}
+
+/* Botão Excluir (.btn-danger) */
+.table .btn-danger {
+    background-color: var(--danger-color) !important;
+    border-color: var(--danger-color) !important;
+    font-weight: 500;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+.table .btn-danger:hover {
+    background-color: #c43939 !important; 
+    border-color: #c43939 !important;
+}
+
+td.descricao {
+    /* 1. Alinhamento ao topo: Essencial para eliminar o espaço branco superior */
+    vertical-align: top !important; 
+    
+    /* 2. Padding da célula (opcional, pode ser o padrão) */
+    padding: 12px 15px !important;
+}
+
+/* Regras para o DIV WRAPPER (A caixa com tamanho fixo e barra de rolagem) */
+.descricao-wrap {
+    /* Largura e Altura Fixas para o Scroll */
+    width: 300px;
+    max-width: 300px;
+    height: 100px; 
+    
+    /* Configurações de Overflow e Quebra de Linha */
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    white-space: normal; 
+    
+    /* Padding interno do WRAPPER para afastar o texto da borda/scroll */
+    padding-right: 10px; 
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+    /* Opcional: Estilo da barra de rolagem em navegadores baseados em WebKit */
+    scrollbar-width: thin;
+    scrollbar-color: #A0AEC0 #F7FAFC; 
+}
+
+/* --- 9. ESTILOS PARA A BARRA DE NAVEGAÇÃO (NAVBAR) - BRANCA E CLEAN --- */
+
+/* 9.1 Container principal da Navbar */
+.navbar {
+    background-color: #ffffff !important; /* Fundo Branco Puro */
+    border-bottom: 1px solid var(--border-color); /* Borda muito fina e suave na parte inferior */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Título/Marca da Navbar */
+.navbar-brand {
+    color: var(--admin-secondary) !important; /* Preto Sólido */
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+/* 9.2 Links de Navegação */
+.navbar-nav .nav-item {
+    padding: 0 5px; /* Espaçamento entre os itens */
+}
+
+.navbar-nav .nav-link {
+    color: var(--admin-secondary) !important; /* Texto Preto Sólido */
+    font-weight: 500;
+    padding: 8px 12px;
+    border-bottom: 3px solid transparent; /* Cria o espaço para a linha de hover (transparente por padrão) */
+    transition: all 0.25s ease-in-out; /* Transição suave para o efeito */
+}
+
+/* Links Ativos e ao Passar o Mouse (Efeito de Sublinhado Azul) */
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+    color: var(--admin-primary) !important; /* Texto fica Azul */
+    background-color: transparent !important; /* Sem fundo */
+    border-bottom-color: var(--admin-primary) !important; /* Linha inferior AZUL VIBRANTE */
+    font-weight: 600;
+}
+
+/* 9.3 Estilo do Botão Toggler (Mobile) */
+.navbar-toggler {
+    border: 1px solid var(--admin-primary);
+    padding: 5px 8px;
+}
+.navbar-toggler-icon {
+    /* Define a cor do ícone do toggler (o hamburger) para preto */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* --- 10. CORREÇÃO DA COLUNA DE AÇÕES (Botões Lado a Lado) --- */
+
+/* Força a largura mínima da coluna para garantir que os botões caibam */
+.table td:last-child {
+    min-width: 150px; /* Garante espaço suficiente para os dois botões */
+    vertical-align: middle;
+}
+
+/* Garante que o Flexbox funcione na célula */
+.table td.d-flex {
+    /* Alinha o conteúdo ao centro (verticalmente) se a célula for maior */
+    align-items: center; 
+    /* Remove a quebra de linha forçada, se houver */
+    flex-wrap: nowrap; 
+    /* Garante que o padding da célula não seja afetado pelo Flexbox */
+    padding: 12px 15px; 
+}
+
+.table .btn {
+    font-size: 0.9rem; 
+    padding: 6px 10px; 
+    font-weight: 500;
+}

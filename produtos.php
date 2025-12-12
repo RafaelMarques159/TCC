@@ -201,6 +201,18 @@ if (isset($_GET['add_carrinho'])) {
                             </div>
                         </li>
 
+                        <!-- Admin -->
+                        <li class="nav-item mx-4">
+                            <div class="dropdown-center">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Admin
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="index.php">Sistema</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
                     </ul>
 
 
@@ -448,7 +460,7 @@ if (isset($_GET['add_carrinho'])) {
                                     -{$row->desconto}%
                                 </span>
 
-                                <p class='card-price' style='color:black; font-weight:bold; margin-top:2px; margin-bottom:0;'>
+                                <p class='card-price' style='color:black; font-weight:bold; margin-top:2px; margin-bottom:-6px;'>
                                     R$ " . number_format($precoFinal, 2, ',', '.') . "
                                 </p>
                                 <p style='margin:0; font-size:14px; color:#444;'>em até 2x de R$ " . number_format(($precoFinal / 2), 2, ',', '.') . "</p>
@@ -456,7 +468,7 @@ if (isset($_GET['add_carrinho'])) {
                             } else {
                                 echo "
                                 <p class='card-price'>R$ " . number_format($row->preco, 2, ',', '.') . "</p>
-                                <p style='margin:0; font-size:14px; color:#444;'>ou 2x de R$ " . number_format(($row->preco / 2), 2, ',', '.') . "</p>
+                                <p style='margin:0; margin-bottom:-6px; font-size:14px; color:#444; '>ou 2x de R$ " . number_format(($row->preco / 2), 2, ',', '.') . "</p>
                             ";
                             }
 
@@ -516,7 +528,7 @@ if (isset($_GET['add_carrinho'])) {
     <!-- Footer -->
     <footer class="text-center text-lg-start text-dark" style="background-color: #ECEFF1">
         <!-- Section: Social media -->
-        <section class="d-flex justify-content-between p-4 text-white" style="background-color: #21D192">
+        <section class="d-flex justify-content-between p-4 text-white" style="background-color: #374151">
             <!-- Left -->
             <div class="me-5">
                 <span>Conecte-se conosco nas redes sociais:</span>

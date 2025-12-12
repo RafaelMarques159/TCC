@@ -158,6 +158,18 @@
               </div>
             </li>
 
+            <!-- Admin -->
+                        <li class="nav-item mx-4">
+                            <div class="dropdown-center">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Admin
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="index.php">Sistema</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
           </ul>
 
 
@@ -181,22 +193,19 @@
         <div class="carousel-item active">
           <img src="/TCC/imagensfront/bannersuvinil.png" class="d-block w-100" alt="banner suvinil">
           <div class="carousel-caption d-none d-md-block">
-            <h5>First slide label</h5>
-            <p>Some representative placeholder content for the first slide.</p>
+
           </div>
         </div>
         <div class="carousel-item">
           <img src="/TCC/imagensfront/banner.jpg" class="d-block w-100" alt="banner de construcao">
           <div class="carousel-caption d-none d-md-block">
-            <h5>Second slide label</h5>
-            <p>Some representative placeholder content for the second slide.</p>
+
           </div>
         </div>
         <div class="carousel-item">
           <img src="/TCC/imagensfront/bannereletrica.png" class="d-block w-100" alt="banner eletrica">
           <div class="carousel-caption d-none d-md-block">
-            <h5>Third slide label</h5>
-            <p>Some representative placeholder content for the third slide.</p>
+
           </div>
         </div>
       </div>
@@ -218,7 +227,7 @@
 
       <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
         <div class="card3">
-          <img src="/TCC/imagensfront/caminhao 2.jpg" class="card-img-top" alt="Entrega Rápida">
+          <img src="/TCC/imagensfront/3.png" class="card-img-top" alt="Entrega Rápida">
           <p class="card-title3">Entrega rápida</p>
           <p class="card-body3">Receba seu material no mesmo dia (consulte região).</p>
         </div>
@@ -226,18 +235,17 @@
 
       <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
         <div class="card3">
-          <img src="/TCC/imagensfront/selo.jpg" class="card-img-top" alt="Qualidade garantida">
-          <p class="card-title3">Qualidade Garantida</p>
+          <img src="/TCC/imagensfront/1.png" class="card-img-top" alt="Qualidade garantida">
+          <p class="card-title3 ">Qualidade Garantida</p>
           <p class="card-body3">Marcas aprovadas por profissionais da construção.</p>
         </div>
       </div>
 
       <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
         <div class="card3">
-          <img src="/TCC/imagensfront/comprasegura.png" class="card-img-top" alt="Compra Segura">
+          <img src="/TCC/imagensfront/2.png" class="card-img-top" alt="Compra Segura">
           <p class="card-title3">Compra Segura</p>
           <p class="card-body3">Pagamento protegido, sua compra sem dor de cabeça.</p>
-          semana.</p>
         </div>
       </div>
 
@@ -487,7 +495,7 @@
         <div class="card">
           <img src="/TCC/imagensfront/pia.png" class="card-img" alt="Pia">
           <div class="card__content">
-            <p class="card__title">louças</p>
+            <p class="card__title">Louças</p>
             <p class="card__description">Escolha louças que facilitam seu dia a dia e elevam o padrão da sua obra.</p>
           </div>
         </div>
@@ -510,7 +518,7 @@
   <!-- Footer -->
   <footer class="text-center text-lg-start text-dark" style="background-color: #ECEFF1">
     <!-- Section: Social media -->
-    <section class="d-flex justify-content-between p-4 text-white" style="background-color: #21D192">
+    <section class="d-flex justify-content-between p-4 text-white" style="background-color: #374151">
       <!-- Left -->
       <div class="me-5">
         <span>Conecte-se conosco nas redes sociais:</span>

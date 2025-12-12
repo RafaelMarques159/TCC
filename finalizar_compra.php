@@ -206,6 +206,18 @@ foreach ($_SESSION['carrinho'] as $k => $v) {
                             </div>
                         </li>
 
+                        <!-- Admin -->
+                        <li class="nav-item mx-4">
+                            <div class="dropdown-center">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Admin
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="index.php">Sistema</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
                     </ul>
 
 
@@ -337,7 +349,7 @@ foreach ($_SESSION['carrinho'] as $k => $v) {
     <!-- Footer -->
     <footer class="text-center text-lg-start text-dark" style="background-color: #ECEFF1">
         <!-- Section: Social media -->
-        <section class="d-flex justify-content-between p-4 text-white" style="background-color: #21D192">
+        <section class="d-flex justify-content-between p-4 text-white" style="background-color: #374151">
             <!-- Left -->
             <div class="me-5">
                 <span>Conecte-se conosco nas redes sociais:</span>

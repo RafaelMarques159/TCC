@@ -102,3 +102,195 @@ body {
     background: #f1f1f1;
     color: red;
 }
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.nav-item {
+    text-align: center;
+}
+
+.nav-icons .nav-item i {
+    font-size: 20px;
+}
+
+.cart-badge {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    background: #F97316;
+    color: white;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Estrutura base do dropdown */
+.dropdown-center {
+    position: relative;
+    display: inline-block;
+}
+
+/* Botão do menu */
+.dropdown-center .btn {
+    background: transparent;
+    border: none;
+    padding: 0.6rem 1.1rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #333;
+    border-bottom: 3px solid transparent;
+    /* reserva espaço */
+    transition: 0.25s ease;
+}
+
+/* Remove seta do bootstrap */
+.dropdown-center .btn.dropdown-toggle::after {
+    display: none;
+}
+
+/* Hover do botão (linha vermelha + leve background) */
+.dropdown-center .btn:hover {
+    border-bottom-color: #F97316;
+    color: #F97316;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Dropdown estilizado */
+.dropdown-menu {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 0;
+    border-radius: 10px;
+    padding: 0.6rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transition: opacity 0.2s ease;
+}
+
+/* Abrir no hover */
+.dropdown-center:hover .dropdown-menu,
+.nav-item:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Itens internos */
+.dropdown-menu .dropdown-item {
+    padding: 10px 20px;
+    transition: 0.2s;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background: #f1f1f1;
+    color: #F97316;
+}
+
+/* --- INÍCIO DAS REGRAS ADICIONAIS FOCADAS SOMENTE NO CHECKOUT --- */
+
+:root {
+    --primary-color: #F97316; /* Laranja da loja */
+    --secondary-color: #111111; /* Cor de texto principal (quase preto) */
+}
+
+/* 1. Cores e Tipografia Base do Corpo */
+
+body {
+    /* Garante que o fundo claro seja usado (mantém bg-light) */
+    background-color: #f8f9fa !important;
+    color: var(--secondary-color);
+}
+
+/* Títulos H1/H3 da página de checkout */
+h1, h3 {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+/* Títulos H5 do formulário ("Dados do comprador") */
+h5 {
+    color: var(--primary-color); /* Destaca o subtítulo do formulário em laranja */
+    font-weight: 600;
+}
+
+/* 2. Estilo dos Botões de Ação DENTRO DO CHECKOUT */
+
+/* Estilo para o botão principal (Finalizar Compra: .btn-success) */
+/* Este seletor é seguro, pois .btn-success não é usado na sua navbar */
+.btn-success {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: white !important;
+    font-weight: 600;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-success:hover,
+.btn-success:focus {
+    background-color: #e56a14 !important; /* Laranja um pouco mais escuro no hover */
+    border-color: #e56a14 !important;
+    box-shadow: 0 0 0 0.25rem rgba(249, 115, 22, 0.5) !important;
+}
+
+/* 🛑 NOVO SELETOR ESPECÍFICO PARA O BOTÃO SECUNDÁRIO DENTRO DO CHECKOUT 🛑 */
+/* O seletor abaixo (.container .btn-secondary) afeta apenas o botão "Continuar Comprando" e "Voltar" 
+   na área principal do checkout, ignorando a navbar. */
+.container .btn-secondary, 
+.container .btn-outline-secondary {
+    background-color: transparent !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container .btn-secondary:hover, 
+.container .btn-secondary:focus,
+.container .btn-outline-secondary:hover,
+.container .btn-outline-secondary:focus {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 0.25rem rgba(249, 115, 22, 0.5) !important;
+}
+
+/* Estilo para o botão de alerta (Limpar Carrinho: .btn-warning) */
+.btn-warning {
+    color: var(--secondary-color) !important; 
+    font-weight: 500;
+}
+
+/* 3. Formulário e Tabela */
+
+/* Aprimoramento visual do Card de Checkout */
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilo para os campos de formulário e select (foco laranja) */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(249, 115, 22, 0.25);
+}
+
+/* Tabela de resumo (para melhor visualização) */
+.table thead th {
+    background-color: #f1f1f1;
+    color: var(--secondary-color);
+    /* Linha laranja para destacar o cabeçalho da tabela */
+    border-bottom: 2px solid var(--primary-color);
+}

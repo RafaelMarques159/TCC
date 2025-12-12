@@ -7,13 +7,15 @@
     $qtd = $res-> num_rows;
 
     if($qtd > 0){
-        print"<table class='table table-hover table-striped table-bordered'>";
+    print "<div class='container mt-4'>"; 
+    print "<div class='table-responsive'>";
+    print"<table class='table table-hover table-striped'>";
             print"<tr>";
             print"<th>#</th>";
             print"<th>Nome</th>";
             print"<th>E-mail</th>";
             print"<th>Data de Nascimento</th>";
-            print"<th>Acoes</th>";
+            print"<th> </th>";
             print"</tr>";
 
         while($row = $res->fetch_object()){
@@ -33,6 +35,8 @@
 
         }
         print"</table>";
+        print "</div>"; // Fecha table-responsive
+        print "</div>"; // Fecha container
 
     } else{
         print "<p class='alert alert-danger'>Nao encontrou resultados!>";
