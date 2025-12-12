@@ -215,10 +215,10 @@ if (isset($_GET['add_carrinho'])) {
                 <div class="col-md-12">
 
                     <div class="section-header d-flex flex-wrap justify-content-between mb-5">
-                        <h2 class="section-title">Categorias</h2>
+                        <h2 class="section-title">Produtos</h2>
 
                         <div class="d-flex align-items-center">
-                            <a href="#" class="btn btn-primary me-2">Ver Tudo</a>
+                            <a href="produtos.php" class="btn btn-ver-tudo me-2">Ver Tudo</a>
                             <div class="swiper-buttons">
                                 <button class="swiper-prev category-carousel-prev btn btn-yellow">❮</button>
                                 <button class="swiper-next category-carousel-next btn btn-yellow">❯</button>
@@ -242,16 +242,20 @@ if (isset($_GET['add_carrinho'])) {
                     <div class="category-carousel swiper">
                         <div class="swiper-wrapper">
 
-                            <?php
+                        <?php
                             if ($res && $res->num_rows > 0) {
                                 while ($row = $res->fetch_object()) {
 
                                     // Proteção evitando HTML quebrado
                                     $img = htmlspecialchars($row->img_categoria, ENT_QUOTES, 'UTF-8');
                                     $nome = htmlspecialchars($row->nome_categoria, ENT_QUOTES, 'UTF-8');
-
+                                    
+                                    // Marca categoria ativa se estiver no filtro (GET)
+                                    $ativo = (!empty($_GET['categorias']) && in_array($row->id_categoria, $_GET['categorias']))
+                                        ? "categoria-ativa"
+                                        : "";
                                     echo "
-                                <a href='category.php?id={$row->id_categoria}' class='nav-link swiper-slide text-center'>
+                                <a href='produtos.php?categorias[]={$row->id_categoria}' class='nav-link swiper-slide text-center categoria-item {$ativo}'>
                                     
                                     <img src='{$img}' 
                                          class='rounded-circle'
@@ -266,7 +270,7 @@ if (isset($_GET['add_carrinho'])) {
                                 ";
                                 }
                             }
-                            ?>
+                        ?>
 
                         </div>
                     </div>
@@ -282,12 +286,22 @@ if (isset($_GET['add_carrinho'])) {
 
             <!-- Coluna filtros -->
             <div class="col-md-3 col-lg-2 p-0">
-                <div class="card">
+                <div class="card-filtros">
                     <div class="card-body">
                         <h5 class="mb-3">Filtros</h5>
+                         <form method="GET" action="produtos.php">
 
+            <!-- Busca por nome -->
+                <div class="mb-3">
+                    <label class="form-label">Buscar produto</label>
+                    <input type="text" 
+                        name="busca" 
+                        class="form-control" 
+                        placeholder="Digite o nome..."
+                        value="<?php echo isset($_GET['busca']) ? htmlspecialchars($_GET['busca']) : ''; ?>">
+                </div>       
                         <form method="GET" action="produtos.php">
-
+                            
                             <!-- Categoria -->
                             <div class="mb-2">
                                 <button
@@ -359,7 +373,11 @@ if (isset($_GET['add_carrinho'])) {
                     </div>
                 </div>
             </div>
-
+         
+            <?php
+// monta a query de produtos com filtros (categorias + busca)
+    
+        ?>
 
             <!-- Cards -->
             <div style="width: 48rem;">
@@ -368,12 +386,26 @@ if (isset($_GET['add_carrinho'])) {
                     <?php
                     // 🔵 MONTA A QUERY
                     $sql = "SELECT * FROM produtos";
+                    $where = [];
 
-                    if (!empty($_GET['categorias'])) {
-                        // converte valores para inteiros e monta IN()
-                        $cats = implode(",", array_map('intval', $_GET['categorias']));
-                        $sql .= " WHERE categoria_id IN ($cats)";
-                    }
+        // categorias (se existirem)
+    if (!empty($_GET['categorias'])) {
+        $cats = implode(",", array_map('intval', $_GET['categorias']));
+        $where[] = "categoria_id IN ($cats)";
+    }
+
+            // busca por nome (se existir)
+    if (!empty($_GET['busca'])) {
+        $busca = $conn->real_escape_string($_GET['busca']);
+        $where[] = "nome_produto LIKE '%$busca%'";
+        }
+
+                // monta WHERE final se houver condições
+        if (!empty($where)) {
+            $sql .= " WHERE " . implode(" AND ", $where);
+        }
+
+                // executa a query e coloca em $res (o resto do seu código usa $res)
 
                     // 🔵 Executa a query
                     $res = $conn->query($sql);
@@ -413,12 +445,12 @@ if (isset($_GET['add_carrinho'])) {
                             R$ " . number_format($precoOriginal, 2, ',', '.') . "
                         </p>
 
-                        <span style='background:red; color:white; padding:3px 6px;
+                        <span style='background:#F97316; color:white; padding:3px 6px;
                             border-radius:4px; font-size:13px; font-weight:bold; display:inline-block; margin-left:6px;'>
                             -{$row->desconto}%
                         </span>
 
-                        <p class='card-price' style='color:#d00; font-weight:bold; margin-top:2px; margin-bottom:0;'>
+                        <p class='card-price' style='color:black; font-weight:bold; margin-top:2px; margin-bottom:0;'>
                             R$ " . number_format($precoFinal, 2, ',', '.') . "
                         </p>
                         <p style='margin:0; font-size:14px; color:#444;'>em até 2x de R$ " . number_format(($precoFinal / 2), 2, ',', '.') . "</p>
@@ -553,6 +585,18 @@ echo "
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="js/descricao.js"></script>
     <script src="js/script.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const ativa = document.querySelector(".categoria-ativa");
+        const carrossel = document.querySelector(".category-carousel");
+
+        if (ativa && carrossel) {
+        carrossel.classList.add("has-active");
+            }
+        });
+    </script>
+    
     <script>
         function atualizarCarrinho(dados) {
             document.getElementById("carrinho-itens").innerHTML = dados.html;
