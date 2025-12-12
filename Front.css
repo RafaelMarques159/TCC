@@ -33,7 +33,7 @@ body {
   position: absolute;
   top: 2px;
   right: 10px;
-  background: navy;
+  background: #F97316;
   color: white;
   font-size: 12px;
   width: 18px;
@@ -199,7 +199,7 @@ body {
 
 /* Porcentagem de desconto */
 .card-discount {
-  background: #e60000;
+  background: #F97316;
   color: white;
   font-size: 12px;
   border-radius: 4px;
@@ -211,7 +211,7 @@ body {
   display: block;
   font-size: 20px;
   font-weight: bold;
-  color: #c40000;
+  color: #000000;
 
 }
 
@@ -229,7 +229,7 @@ body {
 .card2 .btn-primary {
   margin-top: 35px;
   width: 100%;
-  background: #ff0000;
+  background: #F97316;
   border: none;
   padding: 10px;
   border-radius: 6px;
@@ -237,7 +237,7 @@ body {
 }
 
 .card2 .btn-primary:hover {
-  background: #d60000;
+  background: #d64e00;
 }
 
 .add-btn {
@@ -325,7 +325,7 @@ body {
   position: relative;
   width: 350px;
   height: 250px;
-  background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100%);
+  background: linear-gradient(-45deg, #F97316 0%, #ff0f7b 100%);
   border-radius: 10px;
   display: flex;
   align-items: center;
