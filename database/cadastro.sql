@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12/12/2025 às 01:33
+-- Tempo de geração: 12/12/2025 às 18:10
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -59,19 +59,6 @@ CREATE TABLE `itens_pedido` (
   `subtotal` decimal(10,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `itens_pedido`
---
-
-INSERT INTO `itens_pedido` (`id_item`, `pedido_id`, `produto_id`, `quantidade`, `preco_unit`, `subtotal`) VALUES
-(1, 1, 40, 1, 300.30, 300.30),
-(2, 2, 34, 13, 199.90, 2598.70),
-(3, 3, 40, 1, 127.94, 127.94),
-(4, 4, 39, 1, 106.14, 106.14),
-(5, 5, 42, 1, 73.71, 73.71),
-(6, 6, 40, 1, 159.92, 159.92),
-(7, 6, 39, 3, 124.87, 374.60);
-
 -- --------------------------------------------------------
 
 --
@@ -84,18 +71,6 @@ CREATE TABLE `pedidos` (
   `total` decimal(10,2) NOT NULL,
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `pedidos`
---
-
-INSERT INTO `pedidos` (`id_pedido`, `usuario_id`, `total`, `criado_em`) VALUES
-(1, 1, 300.30, '2025-12-06 16:09:43'),
-(2, 10, 2598.70, '2025-12-06 17:04:06'),
-(3, 11, 127.94, '2025-12-12 00:14:53'),
-(4, 1, 106.14, '2025-12-12 00:20:38'),
-(5, 11, 73.71, '2025-12-12 00:22:50'),
-(6, 2, 534.52, '2025-12-12 00:23:15');
 
 -- --------------------------------------------------------
 
@@ -121,10 +96,17 @@ CREATE TABLE `produtos` (
 
 INSERT INTO `produtos` (`id_produto`, `nome_produto`, `preco`, `descricao`, `quantidade`, `imagem`, `categoria_id`, `comprados`, `desconto`) VALUES
 (34, 'Telha De PVC Colonial 3,94x0,86 Cerâmica', 169.99, 'A Telha Nortelit Pvc Colonial 3.94x0.88 Ceramica é a escolha perfeita para quem busca qualidade e durabilidade. Com rendimento de 2.96 m², essa telha é ideal para coberturas de diversos tipos de construções. Fabricada pela renomada marca Nortelit, você pode ter a certeza de estar adquirindo um produto de alta qualidade. Feita em PVC, essa telha possui espessura de 2 mm, garantindo resistência e proteção contra intempéries. Com comprimento de 394 cm e largura de 86 cm, ela se adapta facilmente a diferentes projetos. Não perca a oportunidade de adquirir essa telha de excelente custo-benefício para a sua obra.', 300, './img/a05c51329b-xc7szemfr6.webp', 7, 13, 8),
-(39, 'Quadro Distribuição Embutir Para 3/4 Disjuntor', 146.90, 'O Quadro de Distribuição de Embutir Tigre é ideal para instalações elétricas residenciais, comerciais ou industriais que exigem organização, segurança e praticidade.  Projetado para comportar 3 a 4 disjuntores, ele permite um acabamento limpo e discreto, sendo embutido diretamente na parede.    Fabricado com materiais de alta resistência e durabilidade, garante proteção eficiente contra choques elétricos e curto-circuitos, mantendo o padrão de qualidade reconhecido da Tigre.', 282, './img/quadroeletrico.png', 9, 18, 15),
+(39, 'Quadro Distribuição Embutir Para 3/4 Disjuntor', 146.90, 'O Quadro de Distribuição de Embutir Tigre é ideal para instalações elétricas residenciais, comerciais ou industriais que exigem organização, segurança e praticidade.  Projetado para comportar 3 a 4 disjuntores, ele permite um acabamento limpo e discreto, sendo embutido diretamente na parede.    Fabricado com materiais de alta resistência e durabilidade, garante proteção eficiente contra choques elétricos e curto-circuitos, mantendo o padrão de qualidade reconhecido da Tigre.', 281, './img/quadroeletrico.png', 9, 19, 15),
 (40, 'Tubo Pvc 60mm Soldável 6m Krona', 199.90, 'O Tubo Soldável é uma peça essencial para conduzir fluidos por longas distâncias, mantendo a integridade da instalação e preservando as propriedades do fluido. Desenvolvido para uso em instalações prediais de água fria, garante segurança e eficiência no transporte de água. Com uma vida útil de até 50 anos, conforme ensaios de resistência, é uma opção confiável e durável para sistemas hidráulicos, ideal para projetos que demandam qualidade e longevidade.', 397, './img/tubo_cano_pvc_soldavel_cola_de_60mm_2_barra_6_metros_1659_1_20200224170914.webp', 11, 35, 20),
 (41, 'Tijolo Cerâmico de Vedação 14x19x39CM', 73.50, 'O Tijolo Cerâmico de Vedação Tijolo Cerâmico de Vedação 14x19x39CM é um item imprescindível dentro da construção civil, sendo utilizado na alvenaria de vedação e normalmente na estruturação convencional com lajes, ferro, aço, vigas, pilares e também na construção de paredes internas.  A função deste Tijolo Cerâmico de Vedação Tijolo Cerâmico de Vedação 14x19x39CM  é fechar as lacunas de construções comerciais e residenciais. Recebe o nome popular de tijolo baianinho ou bloco baianinho.  Os furos horizontais desse bloco cerâmico facilitam a passagem de tubulações e fios, uma de suas principais características é que ele não precisa ser tão resistente pois conta com o apoio de vigas, armações e pilares para dar suporte e sustentação à estrutura da obra.', 2, './img/tijolo.png', 12, 0, 8),
-(42, 'Suvinil Toque Fosco Completo Tempero Sírio 0.8L', 81.90, 'A tinta Suvinil Toque Fosco Completo é perfeita para você ter um acabamento fosco impecável, superliso e uniforme nas paredes internas de casa. Na escala de benefícios, ela entrega máxima performance em pintura lisa e uniforme, além de boa resistência à limpeza e maior disfarce de imperfeições em comparação com a Suvinil Toque Seda e a Suvinil Toque Brilho.', 142, './img/1.webp', 13, 1, 10);
+(42, 'Suvinil Toque Fosco Completo Tempero Sírio 0.8L', 81.90, 'A tinta Suvinil Toque Fosco Completo é perfeita para você ter um acabamento fosco impecável, superliso e uniforme nas paredes internas de casa. Na escala de benefícios, ela entrega máxima performance em pintura lisa e uniforme, além de boa resistência à limpeza e maior disfarce de imperfeições em comparação com a Suvinil Toque Seda e a Suvinil Toque Brilho.', 142, './img/1.webp', 13, 1, 10),
+(43, 'Rodapé de MDF 7cm x 15mm x 2.20m', 27.97, 'Os rodapés possuem como principal função proteger a parede de alguns fatores como o atrito com móveis e calçados, mas seu acabamento entre piso e parede também pode combinar perfeitamente com a decoração. A linha MDF CASABLANCA é uma solução inovadora no mercado de rodapés para construção civil. Rodapés produzidos em MDF, revestidos com papel melamínico, já acabado, sem necessidade de pintura.', 300, './img/imagem_2025-12-12_125346279.png', 7, 0, 8),
+(44, 'Frontal / Painel / Parede de pinus tratado', 41.12, 'A madeira de pinus apresenta o que chamamos de “nó”, que são pequenas manchas mais escuras, na maior parte das vezes, arredondada na madeira de pinus. Isso é uma característica comum nessa espécie de madeira e não representa nenhum risco à integridade da mesma, sendo apenas um elemento visual. Todos os nossos produtos são feitos utilizando o pinus eliotti, um pinus de qualidade superior, com menor presença de nós que não pegam o produto do tratamento, melhor resistência em relação a torções e melhor qualidade de acabamento.', 213, './img/imagem_2025-12-12_125723923.png', 7, 0, 8),
+(45, 'Conjunto Interruptor Simples 10A 250V', 15.34, 'Miluz é a linha de interruptores e tomadas da Schneider Electric que combina com tudo no seu dia a dia.  Ganhadora do prêmio IF de design de produto em 2014 e do Brasil Design Award 2014, a Miluz deixa sua casa ainda mais bonita e moderna em cada detalhe, além de ser um produto Green, ou seja, livre de substâncias tóxicas de acordo com as diretrizes RoHS e Reach.  Com uma versatilidade para compor qualquer ambiente, combine a linha Miluz com o sistema de canalização aparente Dexson para uma instalação limpa, ágil e segura.', 15, './img/imagem_2025-12-12_130044768.png', 9, 0, 8),
+(46, 'Conjunto 4x2 02 Tomadas', 19.55, ' A Linha Elétrica MyX da Exatron destaca-se pelo seu design, qualidade e praticidade. Ela pode ser montada de acordo com a sua necessidade, são mais de 15 módulos disponíveis para a composição. Produzido em ABS com acabamento brilho, tem toda sua produção realizada pela Exatron.', 100, './img/imagem_2025-12-12_130310065.png', 9, 0, 8),
+(47, 'Cimento CP II F 32 Todas as Obras 50kg Votoran', 33.00, 'Na hora de construir ou reformar, um item que não pode faltar é o cimento. É importante um produto de qualidade para não ter problemas futuros na obra. O Cimento CP II F 32 Todas as Obras 50 kg Votoran é ideal para reboco, contrapiso, concreto convencional e laje.', 322, './img/imagem_2025-12-12_130559503.png', 12, 0, 0),
+(48, 'Areia Média Lavada Saco 20kg', 13.50, 'Areia média, especialmente selecionada garantindo uniformidade do agregado, ideal para o preparo de argamassa usada no assentamento de tijolos, blocos e chapisco e no reboco. qualidade e regularizações em sua reforma ou construção.', 231, './img/imagem_2025-12-12_130925700.png', 12, 0, 8),
+(49, 'Rolo de pintura 23 cm', 22.99, 'O rolo de lã para pintura profissional 23 cm com cabo da castor apresenta maior rendimento no alastramento da tinta. Melhor cobertura e penetração da tinta em superfícies ásperas e irregulares. Carrega mais tinta por conta da sua lã alta.', 100, './img/imagem_2025-12-12_131144779.png', 13, 0, 8);
 
 -- --------------------------------------------------------
 
@@ -146,8 +128,6 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `data_nasc`) VALUES
 (1, 'Gabriel Luiz Oliveira da Silva', 'gabrielluiz3462@outlook.com', '451ab8cf36e5cda7cbd7e84e5a5545c8', '1999-10-06'),
-(2, 'Pedro da Silva Silva Silva', 'pedrodasilvasilvasilvasilva@gmail.com', '0f5aaaf14d9a2d371853e46119abba27', '1999-10-05'),
-(10, 'Não Sei da Silva Caravalho', 'naosei@gmail.com', '$2y$10$F1DvPeO0/O.z65us3IdiZuNqLKl4kC2gCc4aki3bNH0qvCzDXQsAu', '2001-11-10'),
 (11, 'João da Silva', 'joao@gmail.com', '$2y$10$cnZ0gGFErB3WM1C1W4tccOk4jThgMVzw/mnEfm9Hc09vy6ifLEiX.', '1998-11-10');
 
 --
@@ -196,25 +176,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de tabela `itens_pedido`
 --
 ALTER TABLE `itens_pedido`
-  MODIFY `id_item` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_item` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id_pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pedido` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id_produto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_produto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`

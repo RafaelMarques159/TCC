@@ -35,6 +35,7 @@
     <div class="mb-3">
         <label>Desconto:</label>
         <select name="desconto" required>
+        <option value="0" selected>Nenhum desconto</option>
     <?php for($i = 8; $i <= 30; $i++): ?>
         <option value="<?= $i ?>"><?= $i ?>%</option>
     <?php endfor; ?>
