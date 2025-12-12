@@ -12,6 +12,7 @@ include_once "config.php";
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
   <link rel="stylesheet" href="/TCC/Front.css">
   <title>Bella Contrucoes</title>
 
@@ -255,7 +256,58 @@ include_once "config.php";
 
     </div>
   </div>
+<section class="py-5 overflow-hidden">
+    <div class="container-lg container-ajuste">
+      <div class="row">
+        <div class="col-md-12">
 
+          <?php
+          include_once "config.php";
+
+          $sql = "SELECT * FROM categorias";
+          $res = $conn->query($sql);
+          ?>
+
+          <div class="category-carousel swiper">
+            <div class="swiper-wrapper">
+
+              <?php
+              if ($res && $res->num_rows > 0) {
+                while ($row = $res->fetch_object()) {
+
+                  // Proteção evitando HTML quebrado
+                  $img = htmlspecialchars($row->img_categoria, ENT_QUOTES, 'UTF-8');
+                  $nome = htmlspecialchars($row->nome_categoria, ENT_QUOTES, 'UTF-8');
+
+                  // Marca categoria ativa se estiver no filtro (GET)
+                  $ativo = (!empty($_GET['categorias']) && in_array($row->id_categoria, $_GET['categorias']))
+                    ? "categoria-ativa"
+                    : "";
+                  echo "
+                                <a href='produtos.php?categorias[]={$row->id_categoria}' class='nav-link swiper-slide text-center categoria-item {$ativo}'>
+                                    
+                                    <img src='{$img}' 
+                                         class='rounded-circle'
+                                         style='width:140px;height:140px;object-fit:cover;'
+                                         alt='{$nome}'>
+
+                                    <h4 class='fs-6 mt-3 fw-normal category-title'>
+                                        {$nome}
+                                    </h4>
+
+                                </a>
+                                ";
+                }
+              }
+              ?>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
 
 
   <div id="carouselExample" class="carousel slide" data-bs-interval="false">
@@ -469,59 +521,7 @@ include_once "config.php";
     </button>
   </div>
 
-  <section class="py-5 overflow-hidden">
-    <div class="container-lg container-ajuste">
-      <div class="row">
-        <div class="col-md-12">
-
-          <?php
-          include_once "config.php";
-
-          $sql = "SELECT * FROM categorias";
-          $res = $conn->query($sql);
-          ?>
-
-          <div class="category-carousel swiper">
-            <div class="swiper-wrapper">
-
-              <?php
-              if ($res && $res->num_rows > 0) {
-                while ($row = $res->fetch_object()) {
-
-                  // Proteção evitando HTML quebrado
-                  $img = htmlspecialchars($row->img_categoria, ENT_QUOTES, 'UTF-8');
-                  $nome = htmlspecialchars($row->nome_categoria, ENT_QUOTES, 'UTF-8');
-
-                  // Marca categoria ativa se estiver no filtro (GET)
-                  $ativo = (!empty($_GET['categorias']) && in_array($row->id_categoria, $_GET['categorias']))
-                    ? "categoria-ativa"
-                    : "";
-                  echo "
-                                <a href='produtos.php?categorias[]={$row->id_categoria}' class='nav-link swiper-slide text-center categoria-item {$ativo}'>
-                                    
-                                    <img src='{$img}' 
-                                         class='rounded-circle'
-                                         style='width:140px;height:140px;object-fit:cover;'
-                                         alt='{$nome}'>
-
-                                    <h4 class='fs-6 mt-3 fw-normal category-title'>
-                                        {$nome}
-                                    </h4>
-
-                                </a>
-                                ";
-                }
-              }
-              ?>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
+  
   <!--inicio do rodape-->
   <!-- Footer -->
   <footer class="text-center text-lg-start text-dark" style="background-color: #ECEFF1">
@@ -623,6 +623,9 @@ include_once "config.php";
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+  <script src="js/jquery-1.11.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>
