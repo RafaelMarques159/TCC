@@ -80,8 +80,8 @@ body {
 
 /* Hover do botão (linha vermelha + leve background) */
 .dropdown-center .btn:hover {
-  border-bottom-color: red;
-  color: red;
+  border-bottom-color: #F97316;
+  color: #F97316;
   background-color: rgba(0, 0, 0, 0.03);
 }
 
@@ -113,7 +113,7 @@ body {
 
 .dropdown-menu .dropdown-item:hover {
   background: #f1f1f1;
-  color: red;
+  color: #F97316;
 }
 
 

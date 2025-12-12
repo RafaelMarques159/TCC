@@ -210,7 +210,7 @@ if (isset($_GET['add_carrinho'])) {
     </header>
 
     <section class="py-5 overflow-hidden">
-        <div class="container-lg">
+        <div class="container-lg container-ajuste">
             <div class="row">
                 <div class="col-md-12">
 
@@ -242,14 +242,14 @@ if (isset($_GET['add_carrinho'])) {
                     <div class="category-carousel swiper">
                         <div class="swiper-wrapper">
 
-                        <?php
+                            <?php
                             if ($res && $res->num_rows > 0) {
                                 while ($row = $res->fetch_object()) {
 
                                     // Proteção evitando HTML quebrado
                                     $img = htmlspecialchars($row->img_categoria, ENT_QUOTES, 'UTF-8');
                                     $nome = htmlspecialchars($row->nome_categoria, ENT_QUOTES, 'UTF-8');
-                                    
+
                                     // Marca categoria ativa se estiver no filtro (GET)
                                     $ativo = (!empty($_GET['categorias']) && in_array($row->id_categoria, $_GET['categorias']))
                                         ? "categoria-ativa"
@@ -270,7 +270,7 @@ if (isset($_GET['add_carrinho'])) {
                                 ";
                                 }
                             }
-                        ?>
+                            ?>
 
                         </div>
                     </div>
@@ -289,19 +289,18 @@ if (isset($_GET['add_carrinho'])) {
                 <div class="card-filtros">
                     <div class="card-body">
                         <h5 class="mb-3">Filtros</h5>
-                         <form method="GET" action="produtos.php">
-
-            <!-- Busca por nome -->
-                <div class="mb-3">
-                    <label class="form-label">Buscar produto</label>
-                    <input type="text" 
-                        name="busca" 
-                        class="form-control" 
-                        placeholder="Digite o nome..."
-                        value="<?php echo isset($_GET['busca']) ? htmlspecialchars($_GET['busca']) : ''; ?>">
-                </div>       
                         <form method="GET" action="produtos.php">
-                            
+
+                            <!-- Busca por nome -->
+                            <div class="mb-3">
+                                <label class="form-label">Buscar produto</label>
+                                <input type="text"
+                                    name="busca"
+                                    class="form-control"
+                                    placeholder="Digite o nome..."
+                                    value="<?php echo isset($_GET['busca']) ? htmlspecialchars($_GET['busca']) : ''; ?>">
+                            </div>
+
                             <!-- Categoria -->
                             <div class="mb-2">
                                 <button
@@ -311,10 +310,8 @@ if (isset($_GET['add_carrinho'])) {
                                     <i class="bi bi-chevron-down"></i>
                                 </button>
 
-
                                 <div class="collapse show" id="categoria">
                                     <?php
-
                                     $sqlCat = "SELECT * FROM categorias ORDER BY nome_categoria";
                                     $resCat = $conn->query($sqlCat);
 
@@ -325,12 +322,12 @@ if (isset($_GET['add_carrinho'])) {
                                                 $checked = "checked";
                                             }
                                             echo "
-                                <div class='form-check'>
-                                <input class='form-check-input' name='categorias[]' type='checkbox' id='cat{$cat->id_categoria}' value='{$cat->id_categoria}' {$checked}>
-                                <label class='form-check-label' for='cat{$cat->id_categoria}'>
-                                {$cat->nome_categoria}
-                                </label>
-                                </div>";
+                                            <div class='form-check'>
+                                                <input class='form-check-input' name='categorias[]' type='checkbox' id='cat{$cat->id_categoria}' value='{$cat->id_categoria}' {$checked}>
+                                                <label class='form-check-label' for='cat{$cat->id_categoria}'>
+                                                    {$cat->nome_categoria}
+                                                </label>
+                                            </div>";
                                         }
                                     } else {
                                         echo "<p class='text-muted'>Nenhuma categoria encontrada.</p>";
@@ -338,7 +335,6 @@ if (isset($_GET['add_carrinho'])) {
                                     ?>
                                 </div>
                             </div>
-
 
                             <!-- Subcategoria -->
                             <div class="mb-2">
@@ -373,107 +369,107 @@ if (isset($_GET['add_carrinho'])) {
                     </div>
                 </div>
             </div>
-         
-            <?php
-// monta a query de produtos com filtros (categorias + busca)
-    
-        ?>
 
             <!-- Cards -->
             <div style="width: 48rem;">
                 <div class="row g-3">
-                    <!-- Primeira linha -->
+
                     <?php
                     // 🔵 MONTA A QUERY
                     $sql = "SELECT * FROM produtos";
                     $where = [];
 
-        // categorias (se existirem)
-    if (!empty($_GET['categorias'])) {
-        $cats = implode(",", array_map('intval', $_GET['categorias']));
-        $where[] = "categoria_id IN ($cats)";
-    }
+                    if (!empty($_GET['categorias'])) {
+                        $cats = implode(",", array_map('intval', $_GET['categorias']));
+                        $where[] = "categoria_id IN ($cats)";
+                    }
 
-            // busca por nome (se existir)
-    if (!empty($_GET['busca'])) {
-        $busca = $conn->real_escape_string($_GET['busca']);
-        $where[] = "nome_produto LIKE '%$busca%'";
-        }
+                    if (!empty($_GET['busca'])) {
+                        $busca = $conn->real_escape_string($_GET['busca']);
+                        $where[] = "nome_produto LIKE '%$busca%'";
+                    }
 
-                // monta WHERE final se houver condições
-        if (!empty($where)) {
-            $sql .= " WHERE " . implode(" AND ", $where);
-        }
+                    if (!empty($where)) {
+                        $sql .= " WHERE " . implode(" AND ", $where);
+                    }
 
-                // executa a query e coloca em $res (o resto do seu código usa $res)
+                    // ---------------- PAGINAÇÃO ----------------
+                    $limite = 6;
+                    $pagina = isset($_GET['pagina']) ? intval($_GET['pagina']) : 1;
+                    if ($pagina < 1) $pagina = 1;
 
-                    // 🔵 Executa a query
+                    $offset = ($pagina - 1) * $limite;
+
+                    $sqlTotal = str_replace("SELECT *", "SELECT COUNT(*) as total", $sql);
+                    $resTotal = $conn->query($sqlTotal);
+                    $totalReg = $resTotal->fetch_object()->total;
+
+                    $totalPaginas = ceil($totalReg / $limite);
+
+                    $sql .= " LIMIT $offset, $limite";
+                    // -------------------------------------------
+
                     $res = $conn->query($sql);
 
                     if ($res->num_rows > 0) {
                         while ($row = $res->fetch_object()) {
-
-                            $limite = 123;
+                            $limDesc = 123;
                             $descricaoCompleta = htmlspecialchars($row->descricao, ENT_QUOTES);
-                            $descricaoCurta = substr($row->descricao, 0, $limite);
+                            $descricaoCurta = substr($row->descricao, 0, $limDesc);
 
-                            if (strlen($row->descricao) > $limite) {
-
+                            if (strlen($row->descricao) > $limDesc) {
                                 $descricaoCortada = "
-                            <span class='texto-curto'>{$descricaoCurta}...</span>
-                            <span class='texto-completo d-none'>{$descricaoCompleta}</span>
-                            <a href='#' class='toggle-text'>Ver mais</a>";
+                                <span class='texto-curto'>{$descricaoCurta}...</span>
+                                <span class='texto-completo d-none'>{$descricaoCompleta}</span>
+                                <a href='#' class='toggle-text'>Ver mais</a>";
                             } else {
                                 $descricaoCortada = $descricaoCompleta;
                             }
-                            
+
                             echo "
-    <div class='col-4'>
-        <div class='card'>
-            <img src='{$row->imagem}' class='card-img-top' alt='{$row->nome_produto}'>
-            <div class='card-body'>
-                <h5 class='card-title'>{$row->nome_produto}</h5>";
-                
-                // --- APENAS ACRESCENTADO ---
-                if (!empty($row->desconto) && $row->desconto > 0) {
-                    $precoOriginal = $row->preco;
-                    $valorDesconto = ($row->preco * ($row->desconto / 100));
-                    $precoFinal = $row->preco - $valorDesconto;
+                        <div class='col-4'>
+                            <div class='card'>
+                                <img src='{$row->imagem}' class='card-img-top' alt='{$row->nome_produto}'>
+                                <div class='card-body'>
+                                    <h5 class='card-title'>{$row->nome_produto}</h5>";
 
-                    echo "
-                        <p style='text-decoration: line-through; color:#777; margin-bottom: 2px; display:inline-block;'>
-                            R$ " . number_format($precoOriginal, 2, ',', '.') . "
-                        </p>
+                            if (!empty($row->desconto) && $row->desconto > 0) {
+                                $precoOriginal = $row->preco;
+                                $valorDesconto = ($row->preco * ($row->desconto / 100));
+                                $precoFinal = $row->preco - $valorDesconto;
 
-                        <span style='background:#F97316; color:white; padding:3px 6px;
-                            border-radius:4px; font-size:13px; font-weight:bold; display:inline-block; margin-left:6px;'>
-                            -{$row->desconto}%
-                        </span>
+                                echo "
+                                <p style='text-decoration: line-through; color:#777; margin-bottom: 2px; display:inline-block;'>
+                                    R$ " . number_format($precoOriginal, 2, ',', '.') . "
+                                </p>
 
-                        <p class='card-price' style='color:black; font-weight:bold; margin-top:2px; margin-bottom:0;'>
-                            R$ " . number_format($precoFinal, 2, ',', '.') . "
-                        </p>
-                        <p style='margin:0; font-size:14px; color:#444;'>em até 2x de R$ " . number_format(($precoFinal / 2), 2, ',', '.') . "</p>
-                    ";
-                } else {
-                    // SE NÃO TIVER DESCONTO, mantém SEU preço original sem mudar nada
-                    echo "
-                        <p class='card-price'>R$ " . number_format($row->preco, 2, ',', '.') . "</p>
-                        <p style='margin:0; font-size:14px; color:#444;'>ou 2x de R$ " . number_format(($row->preco / 2), 2, ',', '.') . "</p>
-                    ";
-                }
-                // --- FIM DO ACRESCENTADO ---
+                                <span style='background:#F97316; color:white; padding:3px 6px;
+                                    border-radius:4px; font-size:13px; font-weight:bold; display:inline-block; margin-left:6px;'>
+                                    -{$row->desconto}%
+                                </span>
 
-echo "
-                <button class='btn btn-success' onclick='addCarrinho(" . $row->id_produto . ")'>
-                    ADICIONAR 
-                    <i class='fa fa-shopping-cart' 
-                    style='color:transparent;-webkit-text-stroke:1px white;text-stroke:1px white;'>
-                    </i>
-                </button>
-            </div>
-        </div>
-    </div>";
+                                <p class='card-price' style='color:black; font-weight:bold; margin-top:2px; margin-bottom:0;'>
+                                    R$ " . number_format($precoFinal, 2, ',', '.') . "
+                                </p>
+                                <p style='margin:0; font-size:14px; color:#444;'>em até 2x de R$ " . number_format(($precoFinal / 2), 2, ',', '.') . "</p>
+                            ";
+                            } else {
+                                echo "
+                                <p class='card-price'>R$ " . number_format($row->preco, 2, ',', '.') . "</p>
+                                <p style='margin:0; font-size:14px; color:#444;'>ou 2x de R$ " . number_format(($row->preco / 2), 2, ',', '.') . "</p>
+                            ";
+                            }
+
+                            echo "
+                                    <button class='btn btn-success' onclick='addCarrinho(" . $row->id_produto . ")'>
+                                        ADICIONAR 
+                                        <i class='fa fa-shopping-cart' 
+                                        style='color:transparent;-webkit-text-stroke:1px white;text-stroke:1px white;'>
+                                        </i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>";
                         }
                     } else {
                         echo "<p>Nenhum produto encontrado!</p>";
@@ -481,6 +477,36 @@ echo "
                     ?>
 
                 </div>
+
+                <!-- TEXTO MOSTRANDO “Página X de Y” -->
+                <?php if ($totalPaginas > 1): ?>
+                    <div class="text-center mt-4">
+                        <strong>Página <?= $pagina ?> de <?= $totalPaginas ?></strong>
+                    </div>
+                <?php endif; ?>
+
+
+                <!-- PAGINAÇÃO NUMÉRICA -->
+                <?php if ($totalPaginas > 1): ?>
+                    <div class="mt-2 d-flex justify-content-center">
+                        <nav>
+                            <ul class="pagination">
+
+                                <?php for ($i = 1; $i <= $totalPaginas; $i++):
+                                    $params = $_GET;
+                                    $params['pagina'] = $i;
+                                    $link = "produtos.php?" . http_build_query($params);
+                                ?>
+                                    <li class="page-item <?= ($i == $pagina ? 'active' : '') ?>">
+                                        <a class="page-link" href="<?= $link ?>"><?= $i ?></a>
+                                    </li>
+                                <?php endfor; ?>
+
+                            </ul>
+                        </nav>
+                    </div>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
@@ -576,7 +602,16 @@ echo "
 
 
 
-
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -585,18 +620,18 @@ echo "
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="js/descricao.js"></script>
     <script src="js/script.js"></script>
-    
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-        const ativa = document.querySelector(".categoria-ativa");
-        const carrossel = document.querySelector(".category-carousel");
+            const ativa = document.querySelector(".categoria-ativa");
+            const carrossel = document.querySelector(".category-carousel");
 
-        if (ativa && carrossel) {
-        carrossel.classList.add("has-active");
+            if (ativa && carrossel) {
+                carrossel.classList.add("has-active");
             }
         });
     </script>
-    
+
     <script>
         function atualizarCarrinho(dados) {
             document.getElementById("carrinho-itens").innerHTML = dados.html;

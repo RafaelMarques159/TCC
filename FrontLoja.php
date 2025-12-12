@@ -19,13 +19,10 @@
       <div class="row align-items-center justify-content-between py-3">
 
         <!-- Logo -->
-        <div class="col-6 col-md-2 text-center text-md-start mb-2 mb-md-0">
-          <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
-            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-              <use xlink:href="#bootstrap" />
-            </svg>
-          </a>
+        <div style="max-width:140px;" class="col-6 col-md-2 text-center text-md-start mb-2 mb-md-0">
+            <img src="imagensfront/logo.png" class="img-fluid logo-site" alt="Logo da loja">
         </div>
+
 
         <!-- Barra de Pesquisa -->
         <div class="col-12 col-md-6 mb-3 mb-md-0">
